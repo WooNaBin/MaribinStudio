@@ -5,127 +5,126 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dice Crusaders - Maribin Studio</title>
 <style>
-  body { font-family: sans-serif; margin: 0; padding: 0; line-height:1.6; }
-  nav { background-color:#333; color:#fff; padding:10px; display:flex; justify-content:center; align-items:center; }
-  nav a { color:#fff; margin:0 15px; text-decoration:none; font-weight:bold; }
-  nav .lang-switch { margin-left:auto; }
-  .lang-btn { cursor:pointer; font-size:20px; margin-left:10px; }
-  header { background-image:url('https://picsum.photos/seed/dicegame/1200/400'); background-size:cover; background-position:center; color:#fff; padding:80px 20px; text-align:center; }
-  header h1 { font-size:48px; margin:0; }
-  header p { font-size:24px; margin-top:10px; }
-  main { padding:40px 20px; }
-  main h2 { margin-top:40px; }
-  section { margin-bottom:40px; }
-  footer { background-color:#f5f5f5; text-align:center; padding:10px; }
+body { font-family: sans-serif; margin:0; padding:0; line-height:1.6; }
+nav { background-color:#333; color:#fff; padding:10px; display:flex; justify-content:center; align-items:center; }
+nav a { color:#fff; margin:0 15px; text-decoration:none; font-weight:bold; }
+nav .lang-switch { margin-left:auto; }
+.lang-btn { cursor:pointer; font-size:20px; margin-left:10px; }
+header { background-image:url('https://picsum.photos/seed/dicegame/1200/400'); background-size:cover; background-position:center; color:#fff; text-align:center; padding:60px 0; }
+header h1 { font-size:48px; margin:0; }
+header p { font-size:24px; margin-top:10px; }
+main { padding:40px 20px; }
+section { margin-bottom:40px; }
+footer { background-color:#f5f5f5; text-align:center; padding:10px; }
 </style>
 </head>
 <body>
 <nav>
- <a href="index.html" id="nav-home">Home</a>
- <a href="maribin-studio.html" id="nav-studio">Maribin Studio</a>
- <a href="games.html" id="nav-games">Games</a>
- <a href="contact.html" id="nav-contact">Contact</a>
- <div class="lang-switch">
-  <span id="lang-en" class="lang-btn">🇺🇸</span>
-  <span id="lang-ko" class="lang-btn">🇰🇷</span>
- </div>
+  <a href="index.html" id="nav-home">Home</a>
+  <a href="maribin-studio.html" id="nav-studio">Maribin Studio</a>
+  <a href="games.html" id="nav-games">Games</a>
+  <a href="contact.html" id="nav-contact">Contact</a>
+  <span class="lang-switch">
+    <span class="lang-btn" id="lang-en">🇺🇸</span>
+    <span class="lang-btn" id="lang-ko">🇰🇷</span>
+  </span>
 </nav>
-<header>
- <h1 id="page-title">Dice Crusaders</h1>
- <p id="page-subtitle">Strategic Dice Game</p>
+<header class="header">
+  <h1 id="page-title">Dice Crusaders</h1>
+  <p id="page-subtitle">A Strategic Dice Game</p>
 </header>
 <main>
- <section>
-   <h2 id="intro-heading">Game Introduction</h2>
-   <p id="intro-content">Dice Crusaders is a strategic dice game where players battle monsters using various dice combinations. Aim to defeat the boss with the best strategy!</p>
- </section>
- <section>
-   <h2 id="info-heading">Game Information</h2>
-   <p id="info-content">Release Date: TBD. Platforms: PC, mobile. Features: upgradeable skills, random events, and more.</p>
- </section>
- <section>
-   <h2 id="log-heading">Development Log</h2>
-   <p id="log-content">No logs available yet.</p>
- </section>
- <section>
-   <h2 id="update-heading">Future Updates</h2>
-   <p id="update-content">We plan to introduce new dice, enemies, and game modes in upcoming updates.</p>
- </section>
- <section>
-   <h2 id="inquiry-heading">Game Inquiry</h2>
-   <p id="inquiry-content">If you have any questions or feedback, feel free to reach out via our contact page.</p>
-   <p><a href="contact.html" id="inquire-link">Contact Us</a></p>
- </section>
+  <section>
+    <h2 id="intro-heading">Game Introduction</h2>
+    <p id="intro-text">Dice Crusaders is a strategic dice game where players use dice to battle enemies and upgrade characters.</p>
+  </section>
+  <section>
+    <h2 id="info-heading">Game Information</h2>
+    <p id="info-text">Enjoy challenging gameplay and character progression with random dice-based battles and special abilities.</p>
+  </section>
+  <section>
+    <h2 id="devlog-heading">Development Log</h2>
+    <p id="devlog-text">Stay tuned for development updates coming soon.</p>
+  </section>
+  <section>
+    <h2 id="future-heading">Future Updates</h2>
+    <p id="future-text">New features and content are planned for future releases.</p>
+  </section>
+  <section>
+    <h2 id="inquiry-heading">Game Inquiry</h2>
+    <p id="inquiry-text">For questions or support, please visit our contact page.</p>
+  </section>
 </main>
 <footer>
- <p>© 2025 Maribin Studio. All rights reserved.</p>
+  <p>&copy; 2025 Maribin Studio. All rights reserved.</p>
 </footer>
 <script>
 const translations = {
- en: {
-   navHome: 'Home',
-   navStudio: 'Maribin Studio',
-   navGames: 'Games',
-   navContact: 'Contact',
-   pageTitle: 'Dice Crusaders',
-   pageSubtitle: 'Strategic Dice Game',
-   introHeading: 'Game Introduction',
-   introContent: 'Dice Crusaders is a strategic dice game where players battle monsters using various dice combinations. Aim to defeat the boss with the best strategy!',
-   infoHeading: 'Game Information',
-   infoContent: 'Release Date: TBD. Platforms: PC, mobile. Features: upgradeable skills, random events, and more.',
-   logHeading: 'Development Log',
-   logContent: 'No logs available yet.',
-   updateHeading: 'Future Updates',
-   updateContent: 'We plan to introduce new dice, enemies, and game modes in upcoming updates.',
-   inquiryHeading: 'Game Inquiry',
-   inquiryContent: 'If you have any questions or feedback, feel free to reach out via our contact page.',
-   inquireLink: 'Contact Us'
- },
- ko: {
-   navHome: '홈',
-   navStudio: '마리빈 스튜디오',
-   navGames: '게임',
-   navContact: '연락처',
-   pageTitle: '다이스 크루세이더스',
-   pageSubtitle: '전략적인 주사위 게임',
-   introHeading: '게임 소개',
-   introContent: '다이스 크루세이더스는 다양한 주사위 조합을 활용하여 몬스터와 전투를 벌이는 전략 게임입니다. 최고의 전략으로 보스를 물리쳐보세요!',
-   infoHeading: '게임 정보',
-   infoContent: '출시일: 미정. 플랫폼: PC, 모바일. 특징: 업그레이드 가능한 스킬, 랜덤 이벤트 등.',
-   logHeading: '개발 로그',
-   logContent: '아직 개발 로그가 없습니다.',
-   updateHeading: '향후 업데이트',
-   updateContent: '앞으로 새로운 주사위, 적, 게임 모드 등을 추가할 예정입니다.',
-   inquiryHeading: '게임 문의',
-   inquiryContent: '질문이나 피드백이 있으시면 연락처 페이지를 통해 문의해주세요.',
-   inquireLink: '문의하기'
- }
+  en: {
+    navHome: 'Home',
+    navStudio: 'Maribin Studio',
+    navGames: 'Games',
+    navContact: 'Contact',
+    pageTitle: 'Dice Crusaders',
+    pageSubtitle: 'A Strategic Dice Game',
+    introHeading: 'Game Introduction',
+    introText: 'Dice Crusaders is a strategic dice game where players use dice to battle enemies and upgrade characters.',
+    infoHeading: 'Game Information',
+    infoText: 'Enjoy challenging gameplay and character progression with random dice-based battles and special abilities.',
+    devlogHeading: 'Development Log',
+    devlogText: 'Stay tuned for development updates coming soon.',
+    futureHeading: 'Future Updates',
+    futureText: 'New features and content are planned for future releases.',
+    inquiryHeading: 'Game Inquiry',
+    inquiryText: 'For questions or support, please visit our contact page.',
+  },
+  ko: {
+    navHome: '홈',
+    navStudio: '마리빈 스튜디오',
+    navGames: '게임',
+    navContact: '연락처',
+    pageTitle: '다이스 크루세이더스',
+    pageSubtitle: '전략적인 주사위 게임',
+    introHeading: '게임 소개',
+    introText: '다이스 크루세이더스는 플레이어가 주사위를 사용해 적과 싸우고 캐릭터를 성장시키는 전략 게임입니다.',
+    infoHeading: '게임 정보',
+    infoText: '무작위 주사위 전투와 특수 능력으로 도전적인 게임 플레이와 캐릭터 성장을 즐길 수 있습니다.',
+    devlogHeading: '개발 로그',
+    devlogText: '곧 개발 업데이트가 제공될 예정입니다.',
+    futureHeading: '향후 업데이트',
+    futureText: '새로운 기능과 콘텐츠가 향후 버전에 계획되어 있습니다.',
+    inquiryHeading: '게임 문의',
+    inquiryText: '문의 사항이나 지원이 필요하시면 연락처 페이지를 방문해 주세요.',
+  }
 };
+
 function setLanguage(lang) {
- document.getElementById('nav-home').textContent = translations[lang].navHome;
- document.getElementById('nav-studio').textContent = translations[lang].navStudio;
- document.getElementById('nav-games').textContent = translations[lang].navGames;
- document.getElementById('nav-contact').textContent = translations[lang].navContact;
- document.getElementById('page-title').textContent = translations[lang].pageTitle;
- document.getElementById('page-subtitle').textContent = translations[lang].pageSubtitle;
- document.getElementById('intro-heading').textContent = translations[lang].introHeading;
- document.getElementById('intro-content').textContent = translations[lang].introContent;
- document.getElementById('info-heading').textContent = translations[lang].infoHeading;
- document.getElementById('info-content').textContent = translations[lang].infoContent;
- document.getElementById('log-heading').textContent = translations[lang].logHeading;
- document.getElementById('log-content').textContent = translations[lang].logContent;
- document.getElementById('update-heading').textContent = translations[lang].updateHeading;
- document.getElementById('update-content').textContent = translations[lang].updateContent;
- document.getElementById('inquiry-heading').textContent = translations[lang].inquiryHeading;
- document.getElementById('inquiry-content').textContent = translations[lang].inquiryContent;
- document.getElementById('inquire-link').textContent = translations[lang].inquireLink;
- localStorage.setItem('lang', lang);
+  const t = translations[lang];
+  document.getElementById('nav-home').textContent = t.navHome;
+  document.getElementById('nav-studio').textContent = t.navStudio;
+  document.getElementById('nav-games').textContent = t.navGames;
+  document.getElementById('nav-contact').textContent = t.navContact;
+  document.getElementById('page-title').textContent = t.pageTitle;
+  document.getElementById('page-subtitle').textContent = t.pageSubtitle;
+  document.getElementById('intro-heading').textContent = t.introHeading;
+  document.getElementById('intro-text').textContent = t.introText;
+  document.getElementById('info-heading').textContent = t.infoHeading;
+  document.getElementById('info-text').textContent = t.infoText;
+  document.getElementById('devlog-heading').textContent = t.devlogHeading;
+  document.getElementById('devlog-text').textContent = t.devlogText;
+  document.getElementById('future-heading').textContent = t.futureHeading;
+  document.getElementById('future-text').textContent = t.futureText;
+  document.getElementById('inquiry-heading').textContent = t.inquiryHeading;
+  document.getElementById('inquiry-text').textContent = t.inquiryText;
+  localStorage.setItem('lang', lang);
 }
+
+document.getElementById('lang-en').addEventListener('click', () => setLanguage('en'));
+document.getElementById('lang-ko').addEventListener('click', () => setLanguage('ko'));
+
 document.addEventListener('DOMContentLoaded', () => {
- const savedLang = localStorage.getItem('lang') || 'en';
- setLanguage(savedLang);
- document.getElementById('lang-en').addEventListener('click', () => setLanguage('en'));
- document.getElementById('lang-ko').addEventListener('click', () => setLanguage('ko'));
+  const savedLang = localStorage.getItem('lang') || 'en';
+  setLanguage(savedLang);
 });
 </script>
 </body>
