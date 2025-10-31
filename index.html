@@ -1,42 +1,88 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Maribin Studio</title>
-  <style>
-    body { font-family: sans-serif; margin: 0; padding: 0; line-height: 1.6;}
-    header { background-image: url('https://picsum.photos/seed/home/1200/400'); background-size: cover; background-position: center; color: #fff; text-align: center; padding: 100px 20px; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maribin Studio</title>
+<style>
+    body { font-family: sans-serif; margin: 0; padding: 0; line-height: 1.6; }
+    header { background-image: url('https://picsum.photos/seed/home/1200/400'); background-size: cover; background-position: center; color: #fff; text-align: center; padding: 60px 0; }
     header h1 { font-size: 48px; margin: 0; }
     header p { font-size: 20px; margin-top: 10px; }
-    nav { background-color: #333; color: #fff; padding: 10px; text-align: center;}
-    nav a { color: #fff; margin: 0 15px; text-decoration: none; font-weight: bold;}
+    nav { background-color: #333; color: #fff; padding: 10px; text-align: center; display: flex; justify-content: center; align-items: center; }
+    nav a { color: #fff; margin: 0 15px; text-decoration: none; font-weight: bold; }
+    nav .lang-switch { margin-left: auto; }
+    .lang-btn { cursor: pointer; font-size: 20px; margin-left: 10px; }
     main { padding: 40px 20px; text-align: center; }
     .cta { margin-top: 30px; }
     .cta a { background-color: #007BFF; color: #fff; padding: 10px 20px; text-decoration: none; border-radius: 4px; }
     footer { background-color: #f5f5f5; text-align: center; padding: 10px; }
-  </style>
+</style>
 </head>
 <body>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="maribin-studio.html">Maribin Studio</a>
-    <a href="games.html">Games</a>
-    <a href="contact.html">Contact</a>
-  </nav>
-  <header>
-    <h1>Maribin Studio</h1>
-    <p>Indie Game Development Studio</p>
-  </header>
-  <main>
-    <h2>Welcome!</h2>
-    <p>We create high-performance games with passion. Check out our latest game and learn more about our studio.</p>
-    <div class="cta">
-      <a href="games.html">Explore Our Games</a>
-    </div>
-  </main>
-  <footer>
-    &copy; 2025 Maribin Studio. All rights reserved.
-  </footer>
+<nav>
+  <a href="index.html" id="nav-home">Home</a>
+  <a href="maribin-studio.html" id="nav-studio">Maribin Studio</a>
+  <a href="games.html" id="nav-games">Games</a>
+  <a href="contact.html" id="nav-contact">Contact</a>
+  <span class="lang-switch">
+    <span class="lang-btn" id="lang-en">🇺🇸</span>
+    <span class="lang-btn" id="lang-ko">🇰🇷</span>
+  </span>
+</nav>
+<header>
+  <h1 id="hero-title">Maribin Studio</h1>
+  <p id="hero-subtitle">Indie Game Development Studio</p>
+</header>
+<main>
+  <h2 id="welcome-heading">Welcome!</h2>
+  <p id="welcome-text">We create high-performance games with passion. Check out our latest game and learn more about our studio.</p>
+  <div class="cta">
+    <a href="games.html" id="cta-button">Explore Our Games</a>
+  </div>
+</main>
+<footer>
+  <p>© 2025 Maribin Studio. All rights reserved.</p>
+</footer>
+<script>
+const translations = {
+  en: {
+    navHome: 'Home',
+    navStudio: 'Maribin Studio',
+    navGames: 'Games',
+    navContact: 'Contact',
+    heroTitle: 'Maribin Studio',
+    heroSubtitle: 'Indie Game Development Studio',
+    welcomeHeading: 'Welcome!',
+    welcomeText: 'We create high-performance games with passion. Check out our latest game and learn more about our studio.',
+    ctaButton: 'Explore Our Games'
+  },
+  ko: {
+    navHome: '홈',
+    navStudio: '마리빈 스튜디오',
+    navGames: '게임',
+    navContact: '연락처',
+    heroTitle: '마리빈 스튜디오',
+    heroSubtitle: '인디 게임 개발 스튜디오',
+    welcomeHeading: '환영합니다!',
+    welcomeText: '우리는 성능을 중시하는 열정적인 게임을 만듭니다. 최신 게임을 확인하고 스튜디오에 대해 더 알아보세요.',
+    ctaButton: '게임 보기'
+  }
+};
+function setLanguage(lang) {
+  const t = translations[lang];
+  document.getElementById('nav-home').textContent = t.navHome;
+  document.getElementById('nav-studio').textContent = t.navStudio;
+  document.getElementById('nav-games').textContent = t.navGames;
+  document.getElementById('nav-contact').textContent = t.navContact;
+  document.getElementById('hero-title').textContent = t.heroTitle;
+  document.getElementById('hero-subtitle').textContent = t.heroSubtitle;
+  document.getElementById('welcome-heading').textContent = t.welcomeHeading;
+  document.getElementById('welcome-text').textContent = t.welcomeText;
+  document.getElementById('cta-button').textContent = t.ctaButton;
+}
+document.getElementById('lang-en').addEventListener('click', () => setLanguage('en'));
+document.getElementById('lang-ko').addEventListener('click', () => setLanguage('ko'));
+</script>
 </body>
 </html>
