@@ -1,36 +1,78 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact - Maribin Studio</title>
-  <style>
-    body { font-family: sans-serif; margin: 0; padding: 0; line-height: 1.6; }
-    nav { background-color: #333; color: #fff; padding: 10px; text-align: center; }
-    nav a { color: #fff; margin: 0 15px; text-decoration: none; font-weight: bold; }
-    header { background-image: url('https://picsum.photos/seed/contact/1200/400'); background-size: cover; background-position: center; color: #fff; text-align: center; padding: 80px 20px; }
-    header h1 { font-size: 40px; margin: 0; }
-    main { padding: 40px 20px; max-width: 960px; margin: auto; }
-    footer { background-color: #f5f5f5; text-align: center; padding: 10px; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact - Maribin Studio</title>
+<style>
+  body { font-family: sans-serif; margin: 0; padding: 0; line-height: 1.6; }
+  nav { background-color: #333; color: #fff; padding: 10px; text-align: center; }
+  nav a { color: #fff; margin: 0 15px; text-decoration: none; font-weight: bold; }
+  nav span.flag { cursor: pointer; margin-left: 10px; }
+  header { background-image: url('https://picsum.photos/seed/contact/1200/400'); background-size: cover; background-position: center; color: white; padding: 80px 20px; text-align: center; }
+  header h1 { font-size: 40px; margin: 0; }
+  main { padding: 40px 20px; max-width: 960px; margin: auto; }
+  footer { background-color: #f5f5f5; text-align: center; padding: 10px; }
+</style>
 </head>
 <body>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="maribin-studio.html">Maribin Studio</a>
-    <a href="games.html">Games</a>
-    <a href="contact.html">Contact</a>
-  </nav>
-  <header>
-    <h1>Contact Us</h1>
-  </header>
-  <main>
-    <p>If you have any questions, feedback, or collaboration proposals, feel free to reach out!</p>
-    <p>Email: <a href="mailto:maribinstudio@example.com">maribinstudio@example.com</a></p>
-    <p>GitHub: <a href="https://github.com/WooNaBin" target="_blank">github.com/WooNaBin</a></p>
-  </main>
-  <footer>
-    &copy; 2025 Maribin Studio. All rights reserved.
-  </footer>
+<nav>
+  <a href="index.html" id="navHome">Home</a>
+  <a href="maribin-studio.html" id="navStudio">Maribin Studio</a>
+  <a href="games.html" id="navGames">Games</a>
+  <a href="contact.html" id="navContact">Contact</a>
+  <span class="flag" id="lang-en">🇺🇸</span>
+  <span class="flag" id="lang-ko">🇰🇷</span>
+</nav>
+<header>
+  <h1 id="pageTitle">Contact</h1>
+</header>
+<main>
+  <p id="contactIntro">Have a question or feedback? We'd love to hear from you! Reach out via the contact information below.</p>
+  <ul>
+    <li id="emailLabel"><strong>Email:</strong> <a href="mailto:contact@maribinstudio.com">contact@maribinstudio.com</a></li>
+    <li id="githubLabel"><strong>GitHub:</strong> <a href="https://github.com/WooNaBin">WooNaBin</a></li>
+  </ul>
+</main>
+<footer>
+  &copy; 2025 Maribin Studio. All rights reserved.
+</footer>
+<script>
+const translations = {
+  en: {
+    navHome: "Home",
+    navStudio: "Maribin Studio",
+    navGames: "Games",
+    navContact: "Contact",
+    pageTitle: "Contact",
+    contactIntro: "Have a question or feedback? We'd love to hear from you! Reach out via the contact information below.",
+    emailLabel: "Email:",
+    githubLabel: "GitHub:"
+  },
+  ko: {
+    navHome: "홈",
+    navStudio: "마리빈 스튜디오",
+    navGames: "게임",
+    navContact: "연락처",
+    pageTitle: "연락처",
+    contactIntro: "질문이나 의견이 있으신가요? 아래의 연락처로 문의해주세요.",
+    emailLabel: "이메일:",
+    githubLabel: "깃허브:"
+  }
+};
+function setLanguage(lang) {
+  const texts = translations[lang];
+  document.getElementById('navHome').textContent = texts.navHome;
+  document.getElementById('navStudio').textContent = texts.navStudio;
+  document.getElementById('navGames').textContent = texts.navGames;
+  document.getElementById('navContact').textContent = texts.navContact;
+  document.getElementById('pageTitle').textContent = texts.pageTitle;
+  document.getElementById('contactIntro').textContent = texts.contactIntro;
+  document.getElementById('emailLabel').innerHTML = `<strong>${texts.emailLabel}</strong> <a href="mailto:contact@maribinstudio.com">contact@maribinstudio.com</a>`;
+  document.getElementById('githubLabel').innerHTML = `<strong>${texts.githubLabel}</strong> <a href="https://github.com/WooNaBin">WooNaBin</a>`;
+}
+document.getElementById('lang-en').addEventListener('click', () => setLanguage('en'));
+document.getElementById('lang-ko').addEventListener('click', () => setLanguage('ko'));
+</script>
 </body>
 </html>
