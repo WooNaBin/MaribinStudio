@@ -5,17 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Maribin Studio</title>
 <style>
-body { font-family: sans-serif; margin:0; padding:0; line-height:1.6; }
-nav { background-color:#333; color:#fff; padding:10px; display:flex; justify-content:center; align-items:center; }
-nav a { color:#fff; margin:0 15px; text-decoration:none; font-weight:bold; }
+body { font-family: sans-serif; margin:0; padding:0; line-height:1.6;}
+nav { background-color:#333; color:#fff; padding:10px; display:flex; justify-content:center; align-items:center;}
+nav a { color:#fff; margin:0 15px; text-decoration:none; font-weight:bold;}
 nav .lang-switch { margin-left:auto; }
-.lang-btn { cursor:pointer; font-size:20px; margin-left:10px; }
-header { background-image:url('https://picsum.photos/seed/home/1200/400'); background-size:cover; background-position:center; color:#fff; text-align:center; padding:80px 0; }
-header h1 { font-size:48px; margin:0; }
-header p { font-size:24px; margin-top:10px; }
-main { padding:40px 20px; text-align:center; }
-.cta { margin-top:30px; }
-.cta a { background-color:#007BFF; color:#fff; padding:10px 20px; text-decoration:none; border-radius:4px; }
+.lang-btn { cursor:pointer; font-size:20px; margin-left:10px;}
+header { background-image:url('https://picsum.photos/seed/home/1200/400'); background-size:cover; background-position:center; color:#fff; text-align:center; padding:100px 20px;}
+header h1 { font-size:48px; margin:0;}
+header p { font-size:24px; margin-top:10px;}
+main { padding:40px 20px; text-align:center;}
+.cta { margin-top:30px;}
+.cta a { background-color:#007BFF; color:#fff; padding:10px 20px; text-decoration:none; border-radius:4px;}
 footer { background-color:#f5f5f5; text-align:center; padding:10px; }
 </style>
 </head>
@@ -32,16 +32,16 @@ footer { background-color:#f5f5f5; text-align:center; padding:10px; }
 </nav>
 <header>
   <h1 id="hero-title">Welcome to Maribin Studio</h1>
-  <p id="hero-subtitle">Indie Game Development Studio</p>
+  <p id="hero-subtitle">Experience creative indie games crafted with passion and performance.</p>
 </header>
 <main>
-  <p id="intro-text">We create engaging and performance-focused indie games. Explore our games and learn more about our studio.</p>
+  <p id="intro-text">Check out our latest game and stay tuned for updates!</p>
   <div class="cta">
-    <a href="games.html" id="cta-button">Explore Games</a>
+    <a href="games.html" id="cta-btn">Explore Games</a>
   </div>
 </main>
 <footer>
-  © 2025 Maribin Studio. All rights reserved.
+  &copy; 2025 Maribin Studio. All rights reserved.
 </footer>
 <script>
 const translations = {
@@ -51,9 +51,9 @@ const translations = {
     navGames: 'Games',
     navContact: 'Contact',
     heroTitle: 'Welcome to Maribin Studio',
-    heroSubtitle: 'Indie Game Development Studio',
-    introText: 'We create engaging and performance-focused indie games. Explore our games and learn more about our studio.',
-    ctaButton: 'Explore Games'
+    heroSubtitle: 'Experience creative indie games crafted with passion and performance.',
+    introText: 'Check out our latest game and stay tuned for updates!',
+    ctaBtn: 'Explore Games'
   },
   ko: {
     navHome: '홈',
@@ -61,24 +61,32 @@ const translations = {
     navGames: '게임',
     navContact: '연락처',
     heroTitle: '마리빈 스튜디오에 오신 것을 환영합니다',
-    heroSubtitle: '인디 게임 개발 스튜디오',
-    introText: '우리는 성능을 중시하는 매력적인 인디 게임을 만듭니다. 게임을 둘러보고 스튜디오에 대해 더 알아보세요.',
-    ctaButton: '게임 둘러보기'
+    heroSubtitle: '열정과 성능으로 제작된 창의적인 인디 게임을 경험하세요.',
+    introText: '저희의 최신 게임을 확인하고 업데이트를 기대해 주세요!',
+    ctaBtn: '게임 보기'
   }
 };
+
 function setLanguage(lang) {
-  const t = translations[lang];
-  document.getElementById('nav-home').textContent = t.navHome;
-  document.getElementById('nav-studio').textContent = t.navStudio;
-  document.getElementById('nav-games').textContent = t.navGames;
-  document.getElementById('nav-contact').textContent = t.navContact;
-  document.getElementById('hero-title').textContent = t.heroTitle;
-  document.getElementById('hero-subtitle').textContent = t.heroSubtitle;
-  document.getElementById('intro-text').textContent = t.introText;
-  document.getElementById('cta-button').textContent = t.ctaButton;
+  document.getElementById('nav-home').textContent = translations[lang].navHome;
+  document.getElementById('nav-studio').textContent = translations[lang].navStudio;
+  document.getElementById('nav-games').textContent = translations[lang].navGames;
+  document.getElementById('nav-contact').textContent = translations[lang].navContact;
+  document.getElementById('hero-title').textContent = translations[lang].heroTitle;
+  document.getElementById('hero-subtitle').textContent = translations[lang].heroSubtitle;
+  document.getElementById('intro-text').textContent = translations[lang].introText;
+  document.getElementById('cta-btn').textContent = translations[lang].ctaBtn;
+  localStorage.setItem('lang', lang);
 }
+
+function initLang() {
+  const savedLang = localStorage.getItem('lang') || 'en';
+  setLanguage(savedLang);
+}
+
 document.getElementById('lang-en').addEventListener('click', () => setLanguage('en'));
 document.getElementById('lang-ko').addEventListener('click', () => setLanguage('ko'));
+document.addEventListener('DOMContentLoaded', initLang);
 </script>
 </body>
 </html>
