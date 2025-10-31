@@ -1,68 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Games - Maribin Studio</title>
-  <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding:0; }
-    nav {
-        background-color: #333;
-        color: #fff;
-        padding: 10px;
-        text-align:center;
-    }
-    nav a { color:#fff; margin:0 15px; text-decoration:none; font-weight:bold; }
-    header {
-        background-image: url('https://picsum.photos/seed/games/1200/400');
-        background-size: cover;
-        background-position: center;
-        color: #fff;
-        padding: 100px 0;
-        text-align: center;
-    }
-    header h1 {
-        font-size:40px; margin:0;
-    }
-    main {
-        padding:40px 20px;
-        max-width:960px;
-        margin:auto;
-    }
-    .game { margin-bottom:40px; }
-    .game img {
-        width:100%;
-        max-width:600px;
-        height:auto;
-        border-radius:8px;
-    }
-    .game h2 { margin-top:0; }
-    footer {
-        background-color:#f5f5f5;
-        text-align:center;
-        padding:10px;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Games - Maribin Studio</title>
+<style>
+body { font-family: sans-serif; margin:0; padding:0; line-height:1.6; }
+nav { background-color:#333; color:#fff; padding:10px; display:flex; justify-content:center; align-items:center; }
+nav a { color:#fff; margin:0 15px; text-decoration:none; font-weight:bold; }
+nav .lang-switch { margin-left:auto; }
+.lang-btn { cursor:pointer; font-size:20px; margin-left:10px; }
+header { background-image:url('https://picsum.photos/seed/games/1200/400'); background-size:cover; background-position:center; color:#fff; text-align:center; padding:60px 0; }
+header h1 { font-size:48px; margin:0; }
+header p { font-size:20px; margin-top:10px; }
+main { padding:40px 20px; }
+.game-card { margin-bottom:40px; text-align:center; }
+.game-card img { max-width:100%; border-radius:8px; }
+.game-card h2 { margin-top:20px; font-size:32px; }
+.game-card p { margin:20px 0; }
+.game-card a { background-color:#007BFF; color:#fff; padding:10px 20px; text-decoration:none; border-radius:4px; }
+footer { background-color:#f5f5f5; text-align:center; padding:10px; }
+</style>
 </head>
 <body>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="maribin-studio.html">Maribin Studio</a>
-    <a href="games.html">Games</a>
-    <a href="contact.html">Contact</a>
-  </nav>
-  <header>
-    <h1>Our Games</h1>
-  </header>
-  <main>
-    <div class="game">
-      <h2>Dice Crusaders</h2>
-      <img src="https://picsum.photos/seed/dice/800/400" alt="Dice Crusaders">
-      <p>Dice Crusaders is a strategic dice game where players embark on an adventure using luck and skill. Roll the dice to conquer challenges and progress through a captivating storyline.</p>
-      <p><a href="dice-crusaders.html">Learn more →</a></p>
-    </div>
-  </main>
-  <footer>
-    &copy; 2025 Maribin Studio. All rights reserved.
-  </footer>
+<nav>
+  <a href="index.html" id="nav-home">Home</a>
+  <a href="maribin-studio.html" id="nav-studio">Maribin Studio</a>
+  <a href="games.html" id="nav-games">Games</a>
+  <a href="contact.html" id="nav-contact">Contact</a>
+  <span class="lang-switch">
+    <span class="lang-btn" id="lang-en">🇺🇸</span>
+    <span class="lang-btn" id="lang-ko">🇰🇷</span>
+  </span>
+</nav>
+<header>
+  <h1 id="page-title">Games</h1>
+  <p id="page-subtitle">Our Games</p>
+</header>
+<main>
+  <div class="game-card">
+    <img src="https://picsum.photos/seed/dice/800/400" alt="Dice Crusaders">
+    <h2 id="game1-title">Dice Crusaders</h2>
+    <p id="game1-desc">Dice Crusaders is a strategic dice game where players use dice to battle enemies and upgrade characters.</p>
+    <a href="dice-crusaders.html" id="game1-button">Learn More</a>
+  </div>
+</main>
+<footer>
+  <p>© 2025 Maribin Studio. All rights reserved.</p>
+</footer>
+<script>
+const translations = {
+  en: {
+    navHome: 'Home',
+    navStudio: 'Maribin Studio',
+    navGames: 'Games',
+    navContact: 'Contact',
+    pageTitle: 'Games',
+    pageSubtitle: 'Our Games',
+    game1Title: 'Dice Crusaders',
+    game1Desc: 'Dice Crusaders is a strategic dice game where players use dice to battle enemies and upgrade characters.',
+    game1Button: 'Learn More'
+  },
+  ko: {
+    navHome: '홈',
+    navStudio: '마리빈 스튜디오',
+    navGames: '게임',
+    navContact: '연락처',
+    pageTitle: '게임',
+    pageSubtitle: '우리의 게임',
+    game1Title: '다이스 크루세이더스',
+    game1Desc: '다이스 크루세이더스는 플레이어가 주사위를 사용해 적과 싸우고 캐릭터를 성장시키는 전략 게임입니다.',
+    game1Button: '더 알아보기'
+  }
+};
+function setLanguage(lang) {
+  const t = translations[lang];
+  document.getElementById('nav-home').textContent = t.navHome;
+  document.getElementById('nav-studio').textContent = t.navStudio;
+  document.getElementById('nav-games').textContent = t.navGames;
+  document.getElementById('nav-contact').textContent = t.navContact;
+  document.getElementById('page-title').textContent = t.pageTitle;
+  document.getElementById('page-subtitle').textContent = t.pageSubtitle;
+  document.getElementById('game1-title').textContent = t.game1Title;
+  document.getElementById('game1-desc').textContent = t.game1Desc;
+  document.getElementById('game1-button').textContent = t.game1Button;
+}
+document.getElementById('lang-en').addEventListener('click', () => setLanguage('en'));
+document.getElementById('lang-ko').addEventListener('click', () => setLanguage('ko'));
+</script>
 </body>
 </html>
