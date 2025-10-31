@@ -1,40 +1,68 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Games - Maribin Studio</title>
   <style>
-    body { font-family: sans-serif; margin: 0; line-height: 1.6; }
-    header { background-color: #222; color: #fff; padding: 20px; text-align: center; }
-    nav { background-color: #333; text-align: center; padding: 10px; }
-    nav a { color: #fff; margin: 0 15px; text-decoration: none; }
-    main { padding: 20px; max-width: 960px; margin: auto; }
-    .game { margin-bottom: 40px; }
-    .game img { max-width: 100%; height: auto; margin: 10px 0; }
-    footer { background-color: #f5f5f5; padding: 10px; text-align: center; }
+    body { font-family: Arial, sans-serif; margin: 0; padding:0; }
+    nav {
+        background-color: #333;
+        color: #fff;
+        padding: 10px;
+        text-align:center;
+    }
+    nav a { color:#fff; margin:0 15px; text-decoration:none; font-weight:bold; }
+    header {
+        background-image: url('https://picsum.photos/seed/games/1200/400');
+        background-size: cover;
+        background-position: center;
+        color: #fff;
+        padding: 100px 0;
+        text-align: center;
+    }
+    header h1 {
+        font-size:40px; margin:0;
+    }
+    main {
+        padding:40px 20px;
+        max-width:960px;
+        margin:auto;
+    }
+    .game { margin-bottom:40px; }
+    .game img {
+        width:100%;
+        max-width:600px;
+        height:auto;
+        border-radius:8px;
+    }
+    .game h2 { margin-top:0; }
+    footer {
+        background-color:#f5f5f5;
+        text-align:center;
+        padding:10px;
+    }
   </style>
 </head>
 <body>
-<header>
-  <h1>Games</h1>
-</header>
-<nav>
-  <a href="index.html">Home</a>
-  <a href="maribin-studio.html">Maribin Studio</a>
-  <a href="games.html">Games</a>
-  <a href="contact.html">Contact</a>
-</nav>
-<main>
-  <section class="game">
-    <h2>Dice Crusaders</h2>
-    <img src="https://picsum.photos/seed/dice/800/300" alt="Dice Crusaders">
-    <p>Dice Crusaders는 주사위를 활용한 전략 게임입니다. 주사위를 굴려 전략적으로 적을 물리치며 다양한 스테이지를 정복하세요.</p>
-    <p><a href="dice-crusaders.html">더 알아보기</a></p>
-  </section>
-</main>
-<footer>
-  <p>&copy; 2025 Maribin Studio. All rights reserved.</p>
-</footer>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="maribin-studio.html">Maribin Studio</a>
+    <a href="games.html">Games</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+  <header>
+    <h1>Our Games</h1>
+  </header>
+  <main>
+    <div class="game">
+      <h2>Dice Crusaders</h2>
+      <img src="https://picsum.photos/seed/dice/800/400" alt="Dice Crusaders">
+      <p>Dice Crusaders is a strategic dice game where players embark on an adventure using luck and skill. Roll the dice to conquer challenges and progress through a captivating storyline.</p>
+      <p><a href="dice-crusaders.html">Learn more →</a></p>
+    </div>
+  </main>
+  <footer>
+    &copy; 2025 Maribin Studio. All rights reserved.
+  </footer>
 </body>
 </html>
