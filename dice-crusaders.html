@@ -1,61 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Dice Crusaders - Maribin Studio</title>
-  <style>
-    body { font-family: Arial, sans-serif; margin:0; padding:0; }
-    nav {
-        background-color:#333;
-        color:#fff;
-        padding:10px;
-        text-align:center;
-    }
-    nav a { color:#fff; margin:0 15px; text-decoration:none; font-weight:bold; }
-    header {
-        background-image: url('https://picsum.photos/seed/dicegame/1200/400');
-        background-size: cover;
-        background-position: center;
-        color:#fff;
-        padding:100px 0;
-        text-align:center;
-    }
-    header h1 { font-size:40px; margin:0; }
-    main {
-        padding:40px 20px;
-        max-width:960px;
-        margin:auto;
-    }
-    main img {
-        width:100%;
-        max-width:600px;
-        height:auto;
-        border-radius:8px;
-    }
-    footer {
-        background-color:#f5f5f5;
-        text-align:center;
-        padding:10px;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dice Crusaders - Maribin Studio</title>
+<style>
+body { font-family: sans-serif; margin:0; padding:0; line-height:1.6; }
+nav { background-color:#333; color:#fff; padding:10px; display:flex; justify-content:center; align-items:center; }
+nav a { color:#fff; margin:0 15px; text-decoration:none; font-weight:bold; }
+nav .lang-switch { margin-left:auto; }
+.lang-btn { cursor:pointer; font-size:20px; margin-left:10px; }
+header { background-image:url('https://picsum.photos/seed/dicegame/1200/400'); background-size:cover; background-position:center; color:#fff; text-align:center; padding:60px 0; }
+header h1 { font-size:48px; margin:0; }
+header p { font-size:20px; margin-top:10px; }
+main { padding:40px 20px; }
+main h2 { margin-top:0; }
+section { margin-bottom:40px; }
+footer { background-color:#f5f5f5; text-align:center; padding:10px; }
+</style>
 </head>
 <body>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="maribin-studio.html">Maribin Studio</a>
-    <a href="games.html">Games</a>
-    <a href="contact.html">Contact</a>
-  </nav>
-  <header>
-    <h1>Dice Crusaders</h1>
-  </header>
-  <main>
-    <img src="https://picsum.photos/seed/dicegame/800/400" alt="Dice Crusaders Game">
-    <p>Dice Crusaders is a strategic dice game where players embark on an adventure using luck and skill. Roll the dice to conquer challenges and progress through a captivating storyline.</p>
-    <p><a href="https://github.com/WooNaBin/DiceCusaders">View the GitHub repository</a></p>
-  </main>
-  <footer>
-    &copy; 2025 Maribin Studio. All rights reserved.
-  </footer>
+<nav>
+  <a href="index.html" id="nav-home">Home</a>
+  <a href="maribin-studio.html" id="nav-studio">Maribin Studio</a>
+  <a href="games.html" id="nav-games">Games</a>
+  <a href="contact.html" id="nav-contact">Contact</a>
+  <span class="lang-switch">
+    <span class="lang-btn" id="lang-en">🇺🇸</span>
+    <span class="lang-btn" id="lang-ko">🇰🇷</span>
+  </span>
+</nav>
+<header>
+  <h1 id="page-title">Dice Crusaders</h1>
+  <p id="page-subtitle">Strategy Dice Game</p>
+</header>
+<main>
+  <section id="game-intro">
+    <h2 id="intro-heading">Game Introduction</h2>
+    <p id="intro-text">Dice Crusaders is a strategic game where players use dice to battle enemies, explore dungeons, and upgrade their characters. Enjoy engaging mechanics and immersive stories.</p>
+  </section>
+  <section id="game-info">
+    <h2 id="info-heading">Game Information</h2>
+    <p id="info-text">Platform: PC/Console<br>Genre: Strategy / RPG<br>Release Date: TBA</p>
+  </section>
+  <section id="game-support">
+    <h2 id="support-heading">Game Inquiry</h2>
+    <p id="support-text">For questions or feedback about Dice Crusaders, please reach out via our <a href="contact.html">contact page</a>.</p>
+  </section>
+</main>
+<footer>
+  <p>© 2025 Maribin Studio. All rights reserved.</p>
+</footer>
+<script>
+const translations = {
+  en: {
+    navHome: 'Home',
+    navStudio: 'Maribin Studio',
+    navGames: 'Games',
+    navContact: 'Contact',
+    pageTitle: 'Dice Crusaders',
+    pageSubtitle: 'Strategy Dice Game',
+    introHeading: 'Game Introduction',
+    introText: 'Dice Crusaders is a strategic game where players use dice to battle enemies, explore dungeons, and upgrade their characters. Enjoy engaging mechanics and immersive stories.',
+    infoHeading: 'Game Information',
+    infoText: 'Platform: PC/Console\nGenre: Strategy / RPG\nRelease Date: TBA',
+    supportHeading: 'Game Inquiry',
+    supportText: 'For questions or feedback about Dice Crusaders, please reach out via our contact page.'
+  },
+  ko: {
+    navHome: '홈',
+    navStudio: '마리빈 스튜디오',
+    navGames: '게임',
+    navContact: '연락처',
+    pageTitle: '다이스 크루세이더스',
+    pageSubtitle: '전략 주사위 게임',
+    introHeading: '게임 소개',
+    introText: '다이스 크루세이더스는 플레이어가 주사위를 사용해 적과 싸우고 던전을 탐험하며 캐릭터를 성장시키는 전략 게임입니다. 흥미로운 메커닉과 몰입감 있는 스토리를 즐겨보세요.',
+    infoHeading: '게임 정보',
+    infoText: '플랫폼: PC/콘솔\n장르: 전략 / RPG\n출시일: 추후 공개',
+    supportHeading: '게임 문의',
+    supportText: '다이스 크루세이더스에 대한 질문이나 피드백은 연락처 페이지를 통해 보내주세요.'
+  }
+};
+function setLanguage(lang) {
+  const t = translations[lang];
+  document.getElementById('nav-home').textContent = t.navHome;
+  document.getElementById('nav-studio').textContent = t.navStudio;
+  document.getElementById('nav-games').textContent = t.navGames;
+  document.getElementById('nav-contact').textContent = t.navContact;
+  document.getElementById('page-title').textContent = t.pageTitle;
+  document.getElementById('page-subtitle').textContent = t.pageSubtitle;
+  document.getElementById('intro-heading').textContent = t.introHeading;
+  document.getElementById('intro-text').textContent = t.introText;
+  document.getElementById('info-heading').textContent = t.infoHeading;
+  document.getElementById('info-text').innerHTML = t.infoText.replace(/\n/g, '<br>');
+  document.getElementById('support-heading').textContent = t.supportHeading;
+  document.getElementById('support-text').textContent = '';
+  document.getElementById('support-text').innerHTML = t.supportText;
+}
+document.getElementById('lang-en').addEventListener('click', () => setLanguage('en'));
+document.getElementById('lang-ko').addEventListener('click', () => setLanguage('ko'));
+</script>
 </body>
 </html>
