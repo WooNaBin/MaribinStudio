@@ -46,7 +46,7 @@ footer { background-color:#f5f5f5; text-align:center; padding:10px; }
   </div>
 </main>
 <footer>
-  <p>© 2025 Maribin Studio. All rights reserved.</p>
+  <p>&copy; 2025 Maribin Studio. All rights reserved.</p>
 </footer>
 <script>
 const translations = {
@@ -84,9 +84,14 @@ function setLanguage(lang) {
   document.getElementById('game1-title').textContent = t.game1Title;
   document.getElementById('game1-desc').textContent = t.game1Desc;
   document.getElementById('game1-button').textContent = t.game1Button;
+  localStorage.setItem('lang', lang);
 }
 document.getElementById('lang-en').addEventListener('click', () => setLanguage('en'));
 document.getElementById('lang-ko').addEventListener('click', () => setLanguage('ko'));
+document.addEventListener('DOMContentLoaded', () => {
+  const savedLang = localStorage.getItem('lang') || 'en';
+  setLanguage(savedLang);
+});
 </script>
 </body>
 </html>
