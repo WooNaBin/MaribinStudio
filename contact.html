@@ -8,76 +8,82 @@
 body {font-family: sans-serif; margin: 0; line-height: 1.6;}
 nav {background-color: #333; color: #fff; padding: 10px; display: flex; align-items: center;}
 nav a {color: #fff; margin: 0 15px; text-decoration: none; font-weight: bold;}
-nav .spacer {flex: 1;}
-nav .flag {cursor: pointer; margin-left: 10px;}
-header {background-image: url('https://picsum.photos/seed/contact/1200/400'); background-size: cover; background-position: center; color: #fff; text-align: center; padding: 80px 20px;}
+.spacer {flex: 1;}
+.flag {cursor: pointer; margin-left: 10px;}
+header {background-image: url('https://picsum.photos/seed/contact/1200/400'); background-size: cover; background-position: center; color: #fff; padding: 60px 20px; text-align: center;}
 header h1 {margin: 0; font-size: 40px;}
 main {padding: 40px 20px; max-width: 960px; margin: auto;}
-footer {background-color: #f5f5f5; text-align: center; padding: 10px;}
+footer {background-color: #f5f5f5; text-align: center; padding: 10px 0;}
 </style>
 </head>
 <body>
 <nav>
-    <a href="index.html" id="navHome">Home</a>
-    <a href="maribin-studio.html" id="navStudio">Maribin Studio</a>
-    <a href="games.html" id="navGames">Games</a>
-    <a href="contact.html" id="navContact">Contact</a>
-    <span class="spacer"></span>
-    <span class="flag" id="lang-en">🇺🇸</span>
-    <span class="flag" id="lang-ko">🇰🇷</span>
+<a href="index.html" id="navHome">Home</a>
+<a href="maribin-studio.html" id="navStudio">Maribin Studio</a>
+<a href="games.html" id="navGames">Games</a>
+<a href="contact.html" id="navContact">Contact</a>
+<span class="spacer"></span>
+<span class="flag" id="lang-en">🇺🇸</span>
+<span class="flag" id="lang-ko">🇰🇷</span>
 </nav>
 <header>
-    <h1 id="pageTitle">Contact Us</h1>
+<h1 id="pageTitle">Contact Us</h1>
 </header>
 <main>
-    <p id="contactInfo">If you have any questions or want to get in touch, feel free to reach out via email.</p>
-    <p>Email: <a href="mailto:example@example.com" id="emailLink">example@example.com</a></p>
-    <p>GitHub: <a href="https://github.com/WooNaBin" id="githubLink">WooNaBin</a></p>
+<p id="contactText">Have a question or feedback? We'd love to hear from you! Reach out via the contact information below.</p>
+<p><strong id="emailLabel">Email:</strong> <a href="mailto:contact@maribinstudio.com" id="emailLink">contact@maribinstudio.com</a></p>
+<p><strong id="githubLabel">GitHub:</strong> <a href="https://github.com/WooNaBin" id="githubLink">WooNaBin</a></p>
 </main>
 <footer>
-    <p>&copy; 2025 Maribin Studio</p>
+<p>&copy; 2025 Maribin Studio. All rights reserved.</p>
 </footer>
 <script>
 const translations = {
-    en: {
-        navHome: "Home",
-        navStudio: "Maribin Studio",
-        navGames: "Games",
-        navContact: "Contact",
-        pageTitle: "Contact Us",
-        contactInfo: "If you have any questions or want to get in touch, feel free to reach out via email.",
-        emailLink: "example@example.com",
-        githubLink: "WooNaBin"
-    },
-    ko: {
-        navHome: "홈",
-        navStudio: "마리빈 스튜디오",
-        navGames: "게임",
-        navContact: "연락처",
-        pageTitle: "연락처",
-        contactInfo: "궁금한 사항이나 문의 사항이 있으시면 이메일로 연락 주세요.",
-        emailLink: "example@example.com",
-        githubLink: "WooNaBin"
-    }
+  en: {
+    navHome: 'Home',
+    navStudio: 'Maribin Studio',
+    navGames: 'Games',
+    navContact: 'Contact',
+    pageTitle: 'Contact Us',
+    contactText: "Have a question or feedback? We'd love to hear from you! Reach out via the contact information below.",
+    emailLabel: 'Email:',
+    githubLabel: 'GitHub:',
+    emailLink: 'contact@maribinstudio.com',
+    githubLink: 'WooNaBin',
+  },
+  ko: {
+    navHome: '홈',
+    navStudio: '마리빈 스튜디오',
+    navGames: '게임',
+    navContact: '연락처',
+    pageTitle: '연락처',
+    contactText: '질문이나 피드백이 있으신가요? 아래 연락처로 메시지를 보내 주세요!',
+    emailLabel: '이메일:',
+    githubLabel: '깃허브:',
+    emailLink: 'contact@maribinstudio.com',
+    githubLink: 'WooNaBin',
+  }
 };
 function setLanguage(lang) {
-    localStorage.setItem('lang', lang);
-    document.getElementById('navHome').textContent = translations[lang].navHome;
-    document.getElementById('navStudio').textContent = translations[lang].navStudio;
-    document.getElementById('navGames').textContent = translations[lang].navGames;
-    document.getElementById('navContact').textContent = translations[lang].navContact;
-    document.getElementById('pageTitle').textContent = translations[lang].pageTitle;
-    document.getElementById('contactInfo').textContent = translations[lang].contactInfo;
-    document.getElementById('emailLink').textContent = translations[lang].emailLink;
-    document.getElementById('githubLink').textContent = translations[lang].githubLink;
+  localStorage.setItem('lang', lang);
+  const t = translations[lang];
+  document.getElementById('navHome').textContent = t.navHome;
+  document.getElementById('navStudio').textContent = t.navStudio;
+  document.getElementById('navGames').textContent = t.navGames;
+  document.getElementById('navContact').textContent = t.navContact;
+  document.getElementById('pageTitle').textContent = t.pageTitle;
+  document.getElementById('contactText').textContent = t.contactText;
+  document.getElementById('emailLabel').textContent = t.emailLabel;
+  document.getElementById('githubLabel').textContent = t.githubLabel;
+  document.getElementById('emailLink').textContent = t.emailLink;
+  document.getElementById('githubLink').textContent = t.githubLink;
 }
-function initLang() {
-    const savedLang = localStorage.getItem('lang') || 'en';
-    setLanguage(savedLang);
-}
-document.getElementById('lang-en').addEventListener('click', () => setLanguage('en'));
-document.getElementById('lang-ko').addEventListener('click', () => setLanguage('ko'));
-document.addEventListener('DOMContentLoaded', initLang);
+document.addEventListener('DOMContentLoaded', () => {
+  const savedLang = localStorage.getItem('lang') || 'en';
+  setLanguage(savedLang);
+  document.getElementById('lang-en').addEventListener('click', () => setLanguage('en'));
+  document.getElementById('lang-ko').addEventListener('click', () => setLanguage('ko'));
+});
 </script>
 </body>
 </html>
