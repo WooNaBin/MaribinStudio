@@ -5,72 +5,71 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Maribin Studio - About</title>
 <style>
-body { font-family: sans-serif; margin:0; padding:0; line-height:1.6; }
-nav { background-color:#333; color:#fff; padding:10px; display:flex; align-items:center; }
-nav a { color:#fff; margin-right:15px; text-decoration:none; font-weight:bold; }
-nav .lang-switch { margin-left:auto; }
-.lang-btn { cursor:pointer; font-size:20px; margin-left:10px; }
-header { background-image:url('https://picsum.photos/seed/studio/1200/400'); background-size:cover; background-position:center; color:#fff; text-align:center; padding:80px 20px; }
-header h1 { font-size:48px; margin:0; }
-main { padding:40px 20px; max-width:800px; margin:0 auto; text-align:center; }
-footer { background-color:#f5f5f5; text-align:center; padding:10px; }
+body {font-family: sans-serif; margin: 0; line-height: 1.6;}
+nav {background-color: #333; color: #fff; padding: 10px; display: flex; align-items: center;}
+nav a {color: #fff; margin: 0 15px; text-decoration: none; font-weight: bold;}
+nav .spacer {flex: 1;}
+nav .flag {cursor: pointer; margin-left: 10px;}
+header {background-image: url('https://picsum.photos/seed/studio/1200/400'); background-size: cover; background-position: center; color: #fff; text-align: center; padding: 80px 20px;}
+header h1 {margin: 0; font-size: 48px;}
+main {padding: 40px 20px; max-width: 960px; margin: auto;}
+footer {background-color: #f5f5f5; text-align: center; padding: 10px;}
 </style>
 </head>
 <body>
 <nav>
-  <a href="index.html" id="navHome">Home</a>
-  <a href="maribin-studio.html" id="navStudio">Maribin Studio</a>
-  <a href="games.html" id="navGames">Games</a>
-  <a href="contact.html" id="navContact">Contact</a>
-  <div class="lang-switch">
-    <span class="lang-btn" id="flagEn">🇺🇸</span>
-    <span class="lang-btn" id="flagKo">🇰🇷</span>
-  </div>
+    <a href="index.html" id="navHome">Home</a>
+    <a href="maribin-studio.html" id="navStudio">Maribin Studio</a>
+    <a href="games.html" id="navGames">Games</a>
+    <a href="contact.html" id="navContact">Contact</a>
+    <span class="spacer"></span>
+    <span class="flag" id="lang-en">🇺🇸</span>
+    <span class="flag" id="lang-ko">🇰🇷</span>
 </nav>
 <header>
-  <h1 id="pageTitle">About Maribin Studio</h1>
+    <h1 id="pageTitle">About Maribin Studio</h1>
 </header>
 <main>
-  <p id="aboutText">Maribin Studio is a one-person game development studio dedicated to creating high-performance games that deliver immersive and engaging experiences.</p>
+    <p id="aboutText">Maribin Studio is a solo indie game development studio dedicated to creating high-performance, engaging games that push the boundaries of creativity. Founded by a single developer, Maribin Studio focuses on delivering polished, immersive experiences for players worldwide.</p>
 </main>
 <footer>
-  © 2025 Maribin Studio. All rights reserved.
+    <p>&copy; 2025 Maribin Studio</p>
 </footer>
 <script>
 const translations = {
-  en: {
-    navHome: "Home",
-    navStudio: "Maribin Studio",
-    navGames: "Games",
-    navContact: "Contact",
-    pageTitle: "About Maribin Studio",
-    aboutText: "Maribin Studio is a one-person game development studio dedicated to creating high-performance games that deliver immersive and engaging experiences."
-  },
-  ko: {
-    navHome: "홈",
-    navStudio: "마리빈 스트루니오",
-    navGames: "게임",
-    navContact: "연락처",
-    pageTitle: "마리빈 스트루니오 소개",
-    aboutText: "마리빈 스트루니오는 높은 성보의 모일감 있는 게임을 만들기 위해 허사하는 1인 게임 개발 스트루니오입니다."
-  }
+    en: {
+        navHome: "Home",
+        navStudio: "Maribin Studio",
+        navGames: "Games",
+        navContact: "Contact",
+        pageTitle: "About Maribin Studio",
+        aboutText: "Maribin Studio is a solo indie game development studio dedicated to creating high-performance, engaging games that push the boundaries of creativity. Founded by a single developer, Maribin Studio focuses on delivering polished, immersive experiences for players worldwide."
+    },
+    ko: {
+        navHome: "홈",
+        navStudio: "마리빈 스튜디오",
+        navGames: "게임",
+        navContact: "연락처",
+        pageTitle: "마리빈 스튜디오 소개",
+        aboutText: "마리빈 스튜디오는 높은 성능과 몰입감을 제공하는 게임 개발을 목표로 하는 1인 인디 게임 개발 스튜디오입니다. 한 명의 개발자가 설립한 마리빈 스튜디오는 창의적인 한계를 뛰어넘는 재미있고 완성도 높은 게임을 전 세계 플레이어에게 제공합니다."
+    }
 };
 function setLanguage(lang) {
-  localStorage.setItem('lang', lang);
-  const t = translations[lang];
-  document.getElementById('navHome').textContent = t.navHome;
-  document.getElementById('navStudio').textContent = t.navStudio;
-  document.getElementById('navGames').textContent = t.navGames;
-  document.getElementById('navContact').textContent = t.navContact;
-  document.getElementById('pageTitle').textContent = t.pageTitle;
-  document.getElementById('aboutText').textContent = t.aboutText;
+    localStorage.setItem('lang', lang);
+    document.getElementById('navHome').textContent = translations[lang].navHome;
+    document.getElementById('navStudio').textContent = translations[lang].navStudio;
+    document.getElementById('navGames').textContent = translations[lang].navGames;
+    document.getElementById('navContact').textContent = translations[lang].navContact;
+    document.getElementById('pageTitle').textContent = translations[lang].pageTitle;
+    document.getElementById('aboutText').textContent = translations[lang].aboutText;
 }
-document.addEventListener('DOMContentLoaded', () => {
-  const saved = localStorage.getItem('lang') || 'en';
-  setLanguage(saved);
-  document.getElementById('flagEn').addEventListener('click', () => setLanguage('en'));
-  document.getElementById('flagKo').addEventListener('click', () => setLanguage('ko'));
-});
+function initLang() {
+    const savedLang = localStorage.getItem('lang') || 'en';
+    setLanguage(savedLang);
+}
+document.getElementById('lang-en').addEventListener('click', () => setLanguage('en'));
+document.getElementById('lang-ko').addEventListener('click', () => setLanguage('ko'));
+document.addEventListener('DOMContentLoaded', initLang);
 </script>
 </body>
 </html>
