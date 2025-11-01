@@ -5,17 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Maribin Studio</title>
 <style>
-body { font-family: sans-serif; margin:0; padding:0; line-height:1.6;}
-nav { background-color:#333; color:#fff; padding:10px; display:flex; justify-content:center; align-items:center;}
-nav a { color:#fff; margin:0 15px; text-decoration:none; font-weight:bold;}
-nav .lang-switch { margin-left:auto; }
-.lang-btn { cursor:pointer; font-size:20px; margin-left:10px;}
-header { background-image:url('https://picsum.photos/seed/home/1200/400'); background-size:cover; background-position:center; color:#fff; text-align:center; padding:100px 20px;}
-header h1 { font-size:48px; margin:0;}
-header p { font-size:24px; margin-top:10px;}
-main { padding:40px 20px; text-align:center;}
-.cta { margin-top:30px;}
-.cta a { background-color:#007BFF; color:#fff; padding:10px 20px; text-decoration:none; border-radius:4px;}
+body { font-family: sans-serif; margin: 0; padding: 0; line-height: 1.6; }
+nav { background-color:#333; color:#fff; padding:10px; display:flex; align-items:center; }
+nav a { color:#fff; margin:0 15px; text-decoration:none; font-weight:bold; }
+.spacer { flex:1; }
+.lang-btn { cursor:pointer; font-size:20px; margin-left:10px; }
+header { text-align:center; padding:40px 20px; background-color:#f5f5f5; }
+header img { max-width:200px; height:auto; }
+header h1 { font-size:48px; margin:20px 0 10px 0; }
+header p { font-size:24px; margin:0; }
+main { padding:40px 20px; text-align:center; }
+.cta { margin-top:30px; }
+.cta a { background-color:#007BFF; color:#fff; padding:10px 20px; text-decoration:none; border-radius:4px; }
 footer { background-color:#f5f5f5; text-align:center; padding:10px; }
 </style>
 </head>
@@ -25,20 +26,18 @@ footer { background-color:#f5f5f5; text-align:center; padding:10px; }
   <a href="maribin-studio.html" id="nav-studio">Maribin Studio</a>
   <a href="games.html" id="nav-games">Games</a>
   <a href="contact.html" id="nav-contact">Contact</a>
-  <span class="lang-switch">
-    <span class="lang-btn" id="lang-en">🇺🇸</span>
-    <span class="lang-btn" id="lang-ko">🇰🇷</span>
-  </span>
+  <span class="spacer"></span>
+  <span id="lang-en" class="lang-btn">🇺🇸</span>
+  <span id="lang-ko" class="lang-btn">🇰🇷</span>
 </nav>
 <header>
-  <h1 id="hero-title">Welcome to Maribin Studio</h1>
-  <p id="hero-subtitle">Experience creative indie games crafted with passion and performance.</p>
+  <img src="logo512x256.jpeg" alt="Maribin Studio Logo">
+  <h1 id="hero-title">Unleash Your Imagination</h1>
+  <p id="hero-subtitle">We create immersive game experiences</p>
+  <div class="cta"><a href="games.html" id="cta-btn">View Games</a></div>
 </header>
 <main>
-  <p id="intro-text">Check out our latest game and stay tuned for updates!</p>
-  <div class="cta">
-    <a href="games.html" id="cta-btn">Explore Games</a>
-  </div>
+  <p id="intro-text">Welcome to Maribin Studio! We are a performance-driven indie game studio dedicated to delivering high-quality gaming experiences.</p>
 </main>
 <footer>
   &copy; 2025 Maribin Studio. All rights reserved.
@@ -46,37 +45,37 @@ footer { background-color:#f5f5f5; text-align:center; padding:10px; }
 <script>
 const translations = {
   en: {
-    navHome: 'Home',
-    navStudio: 'Maribin Studio',
-    navGames: 'Games',
-    navContact: 'Contact',
-    heroTitle: 'Welcome to Maribin Studio',
-    heroSubtitle: 'Experience creative indie games crafted with passion and performance.',
-    introText: 'Check out our latest game and stay tuned for updates!',
-    ctaBtn: 'Explore Games'
+    navHome: "Home",
+    navStudio: "Maribin Studio",
+    navGames: "Games",
+    navContact: "Contact",
+    heroTitle: "Unleash Your Imagination",
+    heroSubtitle: "We create immersive game experiences",
+    ctaBtn: "View Games",
+    introText: "Welcome to Maribin Studio! We are a performance-driven indie game studio dedicated to delivering high-quality gaming experiences."
   },
   ko: {
-    navHome: '홈',
-    navStudio: '마리빈 스튜디오',
-    navGames: '게임',
-    navContact: '연락처',
-    heroTitle: '마리빈 스튜디오에 오신 것을 환영합니다',
-    heroSubtitle: '열정과 성능으로 제작된 창의적인 인디 게임을 경험하세요.',
-    introText: '저희의 최신 게임을 확인하고 업데이트를 기대해 주세요!',
-    ctaBtn: '게임 보기'
+    navHome: "홈",
+    navStudio: "마리빈 스튜디오",
+    navGames: "게임",
+    navContact: "연락처",
+    heroTitle: "당신의 상상력을 현실로",
+    heroSubtitle: "우리는 몰입감 있는 게임 경험을 제공합니다",
+    ctaBtn: "게임 보기",
+    introText: "마리빈 스튜디오는 고성능 인디 게임을 지향하며, 높은 품질의 게임 경험을 제공하기 위해 노력합니다."
   }
 };
 
 function setLanguage(lang) {
+  localStorage.setItem('lang', lang);
   document.getElementById('nav-home').textContent = translations[lang].navHome;
   document.getElementById('nav-studio').textContent = translations[lang].navStudio;
   document.getElementById('nav-games').textContent = translations[lang].navGames;
   document.getElementById('nav-contact').textContent = translations[lang].navContact;
   document.getElementById('hero-title').textContent = translations[lang].heroTitle;
   document.getElementById('hero-subtitle').textContent = translations[lang].heroSubtitle;
-  document.getElementById('intro-text').textContent = translations[lang].introText;
   document.getElementById('cta-btn').textContent = translations[lang].ctaBtn;
-  localStorage.setItem('lang', lang);
+  document.getElementById('intro-text').textContent = translations[lang].introText;
 }
 
 function initLang() {
