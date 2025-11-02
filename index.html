@@ -30,15 +30,195 @@ footer { background-color:#333; color:#fff; text-align:center; padding:10px; }
   <span id="lang-en" class="lang-btn">🇺🇸</span>
   <span id="lang-ko" class="lang-btn">🇰🇷</span>
 </nav>
-<header>
-  <img src="images/logo1024x512.jpeg" alt="Maribin Studio Logo">
-  <h1 id="hero-title">Unleash Your Imagination</h1>
-  <p id="hero-subtitle">We create immersive game experiences</p>
-  <div class="cta"><a href="games.html" id="cta-btn">View Games</a></div>
-</header>
-<main>
-  <p id="intro-text">Welcome to Maribin Studio! We are a performance-driven indie game studio dedicated to delivering high-quality gaming experiences.</p>
-</main>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maribin Studio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', Arial, sans-serif;
+      background: #fff;
+    }
+    .container {
+      display: flex;
+      flex-direction: row;
+      min-height: 100vh;
+    }
+    .sidebar {
+      width: 320px;
+      background: linear-gradient(135deg, #003049 0%, #4FC3F7 100%);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 0;
+      border-right: 2px solid #222;
+    }
+    .logo {
+      width: 100%;
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 120px;
+    }
+    .logo img {
+      height: 80px;
+      margin-right: 16px;
+    }
+    .logo-text {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 1.6rem;
+      color: #fff;
+      letter-spacing: 2px;
+    }
+    .menu {
+      width: 100%;
+      margin-top: 0;
+    }
+    .menu-item {
+      width: 100%;
+      padding: 32px 0;
+      text-align: center;
+      font-size: 1.3rem;
+      font-weight: 700;
+      border-bottom: 1px solid #1976d2;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .menu-item:hover {
+      background: rgba(255,255,255,0.08);
+    }
+    .menu-item.active {
+      background: #4FC3F7;
+      color: #003049;
+    }
+    .header {
+      width: 100%;
+      height: 120px;
+      background: #90cdf4;
+      border-bottom: 2px solid #222;
+      display: flex;
+      align-items: center;
+      padding-left: 32px;
+      font-size: 2rem;
+      font-weight: 700;
+      color: #003049;
+    }
+    .main {
+      flex: 1;
+      background: #fff;
+      padding: 32px;
+    }
+    @media (max-width: 900px) {
+      .container {
+        flex-direction: column;
+      }
+      .sidebar {
+        width: 100%;
+        flex-direction: row;
+        height: 80px;
+        padding: 0;
+        border-right: none;
+        border-bottom: 2px solid #222;
+        justify-content: flex-start;
+      }
+      .logo {
+        height: 80px;
+        width: 200px;
+        justify-content: flex-start;
+      }
+      .menu {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: calc(100% - 200px);
+        margin-top: 0;
+      }
+      .menu-item {
+        padding: 0 16px;
+        font-size: 1rem;
+        border-bottom: none;
+        border-right: 1px solid #1976d2;
+        height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .menu-item:last-child {
+        border-right: none;
+      }
+      .header {
+        height: 80px;
+        font-size: 1.3rem;
+        padding-left: 16px;
+      }
+      .main {
+        padding: 16px;
+      }
+    }
+    @media (max-width: 600px) {
+      .sidebar {
+        flex-direction: column;
+        height: auto;
+        width: 100%;
+      }
+      .logo {
+        width: 100%;
+        height: 60px;
+      }
+      .menu {
+        flex-direction: column;
+        width: 100%;
+      }
+      .menu-item {
+        height: 48px;
+        font-size: 1rem;
+        border-right: none;
+        border-bottom: 1px solid #1976d2;
+        padding: 0;
+      }
+      .header {
+        height: 60px;
+        font-size: 1rem;
+        padding-left: 8px;
+      }
+      .main {
+        padding: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <nav class="sidebar">
+      <div class="logo">
+        <img src="images/logo.png" alt="Maribin Studio Logo">
+        <span class="logo-text">Maribin Studio</span>
+      </div>
+      <div class="menu">
+        <div class="menu-item active">Home</div>
+        <div class="menu-item">마리빈스튜디오 소개</div>
+        <div class="menu-item">게임 소개</div>
+        <div class="menu-item">문의 / 연락처</div>
+        <div class="menu-item">개인정보처리방침</div>
+      </div>
+    </nav>
+    <div style="flex:1;display:flex;flex-direction:column;">
+      <header class="header">
+        <!-- 상단 헤더 영역 -->
+      </header>
+      <main class="main">
+        <!-- 메인 콘텐츠 영역: 필요시 추가 -->
+      </main>
+    </div>
+  </div>
+</body>
+</html>
 <footer>
   &copy; 2025 Maribin Studio. All rights reserved.
 </footer>
