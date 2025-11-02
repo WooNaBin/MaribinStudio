@@ -49,7 +49,17 @@
       .hero-left{font-weight:700; font-size:20px; color:#053244}
       .hero-right{margin-left:auto; color:var(--muted); font-size:14px}
 
-      main{flex:1; padding:40px 48px;}
+      main{flex:1; padding:40px 48px; min-height:320px;}
+      #main-content {
+        transition: opacity 0.45s cubic-bezier(.4,0,.2,1);
+        opacity: 1;
+      }
+      #main-content.fade-out {
+        opacity: 0;
+      }
+      #main-content.fade-in {
+        opacity: 1;
+      }
       .card{background:#fff; border-radius:12px; padding:28px; box-shadow:0 8px 30px rgba(12,40,70,0.07); max-width:1100px}
       h1.title{font-family:Poppins, Inter; font-size:28px; margin:0 0 8px}
       p.lead{color:var(--muted); margin:0 0 18px}
@@ -78,13 +88,17 @@
           <img src="images/logo1024x512.jpeg" alt="logo" style="height:48px;width:auto;border-radius:8px;box-shadow:0 6px 18px rgba(0,0,0,0.3)">
           <div class="title">Maribin Studio</div>
         </div>
-        <nav class="nav" aria-label="주 메뉴">
-          <button class="active">Home</button>
-          <button>마리빈스튜디오 소개</button>
-          <button>게임 소개</button>
-          <button>문의 / 연락처</button>
-          <button>개인정보처리방침</button>
+        <nav class="nav" aria-label="주 메뉴" id="main-nav">
+          <button data-page="home" class="active">Home</button>
+          <button data-page="about">마리빈스튜디오 소개</button>
+          <button data-page="games">게임 소개</button>
+          <button data-page="contact">문의 / 연락처</button>
+          <button data-page="privacy">개인정보처리방침</button>
         </nav>
+        <div style="margin-top:auto;display:flex;justify-content:center;gap:12px;padding:18px 0;">
+          <button id="lang-ko" style="background:none;border:none;font-size:28px;cursor:pointer;" title="한국어">🇰🇷</button>
+          <button id="lang-en" style="background:none;border:none;font-size:28px;cursor:pointer;" title="English">🇺🇸</button>
+        </div>
       </aside>
       <div class="content">
         <header class="hero" style="position:relative;overflow:hidden;">
@@ -92,28 +106,93 @@
           <div class="hero-left" style="position:relative;z-index:1;">WoonaBin · Maribin Studio</div>
           <div class="hero-right" style="position:relative;z-index:1;">작업중 — 샘플 레이아웃</div>
         </header>
-        <main>
-          <section class="card" style="display:flex;align-items:center;gap:32px;flex-wrap:wrap;">
-            <img src="images/aboutmaribinstd.png" alt="About Maribin Studio" style="width:220px;height:auto;border-radius:16px;box-shadow:0 4px 18px rgba(0,0,0,0.12);flex-shrink:0;">
-            <div style="flex:1;min-width:220px;">
-              <h1 class="title">안녕하세요 — Maribin Studio</h1>
-              <p class="lead">추억을 재해석한 인디 게임을 만드는 1인 개발 스튜디오입니다. 아래 메뉴에서 더 보실 수 있습니다.</p>
-              <a class="cta" href="#">게임 보기</a>
-            </div>
-          </section>
+        <main id="main-content">
+          <!-- 동적으로 내용이 바뀌는 영역 -->
         </main>
         <footer>&copy; 2025 Maribin Studio</footer>
       </div>
     </div>
 
     <script>
-      // 간단한 메뉴 active 처리
-      document.querySelectorAll('.nav button').forEach(btn=>{
-        btn.addEventListener('click', ()=>{
-          document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active'));
-          btn.classList.add('active');
-        })
-      })
+      // 다국어 텍스트 및 페이지 템플릿
+      const i18n = {
+        ko: {
+          menu: ["Home", "마리빈스튜디오 소개", "게임 소개", "문의 / 연락처", "개인정보처리방침"],
+          home: `<section class="card" style="display:flex;align-items:center;gap:32px;flex-wrap:wrap;"><img src="images/aboutmaribinstd.png" alt="About Maribin Studio" style="width:220px;height:auto;border-radius:16px;box-shadow:0 4px 18px rgba(0,0,0,0.12);flex-shrink:0;"><div style="flex:1;min-width:220px;"><h1 class="title">안녕하세요 — Maribin Studio</h1><p class="lead">추억을 재해석한 인디 게임을 만드는 1인 개발 스튜디오입니다. 아래 메뉴에서 더 보실 수 있습니다.</p><a class="cta" href="#games" onclick="window.location.hash='games';return false;">게임 보기</a></div></section>`,
+          about: `<section class="card"><h1 class="title">마리빈스튜디오 소개</h1><p class="lead">마리빈스튜디오는 1인 개발자가 운영하는 인디 게임 스튜디오로, 추억의 게임을 현대적으로 재해석하여 새로운 재미를 추구합니다.<br>게임 개발, 디자인, 기획 등 모든 과정을 직접 진행합니다.</p><img src="images/aboutmaribinstd.png" alt="Studio" style="width:320px;max-width:100%;border-radius:16px;margin-top:18px;box-shadow:0 4px 18px rgba(0,0,0,0.12);"></section>`,
+          games: `<section class="card"><h1 class="title">게임 소개</h1><p class="lead">현재 개발 중인 게임 및 출시작을 소개합니다.</p><div style="display:flex;gap:24px;flex-wrap:wrap;justify-content:center;"><div style="background:#f7fbff;border-radius:12px;padding:16px;box-shadow:0 2px 8px rgba(0,0,0,0.07);width:220px;"><img src="images/bg_dc.jpeg" alt="Game1" style="width:100%;border-radius:8px;"><h3 style="margin:12px 0 4px">게임 제목1</h3><p style="font-size:14px;color:#6b7785">게임 설명1: 추억의 액션을 현대적으로 재해석!</p></div><div style="background:#f7fbff;border-radius:12px;padding:16px;box-shadow:0 2px 8px rgba(0,0,0,0.07);width:220px;"><img src="images/aboutmaribinstd.png" alt="Game2" style="width:100%;border-radius:8px;"><h3 style="margin:12px 0 4px">게임 제목2</h3><p style="font-size:14px;color:#6b7785">게임 설명2: 감성 퍼즐과 스토리!</p></div></div></section>`,
+          contact: `<section class="card"><h1 class="title">문의 / 연락처</h1><p class="lead">궁금한 점이나 제휴 문의는 아래 이메일로 연락해 주세요.</p><ul style="list-style:none;padding:0;font-size:16px;"><li><strong>Email:</strong> <a href="mailto:woona@maribinstudio.com">woona@maribinstudio.com</a></li><li><strong>GitHub:</strong> <a href="https://github.com/WooNaBin" target="_blank">github.com/WooNaBin</a></li></ul></section>`,
+          privacy: `<section class="card"><h1 class="title">개인정보처리방침</h1><p class="lead">마리빈스튜디오는 이용자의 개인정보를 안전하게 보호하며, 관련 법령을 준수합니다.<br>자세한 내용은 추후 업데이트 예정입니다.</p></section>`
+        },
+        en: {
+          menu: ["Home", "About Maribin Studio", "Games", "Contact", "Privacy Policy"],
+          home: `<section class="card" style="display:flex;align-items:center;gap:32px;flex-wrap:wrap;"><img src="images/aboutmaribinstd.png" alt="About Maribin Studio" style="width:220px;height:auto;border-radius:16px;box-shadow:0 4px 18px rgba(0,0,0,0.12);flex-shrink:0;"><div style="flex:1;min-width:220px;"><h1 class="title">Hello — Maribin Studio</h1><p class="lead">A solo indie game studio reinterpreting nostalgia for new fun. See more in the menu below.</p><a class="cta" href="#games" onclick="window.location.hash='games';return false;">View Games</a></div></section>`,
+          about: `<section class="card"><h1 class="title">About Maribin Studio</h1><p class="lead">Maribin Studio is a solo indie game studio reinterpreting classic games for new fun.<br>All development, design, and planning are done in-house.</p><img src="images/aboutmaribinstd.png" alt="Studio" style="width:320px;max-width:100%;border-radius:16px;margin-top:18px;box-shadow:0 4px 18px rgba(0,0,0,0.12);"></section>`,
+          games: `<section class="card"><h1 class="title">Games</h1><p class="lead">Introducing current projects and released games.</p><div style="display:flex;gap:24px;flex-wrap:wrap;justify-content:center;"><div style="background:#f7fbff;border-radius:12px;padding:16px;box-shadow:0 2px 8px rgba(0,0,0,0.07);width:220px;"><img src="images/bg_dc.jpeg" alt="Game1" style="width:100%;border-radius:8px;"><h3 style="margin:12px 0 4px">Game Title 1</h3><p style="font-size:14px;color:#6b7785">Game Description 1: Nostalgic action reimagined!</p></div><div style="background:#f7fbff;border-radius:12px;padding:16px;box-shadow:0 2px 8px rgba(0,0,0,0.07);width:220px;"><img src="images/aboutmaribinstd.png" alt="Game2" style="width:100%;border-radius:8px;"><h3 style="margin:12px 0 4px">Game Title 2</h3><p style="font-size:14px;color:#6b7785">Game Description 2: Emotional puzzles and story!</p></div></div></section>`,
+          contact: `<section class="card"><h1 class="title">Contact</h1><p class="lead">For inquiries or partnerships, please contact via email below.</p><ul style="list-style:none;padding:0;font-size:16px;"><li><strong>Email:</strong> <a href="mailto:woona@maribinstudio.com">woona@maribinstudio.com</a></li><li><strong>GitHub:</strong> <a href="https://github.com/WooNaBin" target="_blank">github.com/WooNaBin</a></li></ul></section>`,
+          privacy: `<section class="card"><h1 class="title">Privacy Policy</h1><p class="lead">Maribin Studio safely protects users' personal information and complies with relevant laws.<br>Details will be updated soon.</p></section>`
+        }
+      };
+
+      // 현재 언어 상태
+      function getLang() {
+        return localStorage.getItem('lang') || 'ko';
+      }
+      function setLang(lang) {
+        localStorage.setItem('lang', lang);
+        updateMenu(lang);
+        renderPage(location.hash.replace('#','') || 'home', lang);
+      }
+
+      // 메뉴 텍스트 업데이트
+      function updateMenu(lang) {
+        const navBtns = document.querySelectorAll('#main-nav button');
+        i18n[lang].menu.forEach((txt, i) => {
+          navBtns[i].textContent = txt;
+        });
+      }
+
+      // 페이지 렌더링 함수 (언어 지원)
+      function renderPage(page, lang) {
+        const main = document.getElementById('main-content');
+        main.classList.add('fade-out');
+        setTimeout(() => {
+          main.innerHTML = i18n[lang][page] || i18n[lang].home;
+          document.querySelectorAll('.nav button').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.page === page);
+          });
+          main.classList.remove('fade-out');
+          main.classList.add('fade-in');
+          setTimeout(()=>main.classList.remove('fade-in'), 450);
+        }, 350);
+      }
+
+      // 메뉴 클릭 이벤트
+      document.querySelectorAll('.nav button').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const page = btn.dataset.page;
+          window.location.hash = page;
+          renderPage(page, getLang());
+        });
+      });
+
+      // 언어 버튼 이벤트
+      document.getElementById('lang-ko').addEventListener('click', () => setLang('ko'));
+      document.getElementById('lang-en').addEventListener('click', () => setLang('en'));
+
+      // 해시 변경 시 페이지 렌더링
+      window.addEventListener('hashchange', () => {
+        const page = location.hash.replace('#','') || 'home';
+        renderPage(page, getLang());
+      });
+
+      // 최초 진입 시 렌더링
+      document.addEventListener('DOMContentLoaded', () => {
+        const lang = getLang();
+        updateMenu(lang);
+        const page = location.hash.replace('#','') || 'home';
+        renderPage(page, lang);
+      });
     </script>
   </body>
 </html>
