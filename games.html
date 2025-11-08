@@ -1,104 +1,233 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Games - Maribin Studio</title>
-<style>
-@font-face{
-  font-family:'Galmuri9';
-  src:url('fonts/Galmuri9.woff2') format('woff2');
-  font-weight:400;
-  font-style:normal;
-  font-display:swap;
-}
-body { font-family: 'Galmuri9', Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; margin:0; padding:0; line-height:1.6; }
-nav { background-color:#333; color:#fff; padding:10px; display:flex; justify-content:center; align-items:center; }
-nav a { color:#fff; margin:0 15px; text-decoration:none; font-weight:bold; }
-nav .lang-switch { margin-left:auto; }
-.lang-btn { cursor:pointer; font-size:20px; margin-left:10px; }
-header { background-image:url('https://picsum.photos/seed/games/1200/400'); background-size:cover; background-position:center; color:#fff; text-align:center; padding:60px 0; }
-header h1 { font-size:48px; margin:0; }
-header p { font-size:20px; margin-top:10px; }
-main { padding:40px 20px; }
-.game-card { margin-bottom:40px; text-align:center; }
-.game-card img { max-width:100%; border-radius:8px; }
-.game-card h2 { margin-top:20px; font-size:32px; }
-.game-card p { margin:20px 0; }
-.game-card a { background-color:#007BFF; color:#fff; padding:10px 20px; text-decoration:none; border-radius:4px; }
-footer { background-color:#f5f5f5; text-align:center; padding:10px; }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Games - Maribin Studio</title>
+  <style>
+    :root{
+      --bg:#f7fbff;
+      --accent:#45b5f5;
+      --accent-2:#0b6b86;
+      --muted:#6b7785;
+      --sidebar-width:260px;
+      --content-max:1100px;
+    }
+    @font-face{
+      font-family:'Galmuri9';
+      src:url('fonts/Galmuri9.woff2') format('woff2');
+      font-weight:400;
+      font-style:normal;
+      font-display:swap;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; font-family:'Galmuri9', Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      background:var(--bg); color:#0b2433; line-height:1.5;
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+    }
+    body, button, input, textarea, select{
+      font-family:'Galmuri9', Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+    .wrap{display:flex;min-height:100vh;width:100%;}
+    .sidebar{
+      width:var(--sidebar-width); background:linear-gradient(180deg,#08324a 0%, #1a6b85 60%, #5fc3f5 100%);
+      color:#fff; padding:0; display:flex; flex-direction:column; align-items:stretch; box-shadow:2px 0 10px rgba(3,18,26,0.15);
+      flex-shrink:0; min-height:100vh;
+    }
+    .brand{display:flex; align-items:center; gap:12px; padding:18px; background:rgba(0,0,0,0.45);}
+    .brand img{height:56px; width:auto; border-radius:8px; box-shadow:0 6px 18px rgba(0,0,0,0.3)}
+    .brand .title{font-weight:700; letter-spacing:0.6px; font-size:18px}
+    .nav{margin-top:18px; display:flex; flex-direction:column; gap:6px; padding:6px;}
+    .nav button{
+      font:inherit;
+      background:linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+      border:0; color:inherit; padding:20px 18px; text-align:left; font-weight:600; font-size:15px; cursor:pointer;
+      border-radius:8px; margin:6px 12px; box-shadow:inset 0 -2px 0 rgba(0,0,0,0.08); transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
+    }
+    .nav button:hover{transform:translateY(-3px); box-shadow:0 8px 20px rgba(3,18,26,0.18)}
+    .nav button.active{background:linear-gradient(90deg, rgba(255,255,255,0.25), rgba(255,255,255,0.15)); color:var(--accent-2)}
+    .lang-switch{
+      margin-top:auto;display:flex;justify-content:center;gap:12px;padding:18px 0;border-top:1px solid rgba(255,255,255,0.15);
+    }
+    .lang-btn{
+      background:rgba(0,0,0,0.15);border:1px solid transparent;font-size:28px;cursor:pointer;border-radius:50%;width:52px;height:52px;display:flex;align-items:center;justify-content:center;
+      transition:transform .18s ease, border-color .18s ease, background .18s ease;
+    }
+    .lang-btn:hover{transform:translateY(-2px);background:rgba(255,255,255,0.18)}
+    .lang-btn:focus-visible{outline:2px solid #fff;outline-offset:2px}
+    .content{flex:1; display:flex; flex-direction:column; min-width:0;}
+    header.hero{
+      min-height:180px; display:flex; align-items:center; padding:32px 36px; background:linear-gradient(90deg,#bfe9fb 0%, #a0daf8 100%); border-bottom:1px solid rgba(0,0,0,0.06); position:relative; overflow:hidden;
+    }
+    header.hero::after{
+      content:""; position:absolute; inset:0; background:url('images/bg_dc.jpeg') center/cover no-repeat; opacity:0.35; mix-blend-mode:multiply;
+    }
+    header.hero > *{position:relative;z-index:1;}
+    .hero-text h1{margin:0;font-size:32px;font-weight:700;color:#053244;}
+    .hero-text p{margin:6px 0 0;font-size:16px;color:var(--muted);}
+    main{flex:1; padding:40px 48px; min-height:320px; display:flex; justify-content:center; align-items:flex-start;}
+    #main-section{width:100%; max-width:var(--content-max);}
+    .card{background:#fff; border-radius:16px; padding:32px; box-shadow:0 16px 40px rgba(12,40,70,0.08);}
+    .card h1{margin:0 0 12px;font-size:28px;}
+    .card p.lead{margin:0 0 24px;color:var(--muted);}
+    .game-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;}
+    .game-card{background:#f7fbff;border-radius:12px;padding:20px;box-shadow:0 8px 24px rgba(7,49,75,0.08);display:flex;flex-direction:column;gap:14px;}
+    .game-card img{width:100%;border-radius:12px;height:180px;object-fit:cover;box-shadow:0 8px 16px rgba(0,0,0,0.12);}
+    .game-card h2{margin:0;font-size:22px;color:#07314b;}
+    .game-card p{margin:0;color:var(--muted);}
+    .game-card .tag{display:inline-block;padding:4px 10px;border-radius:999px;background:#e3f5ff;color:var(--accent-2);font-size:13px;font-weight:600;}
+    .cta{align-self:flex-start;background:var(--accent);color:#033047;font-weight:700;border-radius:999px;padding:10px 20px;text-decoration:none;transition:transform .18s ease, box-shadow .18s ease;}
+    .cta:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(69,181,245,0.35);}
+    footer{padding:18px;text-align:center;color:var(--muted);font-size:14px;}
+    @media(max-width:768px){
+      .wrap{flex-direction:column;}
+      .sidebar{width:100%;flex-direction:row;flex-wrap:wrap;min-height:auto;}
+      .nav{flex-direction:row;flex-wrap:wrap;justify-content:center;width:100%;}
+      .nav button{flex:1 1 45%; text-align:center;}
+      main{padding:24px;}
+    }
+  </style>
 </head>
 <body>
-<nav>
-  <a href="index.html" id="nav-home">Home</a>
-  <a href="maribin-studio.html" id="nav-studio">Maribin Studio</a>
-  <a href="games.html" id="nav-games">Games</a>
-  <a href="contact.html" id="nav-contact">Contact</a>
-  <span class="lang-switch">
-    <span class="lang-btn" id="lang-en">🇺🇸</span>
-    <span class="lang-btn" id="lang-ko">🇰🇷</span>
-  </span>
-</nav>
-<header>
-  <h1 id="page-title">Games</h1>
-  <p id="page-subtitle">Our Games</p>
-</header>
-<main>
-  <div class="game-card">
-    <img src="https://picsum.photos/seed/dice/800/400" alt="Dice Crusaders">
-    <h2 id="game1-title">Dice Crusaders</h2>
-    <p id="game1-desc">Dice Crusaders is a strategic dice game where players use dice to battle enemies and upgrade characters.</p>
-    <a href="dice-crusaders.html" id="game1-button">Learn More</a>
+  <div class="wrap">
+    <aside class="sidebar">
+      <div class="brand">
+        <img src="images/logo1024x512.jpeg" alt="Maribin Studio logo">
+        <div class="title">Maribin Studio</div>
+      </div>
+      <nav class="nav" id="side-nav">
+        <button data-url="index.html">Home</button>
+        <button data-url="maribin-studio.html">마리빈스튜디오 소개</button>
+        <button class="active" data-url="games.html">게임 소개</button>
+        <button data-url="contact.html">문의 / 연락처</button>
+        <button data-url="index.html#privacy">개인정보처리방침</button>
+        <button data-url="index.html#terms">게임 이용약관</button>
+      </nav>
+      <div class="lang-switch">
+        <button id="lang-ko" class="lang-btn" title="한국어">🇰🇷</button>
+        <button id="lang-en" class="lang-btn" title="English">🇺🇸</button>
+      </div>
+    </aside>
+    <div class="content">
+      <header class="hero">
+        <div class="hero-text">
+          <h1 id="hero-title">우리의 게임</h1>
+          <p id="hero-subtitle">주사위를 굴려 기사단을 이끄는 모험부터, 준비 중인 새로운 작품까지 한눈에 살펴보세요.</p>
+        </div>
+      </header>
+      <main>
+        <section class="card" id="main-section">
+          <h1 id="section-title">게임 소개</h1>
+          <p class="lead" id="section-lead">현재 개발 중인 게임과 앞으로 만날 작품들을 차근히 소개합니다.</p>
+          <div class="game-grid">
+            <article class="game-card">
+              <img src="images/bg_dc.jpeg" alt="Dice Crusader" loading="lazy">
+              <span class="tag" id="game1-tag">플레이 가능</span>
+              <h2 id="game1-title">다이스 크루세이더</h2>
+              <p id="game1-desc">주사위를 이용해 기사단을 지휘하고 전략적인 전투를 펼치는 RPG입니다.</p>
+              <a class="cta" id="game1-cta" href="dice-crusaders.html">자세히 보기</a>
+            </article>
+            <article class="game-card">
+              <img src="images/aboutmaribinstd.png" alt="Coming Soon" loading="lazy">
+              <span class="tag" id="game2-tag">준비 중</span>
+              <h2 id="game2-title">또 다른 재미를 찾아 준비 중!</h2>
+              <p id="game2-desc">새로운 장르와 감성으로 만날 다음 프로젝트를 기대해 주세요.</p>
+            </article>
+          </div>
+        </section>
+      </main>
+      <footer>&copy; 2025 Maribin Studio. All rights reserved.</footer>
+    </div>
   </div>
-</main>
-<footer>
-  <p>&copy; 2025 Maribin Studio. All rights reserved.</p>
-</footer>
-<script>
-const translations = {
-  en: {
-    navHome: 'Home',
-    navStudio: 'Maribin Studio',
-    navGames: 'Games',
-    navContact: 'Contact',
-    pageTitle: 'Games',
-    pageSubtitle: 'Our Games',
-    game1Title: 'Dice Crusaders',
-    game1Desc: 'Dice Crusaders is a strategic dice game where players use dice to battle enemies and upgrade characters.',
-    game1Button: 'Learn More'
-  },
-  ko: {
-    navHome: '홈',
-    navStudio: '마리빈 스튜디오',
-    navGames: '게임',
-    navContact: '연락처',
-    pageTitle: '게임',
-    pageSubtitle: '우리의 게임',
-    game1Title: '다이스 크루세이더스',
-    game1Desc: '다이스 크루세이더스는 플레이어가 주사위를 사용해 적과 싸우고 캐릭터를 성장시키는 전략 게임입니다.',
-    game1Button: '더 알아보기'
-  }
-};
-function setLanguage(lang) {
-  const t = translations[lang];
-  document.getElementById('nav-home').textContent = t.navHome;
-  document.getElementById('nav-studio').textContent = t.navStudio;
-  document.getElementById('nav-games').textContent = t.navGames;
-  document.getElementById('nav-contact').textContent = t.navContact;
-  document.getElementById('page-title').textContent = t.pageTitle;
-  document.getElementById('page-subtitle').textContent = t.pageSubtitle;
-  document.getElementById('game1-title').textContent = t.game1Title;
-  document.getElementById('game1-desc').textContent = t.game1Desc;
-  document.getElementById('game1-button').textContent = t.game1Button;
-  localStorage.setItem('lang', lang);
-}
-document.getElementById('lang-en').addEventListener('click', () => setLanguage('en'));
-document.getElementById('lang-ko').addEventListener('click', () => setLanguage('ko'));
-document.addEventListener('DOMContentLoaded', () => {
-  const savedLang = localStorage.getItem('lang') || 'en';
-  setLanguage(savedLang);
-});
-</script>
+  <script>
+    const navTargets = [
+      { url: 'index.html', key: 'menuHome' },
+      { url: 'maribin-studio.html', key: 'menuAbout' },
+      { url: 'games.html', key: 'menuGames' },
+      { url: 'contact.html', key: 'menuContact' },
+      { url: 'index.html#privacy', key: 'menuPrivacy' },
+      { url: 'index.html#terms', key: 'menuTerms' }
+    ];
+    const navButtons = document.querySelectorAll('#side-nav button');
+
+    const i18n = {
+      ko: {
+        menuHome: 'Home',
+        menuAbout: '마리빈스튜디오 소개',
+        menuGames: '게임 소개',
+        menuContact: '문의 / 연락처',
+        menuPrivacy: '개인정보처리방침',
+        menuTerms: '게임 이용약관',
+        heroTitle: '우리의 게임',
+        heroSubtitle: '주사위를 굴려 기사단을 이끄는 모험부터, 준비 중인 새로운 작품까지 한눈에 살펴보세요.',
+        sectionTitle: '게임 소개',
+        sectionLead: '현재 개발 중인 게임과 앞으로 만날 작품들을 차근히 소개합니다.',
+        game1Tag: '플레이 가능',
+        game1Title: '다이스 크루세이더',
+        game1Desc: '주사위를 이용해 기사단을 지휘하고 전략적인 전투를 펼치는 RPG입니다.',
+        game1Cta: '자세히 보기',
+        game2Tag: '준비 중',
+        game2Title: '또 다른 재미를 찾아 준비 중!',
+        game2Desc: '새로운 장르와 감성으로 만날 다음 프로젝트를 기대해 주세요.'
+      },
+      en: {
+        menuHome: 'Home',
+        menuAbout: 'About Maribin Studio',
+        menuGames: 'Games',
+        menuContact: 'Contact',
+        menuPrivacy: 'Privacy Policy',
+        menuTerms: 'Terms of Service',
+        heroTitle: 'Our Games',
+        heroSubtitle: 'From dice-driven knightly adventures to the next project in progress, explore what we are building.',
+        sectionTitle: 'Game Lineup',
+        sectionLead: 'A quick overview of playable titles and what is coming next.',
+        game1Tag: 'Playable',
+        game1Title: 'Dice Crusader',
+        game1Desc: 'Lead your custom order of knights with tactical dice rolls in this RPG adventure.',
+        game1Cta: 'Learn More',
+        game2Tag: 'In Progress',
+        game2Title: 'More Fun Coming Soon!',
+        game2Desc: 'A fresh project is in the works—please look forward to the reveal.'
+      }
+    };
+
+    function setLanguage(lang) {
+      const t = i18n[lang];
+      if (!t) return;
+      navTargets.forEach((item, index) => {
+        const btn = navButtons[index];
+        if (btn) btn.textContent = t[item.key];
+      });
+      document.getElementById('hero-title').textContent = t.heroTitle;
+      document.getElementById('hero-subtitle').textContent = t.heroSubtitle;
+      document.getElementById('section-title').textContent = t.sectionTitle;
+      document.getElementById('section-lead').textContent = t.sectionLead;
+      document.getElementById('game1-tag').textContent = t.game1Tag;
+      document.getElementById('game1-title').textContent = t.game1Title;
+      document.getElementById('game1-desc').textContent = t.game1Desc;
+      document.getElementById('game1-cta').textContent = t.game1Cta;
+      document.getElementById('game2-tag').textContent = t.game2Tag;
+      document.getElementById('game2-title').textContent = t.game2Title;
+      document.getElementById('game2-desc').textContent = t.game2Desc;
+      localStorage.setItem('lang', lang);
+    }
+
+    navButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = btn.dataset.url;
+        if (!target || target === 'games.html') return;
+        window.location.href = target;
+      });
+    });
+
+    document.getElementById('lang-ko').addEventListener('click', () => setLanguage('ko'));
+    document.getElementById('lang-en').addEventListener('click', () => setLanguage('en'));
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const savedLang = localStorage.getItem('lang') || 'ko';
+      setLanguage(savedLang);
+    });
+  </script>
 </body>
 </html>

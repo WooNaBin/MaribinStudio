@@ -1,82 +1,267 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Maribin Studio - About</title>
-<style>
-@font-face{
-  font-family:'Galmuri9';
-  src:url('fonts/Galmuri9.woff2') format('woff2');
-  font-weight:400;
-  font-style:normal;
-  font-display:swap;
-}
-body {font-family: 'Galmuri9', Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; margin: 0; line-height: 1.6;}
-nav {background-color: #333; color: #fff; padding: 10px; display: flex; align-items: center;}
-nav a {color: #fff; margin: 0 15px; text-decoration: none; font-weight: bold;}
-nav .spacer {flex: 1;}
-nav .flag {cursor: pointer; margin-left: 10px;}
-header {background-image: url('https://picsum.photos/seed/studio/1200/400'); background-size: cover; background-position: center; color: #fff; text-align: center; padding: 80px 20px;}
-header h1 {margin: 0; font-size: 48px;}
-main {padding: 40px 20px; max-width: 960px; margin: auto;}
-footer {background-color: #f5f5f5; text-align: center; padding: 10px;}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About - Maribin Studio</title>
+  <style>
+    :root{
+      --bg:#f7fbff;
+      --accent:#45b5f5;
+      --accent-2:#0b6b86;
+      --muted:#6b7785;
+      --sidebar-width:260px;
+      --content-max:1100px;
+    }
+    @font-face{
+      font-family:'Galmuri9';
+      src:url('fonts/Galmuri9.woff2') format('woff2');
+      font-weight:400;
+      font-style:normal;
+      font-display:swap;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; font-family:'Galmuri9', Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      background:var(--bg); color:#0b2433; line-height:1.5;
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+    }
+    body, button, input, textarea, select{
+      font-family:'Galmuri9', Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+    .wrap{display:flex;min-height:100vh;width:100%;}
+    .sidebar{
+      width:var(--sidebar-width); background:linear-gradient(180deg,#08324a 0%, #1a6b85 60%, #5fc3f5 100%);
+      color:#fff; padding:0; display:flex; flex-direction:column; align-items:stretch; box-shadow:2px 0 10px rgba(3,18,26,0.15);
+      flex-shrink:0; min-height:100vh;
+    }
+    .brand{display:flex; align-items:center; gap:12px; padding:18px; background:rgba(0,0,0,0.45);}
+    .brand img{height:56px; width:auto; border-radius:8px; box-shadow:0 6px 18px rgba(0,0,0,0.3)}
+    .brand .title{font-weight:700; letter-spacing:0.6px; font-size:18px}
+    .nav{margin-top:18px; display:flex; flex-direction:column; gap:6px; padding:6px;}
+    .nav button{
+      font:inherit;
+      background:linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+      border:0; color:inherit; padding:20px 18px; text-align:left; font-weight:600; font-size:15px; cursor:pointer;
+      border-radius:8px; margin:6px 12px; box-shadow:inset 0 -2px 0 rgba(0,0,0,0.08); transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
+    }
+    .nav button:hover{transform:translateY(-3px); box-shadow:0 8px 20px rgba(3,18,26,0.18)}
+    .nav button.active{background:linear-gradient(90deg, rgba(255,255,255,0.25), rgba(255,255,255,0.15)); color:var(--accent-2)}
+    .lang-switch{
+      margin-top:auto;display:flex;justify-content:center;gap:12px;padding:18px 0;border-top:1px solid rgba(255,255,255,0.15);
+    }
+    .lang-btn{
+      background:rgba(0,0,0,0.15);border:1px solid transparent;font-size:28px;cursor:pointer;border-radius:50%;width:52px;height:52px;display:flex;align-items:center;justify-content:center;
+      transition:transform .18s ease, border-color .18s ease, background .18s ease;
+    }
+    .lang-btn:hover{transform:translateY(-2px);background:rgba(255,255,255,0.18)}
+    .lang-btn:focus-visible{outline:2px solid #fff;outline-offset:2px}
+    .content{flex:1; display:flex; flex-direction:column; min-width:0;}
+    header.hero{
+      min-height:200px; display:flex; align-items:center; padding:32px 36px; background:linear-gradient(90deg,#c0e3ff 0%, #a2d4ff 100%); border-bottom:1px solid rgba(0,0,0,0.06); position:relative; overflow:hidden;
+    }
+    header.hero::after{
+      content:""; position:absolute; inset:0; background:url('images/aboutmaribinstd.png') center/cover no-repeat; opacity:0.25; mix-blend-mode:multiply;
+    }
+    header.hero > *{position:relative;z-index:1;}
+    .hero-text h1{margin:0;font-size:32px;font-weight:700;color:#053244;}
+    .hero-text p{margin:6px 0 0;font-size:16px;color:var(--muted);max-width:600px;}
+    main{flex:1; padding:40px 48px; min-height:320px; display:flex; justify-content:center; align-items:flex-start;}
+    #main-section{width:100%; max-width:var(--content-max);}
+    .card{background:#fff; border-radius:16px; padding:32px; box-shadow:0 16px 40px rgba(12,40,70,0.08);}
+    .card h1{margin:0 0 12px;font-size:28px;}
+    .card p.lead{margin:0 0 24px;color:var(--muted);}
+    .stats{display:flex;gap:24px;flex-wrap:wrap;margin-bottom:32px;}
+    .stat{flex:1 1 180px;background:#f0f8ff;border-radius:12px;padding:20px;box-shadow:0 10px 24px rgba(5,30,45,0.08);text-align:center;}
+    .stat strong{display:block;font-size:30px;color:#053244;}
+    .stat span{color:var(--muted);font-size:14px;letter-spacing:0.5px;text-transform:uppercase;}
+    .info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;}
+    .info-card{background:#f7fbff;border-radius:14px;padding:24px;box-shadow:0 8px 24px rgba(7,49,75,0.08);}
+    .info-card h2{margin:0 0 12px;font-size:22px;color:#07314b;}
+    .info-card p{margin:0;color:#173042;}
+    .info-card ul{margin:12px 0 0;padding-left:18px;color:#173042;}
+    footer{padding:18px;text-align:center;color:var(--muted);font-size:14px;}
+    @media(max-width:768px){
+      .wrap{flex-direction:column;}
+      .sidebar{width:100%;flex-direction:row;flex-wrap:wrap;min-height:auto;}
+      .nav{flex-direction:row;flex-wrap:wrap;justify-content:center;width:100%;}
+      .nav button{flex:1 1 45%; text-align:center;}
+      main{padding:24px;}
+      .stats{flex-direction:column;}
+    }
+  </style>
 </head>
 <body>
-<nav>
-    <a href="index.html" id="navHome">Home</a>
-    <a href="maribin-studio.html" id="navStudio">Maribin Studio</a>
-    <a href="games.html" id="navGames">Games</a>
-    <a href="contact.html" id="navContact">Contact</a>
-    <span class="spacer"></span>
-    <span class="flag" id="lang-en">🇺🇸</span>
-    <span class="flag" id="lang-ko">🇰🇷</span>
-</nav>
-<header>
-    <h1 id="pageTitle">About Maribin Studio</h1>
-</header>
-<main>
-    <p id="aboutText">Maribin Studio is a solo indie game development studio dedicated to creating high-performance, engaging games that push the boundaries of creativity. Founded by a single developer, Maribin Studio focuses on delivering polished, immersive experiences for players worldwide.</p>
-</main>
-<footer>
-    <p>&copy; 2025 Maribin Studio</p>
-</footer>
-<script>
-const translations = {
-    en: {
-        navHome: "Home",
-        navStudio: "Maribin Studio",
-        navGames: "Games",
-        navContact: "Contact",
-        pageTitle: "About Maribin Studio",
-        aboutText: "We are a one-man developer studio that wants to reinterpret nostalgic games and provide new fun.."
-    },
-    ko: {
-        navHome: "홈",
-        navStudio: "마리빈 스튜디오",
-        navGames: "게임",
-        navContact: "연락처",
-        pageTitle: "마리빈 스튜디오 소개",
-        aboutText: "추억의 게임을 재해석해서 또다른 재미를 드리고 싶은 1인개발자 스튜디오입니다."
+  <div class="wrap">
+    <aside class="sidebar">
+      <div class="brand">
+        <img src="images/logo1024x512.jpeg" alt="Maribin Studio logo">
+        <div class="title">Maribin Studio</div>
+      </div>
+      <nav class="nav" id="side-nav">
+        <button data-url="index.html">Home</button>
+        <button class="active" data-url="maribin-studio.html">마리빈스튜디오 소개</button>
+        <button data-url="games.html">게임 소개</button>
+        <button data-url="contact.html">문의 / 연락처</button>
+        <button data-url="index.html#privacy">개인정보처리방침</button>
+        <button data-url="index.html#terms">게임 이용약관</button>
+      </nav>
+      <div class="lang-switch">
+        <button id="lang-ko" class="lang-btn" title="한국어">🇰🇷</button>
+        <button id="lang-en" class="lang-btn" title="English">🇺🇸</button>
+      </div>
+    </aside>
+    <div class="content">
+      <header class="hero">
+        <div class="hero-text">
+          <h1 id="hero-title">마리빈 스튜디오 소개</h1>
+          <p id="hero-subtitle">추억의 게임 감성을 현대적으로 재해석하는 1인 인디 스튜디오입니다.</p>
+        </div>
+      </header>
+      <main>
+        <section class="card" id="main-section">
+          <h1 id="section-title">우리가 추구하는 가치</h1>
+          <p class="lead" id="section-lead">기획부터 개발, 아트까지 모두 한 사람이 담당하며 작지만 단단한 게임을 만듭니다.</p>
+          <div class="stats">
+            <div class="stat">
+              <strong id="stat1-value">1인</strong>
+              <span id="stat1-label">개발 스튜디오</span>
+            </div>
+            <div class="stat">
+              <strong id="stat2-value">2019</strong>
+              <span id="stat2-label">설립</span>
+            </div>
+            <div class="stat">
+              <strong id="stat3-value">3+</strong>
+              <span id="stat3-label">진행중 프로젝트</span>
+            </div>
+          </div>
+          <div class="info-grid">
+            <article class="info-card">
+              <h2 id="story-heading">우리의 이야기</h2>
+              <p id="story-body">유년 시절 즐겼던 콘솔과 아케이드 게임에서 받은 감동을 바탕으로, 그 감성을 현대적인 플레이 감각으로 재구성하고 있습니다.</p>
+            </article>
+            <article class="info-card">
+              <h2 id="vision-heading">개발 방향</h2>
+              <p id="vision-body">작은 팀이지만 시스템과 연출에서 디테일을 놓치지 않으며, 플레이어가 오래 기억할 수 있는 경험을 만드는 것이 목표입니다.</p>
+              <ul>
+                <li id="focus-list-1">클래식 메커닉에 현대적 편의성을 더합니다.</li>
+                <li id="focus-list-2">짧지만 임팩트 있는 내러티브를 제공합니다.</li>
+                <li id="focus-list-3">플레이어 커뮤니티 피드백을 적극 반영합니다.</li>
+              </ul>
+            </article>
+          </div>
+        </section>
+      </main>
+      <footer>&copy; 2025 Maribin Studio. All rights reserved.</footer>
+    </div>
+  </div>
+  <script>
+    const navTargets = [
+      { url: 'index.html', key: 'menuHome' },
+      { url: 'maribin-studio.html', key: 'menuAbout' },
+      { url: 'games.html', key: 'menuGames' },
+      { url: 'contact.html', key: 'menuContact' },
+      { url: 'index.html#privacy', key: 'menuPrivacy' },
+      { url: 'index.html#terms', key: 'menuTerms' }
+    ];
+    const navButtons = document.querySelectorAll('#side-nav button');
+
+    const i18n = {
+      ko: {
+        menuHome: 'Home',
+        menuAbout: '마리빈스튜디오 소개',
+        menuGames: '게임 소개',
+        menuContact: '문의 / 연락처',
+        menuPrivacy: '개인정보처리방침',
+        menuTerms: '게임 이용약관',
+        heroTitle: '마리빈 스튜디오 소개',
+        heroSubtitle: '추억의 게임 감성을 현대적으로 재해석하는 1인 인디 스튜디오입니다.',
+        sectionTitle: '우리가 추구하는 가치',
+        sectionLead: '기획부터 개발, 아트까지 모두 한 사람이 담당하며 작지만 단단한 게임을 만듭니다.',
+        stat1Value: '1인',
+        stat1Label: '개발 스튜디오',
+        stat2Value: '2019',
+        stat2Label: '설립',
+        stat3Value: '3+',
+        stat3Label: '진행중 프로젝트',
+        storyHeading: '우리의 이야기',
+        storyBody: '유년 시절 즐겼던 콘솔과 아케이드 게임에서 받은 감동을 바탕으로, 그 감성을 현대적인 플레이 감각으로 재구성하고 있습니다.',
+        visionHeading: '개발 방향',
+        visionBody: '작은 팀이지만 시스템과 연출에서 디테일을 놓치지 않으며, 플레이어가 오래 기억할 수 있는 경험을 만드는 것이 목표입니다.',
+        focusList1: '클래식 메커닉에 현대적 편의성을 더합니다.',
+        focusList2: '짧지만 임팩트 있는 내러티브를 제공합니다.',
+        focusList3: '플레이어 커뮤니티 피드백을 적극 반영합니다.'
+      },
+      en: {
+        menuHome: 'Home',
+        menuAbout: 'About Maribin Studio',
+        menuGames: 'Games',
+        menuContact: 'Contact',
+        menuPrivacy: 'Privacy Policy',
+        menuTerms: 'Terms of Service',
+        heroTitle: 'About Maribin Studio',
+        heroSubtitle: 'A solo indie team reinterpreting nostalgic gameplay with modern sensibilities.',
+        sectionTitle: 'What We Value',
+        sectionLead: 'One developer oversees design, programming, and art to keep every project cohesive.',
+        stat1Value: 'Solo',
+        stat1Label: 'Indie Studio',
+        stat2Value: '2019',
+        stat2Label: 'Founded',
+        stat3Value: '3+',
+        stat3Label: 'Projects in flight',
+        storyHeading: 'Our Story',
+        storyBody: 'Inspired by the arcade and console hits of childhood, we rebuild that nostalgia for today’s players.',
+        visionHeading: 'Development Focus',
+        visionBody: 'Even as a tiny team we obsess over systems and presentation to leave a lasting impression.',
+        focusList1: 'Classic mechanics refreshed with modern quality-of-life.',
+        focusList2: 'Short yet impactful narratives in every release.',
+        focusList3: 'Player community feedback actively shapes updates.'
+      }
+    };
+
+    function setLanguage(lang) {
+      const t = i18n[lang];
+      if (!t) return;
+      navTargets.forEach((item, index) => {
+        const btn = navButtons[index];
+        if (btn) btn.textContent = t[item.key];
+      });
+      document.getElementById('hero-title').textContent = t.heroTitle;
+      document.getElementById('hero-subtitle').textContent = t.heroSubtitle;
+      document.getElementById('section-title').textContent = t.sectionTitle;
+      document.getElementById('section-lead').textContent = t.sectionLead;
+      document.getElementById('stat1-value').textContent = t.stat1Value;
+      document.getElementById('stat1-label').textContent = t.stat1Label;
+      document.getElementById('stat2-value').textContent = t.stat2Value;
+      document.getElementById('stat2-label').textContent = t.stat2Label;
+      document.getElementById('stat3-value').textContent = t.stat3Value;
+      document.getElementById('stat3-label').textContent = t.stat3Label;
+      document.getElementById('story-heading').textContent = t.storyHeading;
+      document.getElementById('story-body').textContent = t.storyBody;
+      document.getElementById('vision-heading').textContent = t.visionHeading;
+      document.getElementById('vision-body').textContent = t.visionBody;
+      document.getElementById('focus-list-1').textContent = t.focusList1;
+      document.getElementById('focus-list-2').textContent = t.focusList2;
+      document.getElementById('focus-list-3').textContent = t.focusList3;
+      localStorage.setItem('lang', lang);
     }
-};
-function setLanguage(lang) {
-    localStorage.setItem('lang', lang);
-    document.getElementById('navHome').textContent = translations[lang].navHome;
-    document.getElementById('navStudio').textContent = translations[lang].navStudio;
-    document.getElementById('navGames').textContent = translations[lang].navGames;
-    document.getElementById('navContact').textContent = translations[lang].navContact;
-    document.getElementById('pageTitle').textContent = translations[lang].pageTitle;
-    document.getElementById('aboutText').textContent = translations[lang].aboutText;
-}
-function initLang() {
-    const savedLang = localStorage.getItem('lang') || 'en';
-    setLanguage(savedLang);
-}
-document.getElementById('lang-en').addEventListener('click', () => setLanguage('en'));
-document.getElementById('lang-ko').addEventListener('click', () => setLanguage('ko'));
-document.addEventListener('DOMContentLoaded', initLang);
-</script>
+
+    navButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = btn.dataset.url;
+        if (!target || target === 'maribin-studio.html') return;
+        window.location.href = target;
+      });
+    });
+
+    document.getElementById('lang-ko').addEventListener('click', () => setLanguage('ko'));
+    document.getElementById('lang-en').addEventListener('click', () => setLanguage('en'));
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const savedLang = localStorage.getItem('lang') || 'ko';
+      setLanguage(savedLang);
+    });
+  </script>
 </body>
 </html>

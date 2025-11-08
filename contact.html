@@ -1,96 +1,234 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Contact - Maribin Studio</title>
-<style>
-@font-face{
-  font-family:'Galmuri9';
-  src:url('fonts/Galmuri9.woff2') format('woff2');
-  font-weight:400;
-  font-style:normal;
-  font-display:swap;
-}
-body {font-family: 'Galmuri9', Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; margin: 0; line-height: 1.6;}
-nav {background-color: #333; color: #fff; padding: 10px; display: flex; align-items: center;}
-nav a {color: #fff; margin: 0 15px; text-decoration: none; font-weight: bold;}
-.spacer {flex: 1;}
-.flag {cursor: pointer; margin-left: 10px;}
-header {background-image: url('https://picsum.photos/seed/contact/1200/400'); background-size: cover; background-position: center; color: #fff; padding: 60px 20px; text-align: center;}
-header h1 {margin: 0; font-size: 40px;}
-main {padding: 40px 20px; max-width: 960px; margin: auto;}
-footer {background-color: #f5f5f5; text-align: center; padding: 10px 0;}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact - Maribin Studio</title>
+  <style>
+    :root{
+      --bg:#f7fbff;
+      --accent:#45b5f5;
+      --accent-2:#0b6b86;
+      --muted:#6b7785;
+      --sidebar-width:260px;
+      --content-max:900px;
+    }
+    @font-face{
+      font-family:'Galmuri9';
+      src:url('fonts/Galmuri9.woff2') format('woff2');
+      font-weight:400;
+      font-style:normal;
+      font-display:swap;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; font-family:'Galmuri9', Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      background:var(--bg); color:#0b2433; line-height:1.5;
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+    }
+    body, button, input, textarea, select{
+      font-family:'Galmuri9', Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+    .wrap{display:flex;min-height:100vh;width:100%;}
+    .sidebar{
+      width:var(--sidebar-width); background:linear-gradient(180deg,#08324a 0%, #1a6b85 60%, #5fc3f5 100%);
+      color:#fff; padding:0; display:flex; flex-direction:column; align-items:stretch; box-shadow:2px 0 10px rgba(3,18,26,0.15);
+      flex-shrink:0; min-height:100vh;
+    }
+    .brand{display:flex; align-items:center; gap:12px; padding:18px; background:rgba(0,0,0,0.45);}
+    .brand img{height:56px; width:auto; border-radius:8px; box-shadow:0 6px 18px rgba(0,0,0,0.3)}
+    .brand .title{font-weight:700; letter-spacing:0.6px; font-size:18px}
+    .nav{margin-top:18px; display:flex; flex-direction:column; gap:6px; padding:6px;}
+    .nav button{
+      font:inherit;
+      background:linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+      border:0; color:inherit; padding:20px 18px; text-align:left; font-weight:600; font-size:15px; cursor:pointer;
+      border-radius:8px; margin:6px 12px; box-shadow:inset 0 -2px 0 rgba(0,0,0,0.08); transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
+    }
+    .nav button:hover{transform:translateY(-3px); box-shadow:0 8px 20px rgba(3,18,26,0.18)}
+    .nav button.active{background:linear-gradient(90deg, rgba(255,255,255,0.25), rgba(255,255,255,0.15)); color:var(--accent-2)}
+    .lang-switch{
+      margin-top:auto;display:flex;justify-content:center;gap:12px;padding:18px 0;border-top:1px solid rgba(255,255,255,0.15);
+    }
+    .lang-btn{
+      background:rgba(0,0,0,0.15);border:1px solid transparent;font-size:28px;cursor:pointer;border-radius:50%;width:52px;height:52px;display:flex;align-items:center;justify-content:center;
+      transition:transform .18s ease, border-color .18s ease, background .18s ease;
+    }
+    .lang-btn:hover{transform:translateY(-2px);background:rgba(255,255,255,0.18)}
+    .lang-btn:focus-visible{outline:2px solid #fff;outline-offset:2px}
+    .content{flex:1; display:flex; flex-direction:column; min-width:0;}
+    header.hero{
+      min-height:200px; display:flex; align-items:center; padding:32px 36px; background:linear-gradient(90deg,#c8f5ff 0%, #a0daf8 100%); border-bottom:1px solid rgba(0,0,0,0.06); position:relative; overflow:hidden;
+    }
+    header.hero::after{
+      content:""; position:absolute; inset:0; background:url('images/bg_dc.jpeg') center/cover no-repeat; opacity:0.3; mix-blend-mode:multiply;
+    }
+    header.hero > *{position:relative;z-index:1;}
+    .hero-text h1{margin:0;font-size:32px;font-weight:700;color:#053244;}
+    .hero-text p{margin:6px 0 0;font-size:16px;color:var(--muted);max-width:600px;}
+    main{flex:1; padding:40px 48px; min-height:320px; display:flex; justify-content:center; align-items:flex-start;}
+    #main-section{width:100%; max-width:var(--content-max);}
+    .card{background:#fff; border-radius:16px; padding:32px; box-shadow:0 16px 40px rgba(12,40,70,0.08);}
+    .card h1{margin:0 0 12px;font-size:28px;}
+    .card p.lead{margin:0 0 24px;color:var(--muted);}
+    .info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;}
+    .info-card{background:#f7fbff;border-radius:14px;padding:24px;box-shadow:0 8px 24px rgba(7,49,75,0.08);display:flex;flex-direction:column;gap:12px;}
+    .info-card h2{margin:0;font-size:22px;color:#07314b;}
+    .info-card p{margin:0;color:#173042;}
+    .cta{display:inline-flex;align-items:center;gap:8px;align-self:flex-start;background:var(--accent);color:#033047;font-weight:700;border-radius:999px;padding:10px 20px;text-decoration:none;transition:transform .18s ease, box-shadow .18s ease;}
+    .cta:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(69,181,245,0.35);}
+    .cta.secondary{background:#fff;border:2px solid var(--accent);color:var(--accent-2);}
+    footer{padding:18px;text-align:center;color:var(--muted);font-size:14px;}
+    @media(max-width:768px){
+      .wrap{flex-direction:column;}
+      .sidebar{width:100%;flex-direction:row;flex-wrap:wrap;min-height:auto;}
+      .nav{flex-direction:row;flex-wrap:wrap;justify-content:center;width:100%;}
+      .nav button{flex:1 1 45%; text-align:center;}
+      main{padding:24px;}
+    }
+  </style>
 </head>
 <body>
-<nav>
-<a href="index.html" id="navHome">Home</a>
-<a href="maribin-studio.html" id="navStudio">Maribin Studio</a>
-<a href="games.html" id="navGames">Games</a>
-<a href="contact.html" id="navContact">Contact</a>
-<span class="spacer"></span>
-<span class="flag" id="lang-en">🇺🇸</span>
-<span class="flag" id="lang-ko">🇰🇷</span>
-</nav>
-<header>
-<h1 id="pageTitle">Contact Us</h1>
-</header>
-<main>
-<p id="contactText">Have a question or feedback? We'd love to hear from you! Reach out via the contact information below.</p>
-<p><strong id="emailLabel">Email:</strong> <a href="mailto:contact@maribinstudio.com" id="emailLink">contact@maribinstudio.com</a></p>
-<p><strong id="githubLabel">GitHub:</strong> <a href="https://github.com/WooNaBin" id="githubLink">WooNaBin</a></p>
-</main>
-<footer>
-<p>&copy; 2025 Maribin Studio. All rights reserved.</p>
-</footer>
-<script>
-const translations = {
-  en: {
-    navHome: 'Home',
-    navStudio: 'Maribin Studio',
-    navGames: 'Games',
-    navContact: 'Contact',
-    pageTitle: 'Contact Us',
-    contactText: "Have a question or feedback? We'd love to hear from you! Reach out via the contact information below.",
-    emailLabel: 'Email:',
-    githubLabel: 'GitHub:',
-    emailLink: 'prefgames@naver.com',
-    githubLink: 'WooNaBin',
-  },
-  ko: {
-    navHome: '홈',
-    navStudio: '마리빈 스튜디오',
-    navGames: '게임',
-    navContact: '연락처',
-    pageTitle: '연락처',
-    contactText: '질문이나 피드백이 있으신가요? 아래 연락처로 메시지를 보내 주세요!',
-    emailLabel: '이메일:',
-    githubLabel: '깃허브:',
-    emailLink: 'prefgames@naver.com',
-    githubLink: 'WooNaBin',
-  }
-};
-function setLanguage(lang) {
-  localStorage.setItem('lang', lang);
-  const t = translations[lang];
-  document.getElementById('navHome').textContent = t.navHome;
-  document.getElementById('navStudio').textContent = t.navStudio;
-  document.getElementById('navGames').textContent = t.navGames;
-  document.getElementById('navContact').textContent = t.navContact;
-  document.getElementById('pageTitle').textContent = t.pageTitle;
-  document.getElementById('contactText').textContent = t.contactText;
-  document.getElementById('emailLabel').textContent = t.emailLabel;
-  document.getElementById('githubLabel').textContent = t.githubLabel;
-  document.getElementById('emailLink').textContent = t.emailLink;
-  document.getElementById('githubLink').textContent = t.githubLink;
-}
-document.addEventListener('DOMContentLoaded', () => {
-  const savedLang = localStorage.getItem('lang') || 'en';
-  setLanguage(savedLang);
-  document.getElementById('lang-en').addEventListener('click', () => setLanguage('en'));
-  document.getElementById('lang-ko').addEventListener('click', () => setLanguage('ko'));
-});
-</script>
+  <div class="wrap">
+    <aside class="sidebar">
+      <div class="brand">
+        <img src="images/logo1024x512.jpeg" alt="Maribin Studio logo">
+        <div class="title">Maribin Studio</div>
+      </div>
+      <nav class="nav" id="side-nav">
+        <button data-url="index.html">Home</button>
+        <button data-url="maribin-studio.html">마리빈스튜디오 소개</button>
+        <button data-url="games.html">게임 소개</button>
+        <button class="active" data-url="contact.html">문의 / 연락처</button>
+        <button data-url="index.html#privacy">개인정보처리방침</button>
+        <button data-url="index.html#terms">게임 이용약관</button>
+      </nav>
+      <div class="lang-switch">
+        <button id="lang-ko" class="lang-btn" title="한국어">🇰🇷</button>
+        <button id="lang-en" class="lang-btn" title="English">🇺🇸</button>
+      </div>
+    </aside>
+    <div class="content">
+      <header class="hero">
+        <div class="hero-text">
+          <h1 id="hero-title">문의 / 연락처</h1>
+          <p id="hero-subtitle">협업 제안, 인터뷰, 피드백 등 어떤 이야기든 편하게 연락 주세요.</p>
+        </div>
+      </header>
+      <main>
+        <section class="card" id="main-section">
+          <h1 id="section-title">언제든지 연락주세요</h1>
+          <p class="lead" id="section-lead">주요 채널은 아래와 같습니다. 답변은 가능한 한 24시간 이내에 드리고 있습니다.</p>
+          <div class="info-grid">
+            <article class="info-card">
+              <h2 id="email-heading">이메일 문의</h2>
+              <p id="email-body">프로젝트 제안, 인터뷰 요청, 버그 제보 등 자세한 내용을 남겨 주세요.</p>
+              <a class="cta" id="email-link" href="mailto:prefgames@naver.com">prefgames@naver.com</a>
+            </article>
+            <article class="info-card">
+              <h2 id="github-heading">GitHub</h2>
+              <p id="github-body">개발 로그와 실험 프로젝트를 확인하거나 이슈로 의견을 남겨 주세요.</p>
+              <a class="cta secondary" id="github-link" href="https://github.com/WooNaBin" target="_blank" rel="noopener noreferrer">github.com/WooNaBin</a>
+            </article>
+          </div>
+          <p class="lead" id="response-note" style="margin-top:28px;">모든 메일은 하루 한 번 이상 확인하며, 긴급한 건은 제목에 [긴급]을 붙여 주시면 더 빠르게 응답할 수 있습니다.</p>
+        </section>
+      </main>
+      <footer>&copy; 2025 Maribin Studio. All rights reserved.</footer>
+    </div>
+  </div>
+  <script>
+    const navTargets = [
+      { url: 'index.html', key: 'menuHome' },
+      { url: 'maribin-studio.html', key: 'menuAbout' },
+      { url: 'games.html', key: 'menuGames' },
+      { url: 'contact.html', key: 'menuContact' },
+      { url: 'index.html#privacy', key: 'menuPrivacy' },
+      { url: 'index.html#terms', key: 'menuTerms' }
+    ];
+    const navButtons = document.querySelectorAll('#side-nav button');
+
+    const i18n = {
+      ko: {
+        menuHome: 'Home',
+        menuAbout: '마리빈스튜디오 소개',
+        menuGames: '게임 소개',
+        menuContact: '문의 / 연락처',
+        menuPrivacy: '개인정보처리방침',
+        menuTerms: '게임 이용약관',
+        heroTitle: '문의 / 연락처',
+        heroSubtitle: '협업 제안, 인터뷰, 피드백 등 어떤 이야기든 편하게 연락 주세요.',
+        sectionTitle: '언제든지 연락주세요',
+        sectionLead: '주요 채널은 아래와 같습니다. 답변은 가능한 한 24시간 이내에 드리고 있습니다.',
+        emailHeading: '이메일 문의',
+        emailBody: '프로젝트 제안, 인터뷰 요청, 버그 제보 등 자세한 내용을 남겨 주세요.',
+        emailLink: 'prefgames@naver.com',
+        githubHeading: 'GitHub',
+        githubBody: '개발 로그와 실험 프로젝트를 확인하거나 이슈로 의견을 남겨 주세요.',
+        githubLink: 'github.com/WooNaBin',
+        responseNote: '모든 메일은 하루 한 번 이상 확인하며, 긴급한 건은 제목에 [긴급]을 붙여 주시면 더 빠르게 응답할 수 있습니다.'
+      },
+      en: {
+        menuHome: 'Home',
+        menuAbout: 'About Maribin Studio',
+        menuGames: 'Games',
+        menuContact: 'Contact',
+        menuPrivacy: 'Privacy Policy',
+        menuTerms: 'Terms of Service',
+        heroTitle: 'Contact',
+        heroSubtitle: 'Feel free to reach out for collaborations, interviews, or feedback of any kind.',
+        sectionTitle: 'Let’s stay in touch',
+        sectionLead: 'These are the fastest channels. I usually reply within 24 hours.',
+        emailHeading: 'Email',
+        emailBody: 'Share proposals, interview requests, or bug reports with as much context as possible.',
+        emailLink: 'prefgames@naver.com',
+        githubHeading: 'GitHub',
+        githubBody: 'Follow development logs, experiments, and leave issues with suggestions.',
+        githubLink: 'github.com/WooNaBin',
+        responseNote: 'Inbox is checked daily—tag the subject with [URGENT] for time-sensitive requests.'
+      }
+    };
+
+    function setLanguage(lang) {
+      const t = i18n[lang];
+      if (!t) return;
+      navTargets.forEach((item, index) => {
+        const btn = navButtons[index];
+        if (btn) btn.textContent = t[item.key];
+      });
+      document.getElementById('hero-title').textContent = t.heroTitle;
+      document.getElementById('hero-subtitle').textContent = t.heroSubtitle;
+      document.getElementById('section-title').textContent = t.sectionTitle;
+      document.getElementById('section-lead').textContent = t.sectionLead;
+      document.getElementById('email-heading').textContent = t.emailHeading;
+      document.getElementById('email-body').textContent = t.emailBody;
+      const emailLink = document.getElementById('email-link');
+      emailLink.textContent = t.emailLink;
+      emailLink.href = `mailto:${t.emailLink}`;
+      document.getElementById('github-heading').textContent = t.githubHeading;
+      document.getElementById('github-body').textContent = t.githubBody;
+      const githubLink = document.getElementById('github-link');
+      githubLink.textContent = t.githubLink;
+      githubLink.href = `https://${t.githubLink}`;
+      document.getElementById('response-note').textContent = t.responseNote;
+      localStorage.setItem('lang', lang);
+    }
+
+    navButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = btn.dataset.url;
+        if (!target || target === 'contact.html') return;
+        window.location.href = target;
+      });
+    });
+
+    document.getElementById('lang-ko').addEventListener('click', () => setLanguage('ko'));
+    document.getElementById('lang-en').addEventListener('click', () => setLanguage('en'));
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const savedLang = localStorage.getItem('lang') || 'ko';
+      setLanguage(savedLang);
+    });
+  </script>
 </body>
 </html>

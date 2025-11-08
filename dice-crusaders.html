@@ -1,138 +1,286 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dice Crusaders - Maribin Studio</title>
-<style>
-@font-face{
-  font-family:'Galmuri9';
-  src:url('fonts/Galmuri9.woff2') format('woff2');
-  font-weight:400;
-  font-style:normal;
-  font-display:swap;
-}
-body { font-family: 'Galmuri9', Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; margin:0; padding:0; line-height:1.6; }
-nav { background-color:#333; color:#fff; padding:10px; display:flex; justify-content:center; align-items:center; }
-nav a { color:#fff; margin:0 15px; text-decoration:none; font-weight:bold; }
-nav .lang-switch { margin-left:auto; }
-.lang-btn { cursor:pointer; font-size:20px; margin-left:10px; }
-header { background-image:url('https://picsum.photos/seed/dicegame/1200/400'); background-size:cover; background-position:center; color:#fff; text-align:center; padding:60px 0; }
-header h1 { font-size:48px; margin:0; }
-header p { font-size:24px; margin-top:10px; }
-main { padding:40px 20px; }
-section { margin-bottom:40px; }
-footer { background-color:#f5f5f5; text-align:center; padding:10px; }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dice Crusader - Maribin Studio</title>
+  <style>
+    :root{
+      --bg:#f7fbff;
+      --accent:#45b5f5;
+      --accent-2:#0b6b86;
+      --muted:#6b7785;
+      --sidebar-width:260px;
+      --content-max:1100px;
+    }
+    @font-face{
+      font-family:'Galmuri9';
+      src:url('fonts/Galmuri9.woff2') format('woff2');
+      font-weight:400;
+      font-style:normal;
+      font-display:swap;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; font-family:'Galmuri9', Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      background:var(--bg); color:#0b2433; line-height:1.5;
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+    }
+    body, button, input, textarea, select{
+      font-family:'Galmuri9', Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+    .wrap{display:flex;min-height:100vh;width:100%;}
+    .sidebar{
+      width:var(--sidebar-width); background:linear-gradient(180deg,#08324a 0%, #1a6b85 60%, #5fc3f5 100%);
+      color:#fff; padding:0; display:flex; flex-direction:column; align-items:stretch; box-shadow:2px 0 10px rgba(3,18,26,0.15);
+      flex-shrink:0; min-height:100vh;
+    }
+    .brand{display:flex; align-items:center; gap:12px; padding:18px; background:rgba(0,0,0,0.45);}
+    .brand img{height:56px; width:auto; border-radius:8px; box-shadow:0 6px 18px rgba(0,0,0,0.3)}
+    .brand .title{font-weight:700; letter-spacing:0.6px; font-size:18px}
+    .nav{margin-top:18px; display:flex; flex-direction:column; gap:6px; padding:6px;}
+    .nav button{
+      font:inherit;
+      background:linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+      border:0; color:inherit; padding:20px 18px; text-align:left; font-weight:600; font-size:15px; cursor:pointer;
+      border-radius:8px; margin:6px 12px; box-shadow:inset 0 -2px 0 rgba(0,0,0,0.08); transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
+    }
+    .nav button:hover{transform:translateY(-3px); box-shadow:0 8px 20px rgba(3,18,26,0.18)}
+    .nav button.active{background:linear-gradient(90deg, rgba(255,255,255,0.25), rgba(255,255,255,0.15)); color:var(--accent-2)}
+    .lang-switch{
+      margin-top:auto;display:flex;justify-content:center;gap:12px;padding:18px 0;border-top:1px solid rgba(255,255,255,0.15);
+    }
+    .lang-btn{
+      background:rgba(0,0,0,0.15);border:1px solid transparent;font-size:28px;cursor:pointer;border-radius:50%;width:52px;height:52px;display:flex;align-items:center;justify-content:center;
+      transition:transform .18s ease, border-color .18s ease, background .18s ease;
+    }
+    .lang-btn:hover{transform:translateY(-2px);background:rgba(255,255,255,0.18)}
+    .lang-btn:focus-visible{outline:2px solid #fff;outline-offset:2px}
+    .content{flex:1; display:flex; flex-direction:column; min-width:0;}
+    header.hero{
+      min-height:220px; display:flex; align-items:center; padding:32px 36px; background:linear-gradient(90deg,#d6f3ff 0%, #a7d9ff 100%); border-bottom:1px solid rgba(0,0,0,0.06); position:relative; overflow:hidden;
+    }
+    header.hero::after{
+      content:""; position:absolute; inset:0; background:url('images/bg_dc.jpeg') center/cover no-repeat; opacity:0.35; mix-blend-mode:multiply;
+    }
+    header.hero > *{position:relative;z-index:1;}
+    .hero-text h1{margin:0;font-size:34px;font-weight:700;color:#053244;}
+    .hero-text p{margin:10px 0 0;font-size:16px;color:#063c53;max-width:620px;}
+    .hero-meta{margin-left:auto;text-align:right;color:#07314b;font-weight:600;}
+    .hero-meta span{display:block;font-size:14px;color:var(--muted);font-weight:500;}
+    main{flex:1; padding:40px 48px; min-height:320px; display:flex; justify-content:center; align-items:flex-start;}
+    #main-section{width:100%; max-width:var(--content-max);}
+    .card{background:#fff; border-radius:16px; padding:32px; box-shadow:0 16px 40px rgba(12,40,70,0.08);}
+    .card h1{margin:0 0 12px;font-size:28px;}
+    .card p.lead{margin:0 0 24px;color:var(--muted);}
+    .feature-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;margin-bottom:32px;}
+    .feature-card{background:#f7fbff;border-radius:14px;padding:24px;box-shadow:0 10px 24px rgba(7,49,75,0.08);}
+    .feature-card h2{margin:0 0 10px;font-size:20px;color:#07314b;}
+    .feature-card p{margin:0;color:#173042;}
+    .devlog{margin-top:32px;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;}
+    .timeline{background:#0b3047;color:#fff;border-radius:14px;padding:24px;box-shadow:0 16px 32px rgba(5,30,45,0.4);}
+    .timeline h2{margin:0 0 12px;font-size:20px;}
+    .timeline ul{list-style:none;padding:0;margin:0;}
+    .timeline li{margin-bottom:16px;padding-left:18px;position:relative;font-size:14px;line-height:1.5;}
+    .timeline li::before{content:"";position:absolute;left:0;top:6px;width:6px;height:6px;border-radius:50%;background:#45b5f5;}
+    .cta-block{background:#f0f8ff;border-radius:14px;padding:24px;box-shadow:0 8px 24px rgba(7,49,75,0.08);display:flex;flex-direction:column;gap:12px;}
+    .cta-block a{align-self:flex-start;background:var(--accent);color:#033047;font-weight:700;border-radius:999px;padding:10px 22px;text-decoration:none;transition:transform .18s ease, box-shadow .18s ease;}
+    .cta-block a:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(69,181,245,0.35);}
+    footer{padding:18px;text-align:center;color:var(--muted);font-size:14px;}
+    @media(max-width:768px){
+      .wrap{flex-direction:column;}
+      .sidebar{width:100%;flex-direction:row;flex-wrap:wrap;min-height:auto;}
+      .nav{flex-direction:row;flex-wrap:wrap;justify-content:center;width:100%;}
+      .nav button{flex:1 1 45%; text-align:center;}
+      .hero-meta{margin-left:0;text-align:left;margin-top:16px;}
+      header.hero{flex-direction:column;align-items:flex-start;}
+      main{padding:24px;}
+    }
+  </style>
 </head>
 <body>
-<nav>
-  <a href="index.html" id="nav-home">Home</a>
-  <a href="maribin-studio.html" id="nav-studio">Maribin Studio</a>
-  <a href="games.html" id="nav-games">Games</a>
-  <a href="contact.html" id="nav-contact">Contact</a>
-  <span class="lang-switch">
-    <span class="lang-btn" id="lang-en">🇺🇸</span>
-    <span class="lang-btn" id="lang-ko">🇰🇷</span>
-  </span>
-</nav>
-<header class="header">
-  <h1 id="page-title">Dice Crusaders</h1>
-  <p id="page-subtitle">A Strategic Dice Game</p>
-</header>
-<main>
-  <section>
-    <h2 id="intro-heading">Game Introduction</h2>
-    <p id="intro-text">Dice Crusaders is a strategic dice game where players use dice to battle enemies and upgrade characters.</p>
-  </section>
-  <section>
-    <h2 id="info-heading">Game Information</h2>
-    <p id="info-text">Enjoy challenging gameplay and character progression with random dice-based battles and special abilities.</p>
-  </section>
-  <section>
-    <h2 id="devlog-heading">Development Log</h2>
-    <p id="devlog-text">Stay tuned for development updates coming soon.</p>
-  </section>
-  <section>
-    <h2 id="future-heading">Future Updates</h2>
-    <p id="future-text">New features and content are planned for future releases.</p>
-  </section>
-  <section>
-    <h2 id="inquiry-heading">Game Inquiry</h2>
-    <p id="inquiry-text">For questions or support, please visit our contact page.</p>
-  </section>
-</main>
-<footer>
-  <p>&copy; 2025 Maribin Studio. All rights reserved.</p>
-</footer>
-<script>
-const translations = {
-  en: {
-    navHome: 'Home',
-    navStudio: 'Maribin Studio',
-    navGames: 'Games',
-    navContact: 'Contact',
-    pageTitle: 'Dice Crusaders',
-    pageSubtitle: 'A Strategic Dice Game',
-    introHeading: 'Game Introduction',
-    introText: 'Dice Crusaders is a strategic dice game where players use dice to battle enemies and upgrade characters.',
-    infoHeading: 'Game Information',
-    infoText: 'Enjoy challenging gameplay and character progression with random dice-based battles and special abilities.',
-    devlogHeading: 'Development Log',
-    devlogText: 'Stay tuned for development updates coming soon.',
-    futureHeading: 'Future Updates',
-    futureText: 'New features and content are planned for future releases.',
-    inquiryHeading: 'Game Inquiry',
-    inquiryText: 'For questions or support, please visit our contact page.',
-  },
-  ko: {
-    navHome: '홈',
-    navStudio: '마리빈 스튜디오',
-    navGames: '게임',
-    navContact: '연락처',
-    pageTitle: '다이스 크루세이더스',
-    pageSubtitle: '전략적인 주사위 게임',
-    introHeading: '게임 소개',
-    introText: '다이스 크루세이더스는 플레이어가 주사위를 사용해 적과 싸우고 캐릭터를 성장시키는 전략 게임입니다.',
-    infoHeading: '게임 정보',
-    infoText: '무작위 주사위 전투와 특수 능력으로 도전적인 게임 플레이와 캐릭터 성장을 즐길 수 있습니다.',
-    devlogHeading: '개발 로그',
-    devlogText: '곧 개발 업데이트가 제공될 예정입니다.',
-    futureHeading: '향후 업데이트',
-    futureText: '새로운 기능과 콘텐츠가 향후 버전에 계획되어 있습니다.',
-    inquiryHeading: '게임 문의',
-    inquiryText: '문의 사항이나 지원이 필요하시면 연락처 페이지를 방문해 주세요.',
-  }
-};
+  <div class="wrap">
+    <aside class="sidebar">
+      <div class="brand">
+        <img src="images/logo1024x512.jpeg" alt="Maribin Studio logo">
+        <div class="title">Maribin Studio</div>
+      </div>
+      <nav class="nav" id="side-nav">
+        <button data-url="index.html">Home</button>
+        <button data-url="maribin-studio.html">마리빈스튜디오 소개</button>
+        <button class="active" data-url="games.html">게임 소개</button>
+        <button data-url="contact.html">문의 / 연락처</button>
+        <button data-url="index.html#privacy">개인정보처리방침</button>
+        <button data-url="index.html#terms">게임 이용약관</button>
+      </nav>
+      <div class="lang-switch">
+        <button id="lang-ko" class="lang-btn" title="한국어">🇰🇷</button>
+        <button id="lang-en" class="lang-btn" title="English">🇺🇸</button>
+      </div>
+    </aside>
+    <div class="content">
+      <header class="hero">
+        <div class="hero-text">
+          <h1 id="hero-title">다이스 크루세이더</h1>
+          <p id="hero-subtitle">주사위를 굴려 기사단을 이끄는 전략 RPG. 전투마다 다른 변수와 조합을 만드는 전술을 경험해 보세요.</p>
+        </div>
+        <div class="hero-meta">
+          <strong id="hero-status">Early Access 준비중</strong>
+          <span id="hero-platforms">플랫폼: PC · Mobile</span>
+        </div>
+      </header>
+      <main>
+        <section class="card" id="main-section">
+          <h1 id="section-title">게임 개요</h1>
+          <p class="lead" id="section-lead">다이스 크루세이더는 주사위 조합으로 기사단을 강화하고, 턴마다 전략을 바꿔가며 적을 상대하는 전술 RPG입니다.</p>
+          <div class="feature-grid">
+            <article class="feature-card">
+              <h2 id="intro-heading">게임 소개</h2>
+              <p id="intro-text">주사위를 굴려 얻은 자원을 배치하고 기사단의 기믹을 강화해 적을 물리칩니다.</p>
+            </article>
+            <article class="feature-card">
+              <h2 id="info-heading">게임 정보</h2>
+              <p id="info-text">난이도 곡선이 완만하게 상승하며, 각 캐릭터마다 고유 스킬 트리와 주사위 변조 능력을 제공합니다.</p>
+            </article>
+            <article class="feature-card">
+              <h2 id="future-heading">향후 업데이트</h2>
+              <p id="future-text">협동 모드, 보스 레이드, 새로운 주사위 속성 등 확장 콘텐츠를 준비 중입니다.</p>
+            </article>
+          </div>
+          <div class="devlog">
+            <article class="timeline">
+              <h2 id="devlog-heading">개발 로그</h2>
+              <ul id="devlog-list">
+                <li id="devlog-item-1">2025.02 — 전투 UI 리뉴얼 및 튜토리얼 챕터 추가</li>
+                <li id="devlog-item-2">2025.01 — 기사단 성장 시스템 2차 리팩터링</li>
+                <li id="devlog-item-3">2024.12 — 내부 클로즈드 테스트 돌입</li>
+              </ul>
+            </article>
+            <article class="cta-block">
+              <h2 id="inquiry-heading">게임 문의</h2>
+              <p id="inquiry-text">체험판 요청, 피드백 제안, 협업 문의는 언제든 연락 주세요.</p>
+              <a id="inquiry-btn" href="mailto:prefgames@naver.com">prefgames@naver.com</a>
+            </article>
+          </div>
+        </section>
+      </main>
+      <footer>&copy; 2025 Maribin Studio. All rights reserved.</footer>
+    </div>
+  </div>
+  <script>
+    const navTargets = [
+      { url: 'index.html', key: 'menuHome' },
+      { url: 'maribin-studio.html', key: 'menuAbout' },
+      { url: 'games.html', key: 'menuGames' },
+      { url: 'contact.html', key: 'menuContact' },
+      { url: 'index.html#privacy', key: 'menuPrivacy' },
+      { url: 'index.html#terms', key: 'menuTerms' }
+    ];
+    const navButtons = document.querySelectorAll('#side-nav button');
 
-function setLanguage(lang) {
-  const t = translations[lang];
-  document.getElementById('nav-home').textContent = t.navHome;
-  document.getElementById('nav-studio').textContent = t.navStudio;
-  document.getElementById('nav-games').textContent = t.navGames;
-  document.getElementById('nav-contact').textContent = t.navContact;
-  document.getElementById('page-title').textContent = t.pageTitle;
-  document.getElementById('page-subtitle').textContent = t.pageSubtitle;
-  document.getElementById('intro-heading').textContent = t.introHeading;
-  document.getElementById('intro-text').textContent = t.introText;
-  document.getElementById('info-heading').textContent = t.infoHeading;
-  document.getElementById('info-text').textContent = t.infoText;
-  document.getElementById('devlog-heading').textContent = t.devlogHeading;
-  document.getElementById('devlog-text').textContent = t.devlogText;
-  document.getElementById('future-heading').textContent = t.futureHeading;
-  document.getElementById('future-text').textContent = t.futureText;
-  document.getElementById('inquiry-heading').textContent = t.inquiryHeading;
-  document.getElementById('inquiry-text').textContent = t.inquiryText;
-  localStorage.setItem('lang', lang);
-}
+    const i18n = {
+      ko: {
+        menuHome: 'Home',
+        menuAbout: '마리빈스튜디오 소개',
+        menuGames: '게임 소개',
+        menuContact: '문의 / 연락처',
+        menuPrivacy: '개인정보처리방침',
+        menuTerms: '게임 이용약관',
+        heroTitle: '다이스 크루세이더',
+        heroSubtitle: '주사위를 굴려 기사단을 이끄는 전략 RPG. 전투마다 다른 변수와 조합을 만드는 전술을 경험해 보세요.',
+        heroStatus: 'Early Access 준비중',
+        heroPlatforms: '플랫폼: PC · Mobile',
+        sectionTitle: '게임 개요',
+        sectionLead: '다이스 크루세이더는 주사위 조합으로 기사단을 강화하고, 턴마다 전략을 바꿔가며 적을 상대하는 전술 RPG입니다.',
+        introHeading: '게임 소개',
+        introText: '주사위를 굴려 얻은 자원을 배치하고 기사단의 기믹을 강화해 적을 물리칩니다.',
+        infoHeading: '게임 정보',
+        infoText: '난이도 곡선이 완만하게 상승하며, 각 캐릭터마다 고유 스킬 트리와 주사위 변조 능력을 제공합니다.',
+        futureHeading: '향후 업데이트',
+        futureText: '협동 모드, 보스 레이드, 새로운 주사위 속성 등 확장 콘텐츠를 준비 중입니다.',
+        devlogHeading: '개발 로그',
+        devlogItem1: '2025.02 — 전투 UI 리뉴얼 및 튜토리얼 챕터 추가',
+        devlogItem2: '2025.01 — 기사단 성장 시스템 2차 리팩터링',
+        devlogItem3: '2024.12 — 내부 클로즈드 테스트 돌입',
+        inquiryHeading: '게임 문의',
+        inquiryText: '체험판 요청, 피드백 제안, 협업 문의는 언제든 연락 주세요.',
+        inquiryBtn: 'prefgames@naver.com'
+      },
+      en: {
+        menuHome: 'Home',
+        menuAbout: 'About Maribin Studio',
+        menuGames: 'Games',
+        menuContact: 'Contact',
+        menuPrivacy: 'Privacy Policy',
+        menuTerms: 'Terms of Service',
+        heroTitle: 'Dice Crusader',
+        heroSubtitle: 'Tactical RPG where every dice roll shapes your knightly order and battlefield strategy.',
+        heroStatus: 'Preparing Early Access',
+        heroPlatforms: 'Platforms: PC · Mobile',
+        sectionTitle: 'Overview',
+        sectionLead: 'Build synergies by upgrading dice, command your crusaders, and adapt tactics to every encounter.',
+        introHeading: 'Game Introduction',
+        introText: 'Allocate rolled resources, trigger formations, and break enemy lines with your custom dice engine.',
+        infoHeading: 'Game Information',
+        infoText: 'A steady difficulty ramp with unique skill trees and dice modulation per character.',
+        futureHeading: 'Future Updates',
+        futureText: 'Co-op play, raid bosses, and new elemental dice sets are on the roadmap.',
+        devlogHeading: 'Dev Log',
+        devlogItem1: 'Feb 2025 — Combat UI refresh and tutorial chapter pass',
+        devlogItem2: 'Jan 2025 — Crusader growth system refactor',
+        devlogItem3: 'Dec 2024 — Internal closed testing begins',
+        inquiryHeading: 'Get In Touch',
+        inquiryText: 'Request demos, share feedback, or discuss collaborations anytime.',
+        inquiryBtn: 'prefgames@naver.com'
+      }
+    };
 
-document.getElementById('lang-en').addEventListener('click', () => setLanguage('en'));
-document.getElementById('lang-ko').addEventListener('click', () => setLanguage('ko'));
+    function setLanguage(lang) {
+      const t = i18n[lang];
+      if (!t) return;
+      navTargets.forEach((item, index) => {
+        const btn = navButtons[index];
+        if (btn) btn.textContent = t[item.key];
+      });
+      document.getElementById('hero-title').textContent = t.heroTitle;
+      document.getElementById('hero-subtitle').textContent = t.heroSubtitle;
+      document.getElementById('hero-status').textContent = t.heroStatus;
+      document.getElementById('hero-platforms').textContent = t.heroPlatforms;
+      document.getElementById('section-title').textContent = t.sectionTitle;
+      document.getElementById('section-lead').textContent = t.sectionLead;
+      document.getElementById('intro-heading').textContent = t.introHeading;
+      document.getElementById('intro-text').textContent = t.introText;
+      document.getElementById('info-heading').textContent = t.infoHeading;
+      document.getElementById('info-text').textContent = t.infoText;
+      document.getElementById('future-heading').textContent = t.futureHeading;
+      document.getElementById('future-text').textContent = t.futureText;
+      document.getElementById('devlog-heading').textContent = t.devlogHeading;
+      document.getElementById('devlog-item-1').textContent = t.devlogItem1;
+      document.getElementById('devlog-item-2').textContent = t.devlogItem2;
+      document.getElementById('devlog-item-3').textContent = t.devlogItem3;
+      document.getElementById('inquiry-heading').textContent = t.inquiryHeading;
+      document.getElementById('inquiry-text').textContent = t.inquiryText;
+      const inquiryBtn = document.getElementById('inquiry-btn');
+      inquiryBtn.textContent = t.inquiryBtn;
+      inquiryBtn.href = `mailto:${t.inquiryBtn}`;
+      localStorage.setItem('lang', lang);
+    }
 
-document.addEventListener('DOMContentLoaded', () => {
-  const savedLang = localStorage.getItem('lang') || 'en';
-  setLanguage(savedLang);
-});
-</script>
+    navButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = btn.dataset.url;
+        if (!target) return;
+        window.location.href = target;
+      });
+    });
+
+    document.getElementById('lang-ko').addEventListener('click', () => setLanguage('ko'));
+    document.getElementById('lang-en').addEventListener('click', () => setLanguage('en'));
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const savedLang = localStorage.getItem('lang') || 'ko';
+      setLanguage(savedLang);
+    });
+  </script>
 </body>
 </html>
