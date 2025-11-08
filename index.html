@@ -15,17 +15,20 @@
         --content-max:1100px;
       }
       @font-face{
-        font-family:'Galmuori9';
-        src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2207-2@1.0/Galmuori9.woff2') format('woff2');
+        font-family:'Galmuri9';
+        src:url('fonts/Galmuri9.woff2') format('woff2');
         font-weight:400;
         font-style:normal;
         font-display:swap;
       }
       *{box-sizing:border-box}
       body{
-        margin:0; font-family:'Galmuori9', Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+        margin:0; font-family:'Galmuri9', Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
         background:var(--bg); color:#0b2433; line-height:1.5;
         -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+      }
+      body, button, input, textarea, select{
+        font-family:'Galmuri9', Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
       }
       .wrap{display:flex;min-height:100vh;width:100%;}
       /* SIDEBAR */
@@ -38,11 +41,12 @@
         display:flex; align-items:center; gap:12px; padding:18px; background:rgba(0,0,0,0.45);
       }
       .brand img{height:56px; width:auto; border-radius:8px; box-shadow:0 6px 18px rgba(0,0,0,0.3)}
-      .brand .title{font-family:Poppins, Inter; font-weight:700; letter-spacing:0.6px; font-size:18px}
+      .brand .title{font-family:'Galmuri9', Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; font-weight:700; letter-spacing:0.6px; font-size:18px}
       .nav{
         margin-top:18px; display:flex; flex-direction:column; gap:6px; padding:6px;
       }
       .nav button{
+        font:inherit;
         background:linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
         border:0; color:inherit; padding:20px 18px; text-align:left; font-weight:600; font-size:15px; cursor:pointer;
         border-radius:8px; margin:6px 12px; box-shadow:inset 0 -2px 0 rgba(0,0,0,0.08); transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
@@ -82,7 +86,12 @@
       }
       .card{background:#fff; border-radius:12px; padding:28px; box-shadow:0 8px 30px rgba(12,40,70,0.07); width:100%;}
       .card img{max-width:100%; height:auto;}
-      h1.title{font-family:Poppins, Inter; font-size:28px; margin:0 0 8px}
+      .privacy-frame{
+        width:100%; min-height:70vh; border:1px solid rgba(7,49,75,0.1); border-radius:12px;
+        background:#fff; box-shadow:inset 0 1px 2px rgba(3,18,26,0.08);
+      }
+      .privacy-note{font-size:14px; color:var(--muted); margin-top:12px;}
+      h1.title{font-family:'Galmuri9', Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; font-size:28px; margin:0 0 8px}
       p.lead{color:var(--muted); margin:0 0 18px}
       .cta{display:inline-block; background:var(--accent); color:#033047; padding:10px 16px; border-radius:10px; font-weight:700; text-decoration:none}
 
@@ -104,6 +113,7 @@
         footer{padding:16px 24px;}
       }
       @media (max-width:640px){
+        .privacy-frame{min-height:60vh;}
         .brand .title{display:none}
         .nav button{flex:1 1 100%; font-size:14px;}
         .lang-btn{font-size:24px;width:46px;height:46px;}
@@ -133,6 +143,7 @@
           <button data-page="games">게임 소개</button>
           <button data-page="contact">문의 / 연락처</button>
           <button data-page="privacy">개인정보처리방침</button>
+          <button data-page="terms">게임 이용약관</button>
         </nav>
         <div class="lang-switch">
           <button id="lang-ko" class="lang-btn" title="한국어">🇰🇷</button>
@@ -153,23 +164,27 @@
     </div>
 
     <script>
+      const PRIVACY_URL = 'https://storage.thebackend.io/c48e007474a8fa12af6dfdf71a52305ebb454f695440639f6f405d2c7d889ed3/privacy.html';
+      const TERMS_URL = 'https://storage.thebackend.io/c48e007474a8fa12af6dfdf71a52305ebb454f695440639f6f405d2c7d889ed3/terms.html';
       // 다국어 텍스트 및 페이지 템플릿
       const i18n = {
         ko: {
-          menu: ["Home", "마리빈스튜디오 소개", "게임 소개", "문의 / 연락처", "개인정보처리방침"],
+          menu: ["Home", "마리빈스튜디오 소개", "게임 소개", "문의 / 연락처", "개인정보처리방침", "게임 이용약관"],
           home: `<section class="card" style="display:flex;align-items:center;gap:32px;flex-wrap:wrap;"><img src="images/aboutmaribinstd.png" alt="About Maribin Studio" style="width:220px;height:auto;border-radius:16px;box-shadow:0 4px 18px rgba(0,0,0,0.12);flex-shrink:0;"><div style="flex:1;min-width:220px;"><h1 class="title">안녕하세요 — Maribin Studio</h1><p class="lead">추억을 재해석한 인디 게임을 만드는 1인 개발 스튜디오입니다. 아래 메뉴에서 더 보실 수 있습니다.</p><a class="cta" href="#games" onclick="window.location.hash='games';return false;">게임 보기</a></div></section>`,
           about: `<section class="card"><h1 class="title">마리빈스튜디오 소개</h1><p class="lead">마리빈스튜디오는 1인 개발자가 운영하는 인디 게임 스튜디오로, 추억의 게임을 현대적으로 재해석하여 새로운 재미를 추구합니다.<br>게임 개발, 디자인, 기획 등 모든 과정을 직접 진행합니다.</p><img src="images/aboutmaribinstd.png" alt="Studio" style="width:320px;max-width:100%;border-radius:16px;margin-top:18px;box-shadow:0 4px 18px rgba(0,0,0,0.12);"></section>`,
           games: `<section class="card"><h1 class="title">게임 소개</h1><p class="lead">현재 개발 중인 게임 및 출시작을 소개합니다.</p><div style="display:flex;gap:24px;flex-wrap:wrap;justify-content:center;"><div style="background:#f7fbff;border-radius:12px;padding:16px;box-shadow:0 2px 8px rgba(0,0,0,0.07);width:220px;"><img src="images/bg_dc.jpeg" alt="Game1" style="width:100%;border-radius:8px;"><h3 style="margin:12px 0 4px">게임 제목1</h3><p style="font-size:14px;color:#6b7785">게임 설명1: 추억의 액션을 현대적으로 재해석!</p></div><div style="background:#f7fbff;border-radius:12px;padding:16px;box-shadow:0 2px 8px rgba(0,0,0,0.07);width:220px;"><img src="images/aboutmaribinstd.png" alt="Game2" style="width:100%;border-radius:8px;"><h3 style="margin:12px 0 4px">게임 제목2</h3><p style="font-size:14px;color:#6b7785">게임 설명2: 감성 퍼즐과 스토리!</p></div></div></section>`,
           contact: `<section class="card"><h1 class="title">문의 / 연락처</h1><p class="lead">궁금한 점이나 제휴 문의는 아래 이메일로 연락해 주세요.</p><ul style="list-style:none;padding:0;font-size:16px;"><li><strong>Email:</strong> <a href="mailto:woona@maribinstudio.com">woona@maribinstudio.com</a></li><li><strong>GitHub:</strong> <a href="https://github.com/WooNaBin" target="_blank">github.com/WooNaBin</a></li></ul></section>`,
-          privacy: `<section class="card"><h1 class="title">개인정보처리방침</h1><p class="lead">마리빈스튜디오는 이용자의 개인정보를 안전하게 보호하며, 관련 법령을 준수합니다.<br>자세한 내용은 추후 업데이트 예정입니다.</p></section>`
+          privacy: `<section class="card"><h1 class="title">개인정보처리방침</h1><p class="lead">최신 개인정보 처리방침은 아래 문서를 통해 바로 확인하실 수 있습니다.</p><iframe class="privacy-frame" src="${PRIVACY_URL}" title="개인정보처리방침 전문" loading="lazy"></iframe><p class="privacy-note">문서가 표시되지 않으면 <a href="${PRIVACY_URL}" target="_blank" rel="noopener noreferrer">여기</a>를 통해 새 창에서 열어주세요.</p></section>`,
+          terms: `<section class="card"><h1 class="title">게임 이용약관</h1><p class="lead">서비스 이용약관 전문은 아래 문서에서 확인하실 수 있습니다.</p><iframe class="privacy-frame" src="${TERMS_URL}" title="게임 이용약관 전문" loading="lazy"></iframe><p class="privacy-note">문서가 표시되지 않으면 <a href="${TERMS_URL}" target="_blank" rel="noopener noreferrer">여기</a>를 통해 새 창에서 열어주세요.</p></section>`
         },
         en: {
-          menu: ["Home", "About Maribin Studio", "Games", "Contact", "Privacy Policy"],
+          menu: ["Home", "About Maribin Studio", "Games", "Contact", "Privacy Policy", "Terms of Service"],
           home: `<section class="card" style="display:flex;align-items:center;gap:32px;flex-wrap:wrap;"><img src="images/aboutmaribinstd.png" alt="About Maribin Studio" style="width:220px;height:auto;border-radius:16px;box-shadow:0 4px 18px rgba(0,0,0,0.12);flex-shrink:0;"><div style="flex:1;min-width:220px;"><h1 class="title">Hello — Maribin Studio</h1><p class="lead">A solo indie game studio reinterpreting nostalgia for new fun. See more in the menu below.</p><a class="cta" href="#games" onclick="window.location.hash='games';return false;">View Games</a></div></section>`,
           about: `<section class="card"><h1 class="title">About Maribin Studio</h1><p class="lead">Maribin Studio is a solo indie game studio reinterpreting classic games for new fun.<br>All development, design, and planning are done in-house.</p><img src="images/aboutmaribinstd.png" alt="Studio" style="width:320px;max-width:100%;border-radius:16px;margin-top:18px;box-shadow:0 4px 18px rgba(0,0,0,0.12);"></section>`,
           games: `<section class="card"><h1 class="title">Games</h1><p class="lead">Introducing current projects and released games.</p><div style="display:flex;gap:24px;flex-wrap:wrap;justify-content:center;"><div style="background:#f7fbff;border-radius:12px;padding:16px;box-shadow:0 2px 8px rgba(0,0,0,0.07);width:220px;"><img src="images/bg_dc.jpeg" alt="Game1" style="width:100%;border-radius:8px;"><h3 style="margin:12px 0 4px">Game Title 1</h3><p style="font-size:14px;color:#6b7785">Game Description 1: Nostalgic action reimagined!</p></div><div style="background:#f7fbff;border-radius:12px;padding:16px;box-shadow:0 2px 8px rgba(0,0,0,0.07);width:220px;"><img src="images/aboutmaribinstd.png" alt="Game2" style="width:100%;border-radius:8px;"><h3 style="margin:12px 0 4px">Game Title 2</h3><p style="font-size:14px;color:#6b7785">Game Description 2: Emotional puzzles and story!</p></div></div></section>`,
           contact: `<section class="card"><h1 class="title">Contact</h1><p class="lead">For inquiries or partnerships, please contact via email below.</p><ul style="list-style:none;padding:0;font-size:16px;"><li><strong>Email:</strong> <a href="mailto:woona@maribinstudio.com">woona@maribinstudio.com</a></li><li><strong>GitHub:</strong> <a href="https://github.com/WooNaBin" target="_blank">github.com/WooNaBin</a></li></ul></section>`,
-          privacy: `<section class="card"><h1 class="title">Privacy Policy</h1><p class="lead">Maribin Studio safely protects users' personal information and complies with relevant laws.<br>Details will be updated soon.</p></section>`
+          privacy: `<section class="card"><h1 class="title">Privacy Policy</h1><p class="lead">You can review the latest privacy policy in the embedded document below.</p><iframe class="privacy-frame" src="${PRIVACY_URL}" title="Privacy Policy document" loading="lazy"></iframe><p class="privacy-note">If the document fails to load, <a href="${PRIVACY_URL}" target="_blank" rel="noopener noreferrer">open it in a new tab</a>.</p></section>`,
+          terms: `<section class="card"><h1 class="title">Terms of Service</h1><p class="lead">Our full Terms of Service are embedded below for quick reference.</p><iframe class="privacy-frame" src="${TERMS_URL}" title="Terms of Service document" loading="lazy"></iframe><p class="privacy-note">If the document fails to load, <a href="${TERMS_URL}" target="_blank" rel="noopener noreferrer">open it in a new tab</a>.</p></section>`
         }
       };
 
