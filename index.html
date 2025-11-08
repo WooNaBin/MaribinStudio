@@ -12,18 +12,27 @@
         --accent-2:#0b6b86;
         --muted:#6b7785;
         --sidebar-width:260px;
+        --content-max:1100px;
+      }
+      @font-face{
+        font-family:'Galmuori9';
+        src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2207-2@1.0/Galmuori9.woff2') format('woff2');
+        font-weight:400;
+        font-style:normal;
+        font-display:swap;
       }
       *{box-sizing:border-box}
       body{
-        margin:0; font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-        background:var(--bg); color:#0b2433;
+        margin:0; font-family:'Galmuori9', Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+        background:var(--bg); color:#0b2433; line-height:1.5;
         -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
       }
-      .wrap{display:flex;min-height:100vh}
+      .wrap{display:flex;min-height:100vh;width:100%;}
       /* SIDEBAR */
       .sidebar{
         width:var(--sidebar-width); background:linear-gradient(180deg,#08324a 0%, #1a6b85 60%, #5fc3f5 100%);
         color:#fff; padding:0; display:flex; flex-direction:column; align-items:stretch; box-shadow:2px 0 10px rgba(3,18,26,0.15);
+        flex-shrink:0; min-height:100vh;
       }
       .brand{
         display:flex; align-items:center; gap:12px; padding:18px; background:rgba(0,0,0,0.45);
@@ -40,16 +49,27 @@
       }
       .nav button:hover{transform:translateY(-3px); box-shadow:0 8px 20px rgba(3,18,26,0.18)}
       .nav button.active{background:linear-gradient(90deg, rgba(255,255,255,0.25), rgba(255,255,255,0.15)); color:var(--accent-2)}
+      .lang-switch{
+        margin-top:auto;display:flex;justify-content:center;gap:12px;padding:18px 0;border-top:1px solid rgba(255,255,255,0.15);
+      }
+      .lang-btn{
+        background:rgba(0,0,0,0.15);border:1px solid transparent;font-size:28px;cursor:pointer;border-radius:50%;width:52px;height:52px;display:flex;align-items:center;justify-content:center;
+        transition:transform .18s ease, border-color .18s ease, background .18s ease;
+      }
+      .lang-btn:hover{transform:translateY(-2px);background:rgba(255,255,255,0.18)}
+      .lang-btn:focus-visible{outline:2px solid #fff;outline-offset:2px}
 
       /* HEADER + MAIN */
-      .content{flex:1; display:flex; flex-direction:column}
+      .content{flex:1; display:flex; flex-direction:column; min-width:0;}
       header.hero{
-        height:140px; display:flex; align-items:center; padding:24px 28px; background:linear-gradient(90deg,#bfe9fb 0%, #a0daf8 100%); border-bottom:1px solid rgba(0,0,0,0.06);
+        min-height:140px; display:flex; align-items:center; padding:24px 28px; background:linear-gradient(90deg,#bfe9fb 0%, #a0daf8 100%); border-bottom:1px solid rgba(0,0,0,0.06); position:relative; overflow:hidden;
       }
       .hero-left{font-weight:700; font-size:20px; color:#053244}
       .hero-right{margin-left:auto; color:var(--muted); font-size:14px}
 
-      main{flex:1; padding:40px 48px; min-height:320px;}
+      main{flex:1; padding:40px 48px; min-height:320px; display:flex; justify-content:center; align-items:flex-start;}
+      #main-content{width:100%;}
+      #main-content > *{width:100%; max-width:var(--content-max); margin:0 auto;}
       #main-content {
         transition: opacity 0.45s cubic-bezier(.4,0,.2,1);
         opacity: 1;
@@ -60,7 +80,8 @@
       #main-content.fade-in {
         opacity: 1;
       }
-      .card{background:#fff; border-radius:12px; padding:28px; box-shadow:0 8px 30px rgba(12,40,70,0.07); max-width:1100px}
+      .card{background:#fff; border-radius:12px; padding:28px; box-shadow:0 8px 30px rgba(12,40,70,0.07); width:100%;}
+      .card img{max-width:100%; height:auto;}
       h1.title{font-family:Poppins, Inter; font-size:28px; margin:0 0 8px}
       p.lead{color:var(--muted); margin:0 0 18px}
       .cta{display:inline-block; background:var(--accent); color:#033047; padding:10px 16px; border-radius:10px; font-weight:700; text-decoration:none}
@@ -68,15 +89,33 @@
       footer{padding:18px 48px; color:var(--muted); font-size:13px}
 
       /* responsive */
-      @media (max-width:900px){
-        .sidebar{width:100%; flex-direction:row; align-items:center; padding:8px}
-        .nav{flex-direction:row; overflow:auto; margin-left:12px}
-        .nav button{padding:14px 12px; margin:0 8px; white-space:nowrap}
-        header.hero{height:80px}
-        main{padding:20px}
+      @media (max-width:1100px){
+        main{padding:32px 32px;}
       }
-      @media (max-width:540px){
+      @media (max-width:900px){
+        .wrap{flex-direction:column;}
+        .sidebar{width:100%;min-height:auto;position:sticky;top:0;z-index:5;}
+        .brand{justify-content:space-between;}
+        .nav{flex-direction:row;flex-wrap:wrap;overflow:visible;margin:0;padding:12px 16px;}
+        .nav button{flex:1 1 calc(50% - 16px);padding:16px 12px;margin:4px 8px;text-align:center;}
+        header.hero{min-height:auto;flex-direction:column;align-items:flex-start;gap:6px;padding:20px;}
+        .hero-right{margin-left:0;}
+        main{padding:28px 24px;}
+        footer{padding:16px 24px;}
+      }
+      @media (max-width:640px){
         .brand .title{display:none}
+        .nav button{flex:1 1 100%; font-size:14px;}
+        .lang-btn{font-size:24px;width:46px;height:46px;}
+        .hero-left{font-size:18px}
+        .hero-right{font-size:13px}
+        main{padding:24px 16px;}
+        .card{padding:22px;}
+      }
+      @media (max-width:420px){
+        .nav{flex-direction:column;}
+        .nav button{margin:4px 0;}
+        header.hero{padding:18px;}
         .hero-left{font-size:16px}
       }
     </style>
@@ -95,14 +134,14 @@
           <button data-page="contact">문의 / 연락처</button>
           <button data-page="privacy">개인정보처리방침</button>
         </nav>
-        <div style="margin-top:auto;display:flex;justify-content:center;gap:12px;padding:18px 0;">
-          <button id="lang-ko" style="background:none;border:none;font-size:28px;cursor:pointer;" title="한국어">🇰🇷</button>
-          <button id="lang-en" style="background:none;border:none;font-size:28px;cursor:pointer;" title="English">🇺🇸</button>
+        <div class="lang-switch">
+          <button id="lang-ko" class="lang-btn" title="한국어">🇰🇷</button>
+          <button id="lang-en" class="lang-btn" title="English">🇺🇸</button>
         </div>
       </aside>
       <div class="content">
-        <header class="hero" style="position:relative;overflow:hidden;">
-          <img src="images/bg_dc.jpeg" alt="Hero Background" style="position:absolute;left:0;top:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:0.35;">
+        <header class="hero">
+          <img src="images/bg_dc.jpeg" alt="" aria-hidden="true" style="position:absolute;left:0;top:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:0.35;">
           <div class="hero-left" style="position:relative;z-index:1;">WoonaBin · Maribin Studio</div>
           <div class="hero-right" style="position:relative;z-index:1;">작업중 — 샘플 레이아웃</div>
         </header>
