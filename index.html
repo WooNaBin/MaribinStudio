@@ -98,11 +98,6 @@
       .info-panel p{margin:0;color:#173042;}
       .support-list{margin:12px 0 0;padding-left:18px;color:#173042;}
       .support-list li{margin-bottom:6px;}
-      .privacy-frame{
-        width:100%; min-height:70vh; border:1px solid rgba(7,49,75,0.1); border-radius:12px;
-        background:#fff; box-shadow:inset 0 1px 2px rgba(3,18,26,0.08);
-      }
-      .privacy-note{font-size:14px; color:var(--muted); margin-top:12px;}
       h1.title{font-family:'Galmuri9', Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; font-size:28px; margin:0 0 8px}
       p.lead{color:var(--muted); margin:0 0 18px}
       .cta{display:inline-block; background:var(--accent); color:#033047; padding:10px 16px; border-radius:10px; font-weight:700; text-decoration:none}
@@ -125,7 +120,6 @@
         footer{padding:16px 24px;}
       }
       @media (max-width:640px){
-        .privacy-frame{min-height:60vh;}
         .brand .title{display:none}
         .nav button{flex:1 1 100%; font-size:14px;}
         .lang-btn{font-size:24px;width:46px;height:46px;}
@@ -176,8 +170,6 @@
     </div>
 
     <script>
-      const PRIVACY_URL = 'https://storage.thebackend.io/c48e007474a8fa12af6dfdf71a52305ebb454f695440639f6f405d2c7d889ed3/privacy.html';
-      const TERMS_URL = 'https://storage.thebackend.io/c48e007474a8fa12af6dfdf71a52305ebb454f695440639f6f405d2c7d889ed3/terms.html';
       // 다국어 텍스트 및 페이지 템플릿
       const i18n = {
         ko: {
@@ -188,8 +180,8 @@
           about: `<section class="card"><h1 class="title">마리빈스튜디오 소개</h1><p class="lead">마리빈스튜디오는 1인 개발자가 운영하는 인디 게임 스튜디오입니다. 기획, 아트, 개발을 모두 직접 담당하며, 모바일에서 깊이 있는 전략 경험을 만드는 것이 목표입니다.</p><div class="split-grid"><div class="info-panel"><h3>현재 목표</h3><p>Dice Crusader의 iOS/Google Play 출시와 안정적인 라이브 운영 준비에 집중하고 있습니다.</p></div><div class="info-panel"><h3>차기 프로젝트</h3><p>Dice Survivor(가제)는 더 빠른 템포와 생존 요소를 강화한 새로운 시리즈로 기획 중입니다.</p></div></div></section>`,
           games: `<section class="card"><h1 class="title">게임 소개</h1><p class="lead">현재 개발 중인 게임 및 출시 준비작을 소개합니다.</p><div class="split-grid"><div class="info-panel"><h3>Dice Crusader</h3><p>iOS/Google Play 출시 준비 중인 모바일 전략 RPG입니다. 주사위와 기사단 커스터마이징으로 다양한 전술을 완성하세요.</p></div><div class="info-panel"><h3>Dice Survivor (가제)</h3><p>생존과 선택을 핵심으로 한 차기작. 콘셉트 확정과 프로토타입을 준비 중입니다.</p></div></div></section>`,
           contact: `<section class="card"><h1 class="title">문의 / 연락처</h1><p class="lead">게임 관련 문의, 협업 제안은 아래 이메일로 연락해 주세요.</p><ul style="list-style:none;padding:0;font-size:16px;"><li><strong>Email:</strong> <a href="mailto:prefgames@naver.com">prefgames@naver.com</a></li><li><strong>GitHub:</strong> <a href="https://github.com/WooNaBin" target="_blank">github.com/WooNaBin</a></li></ul></section>`,
-          privacy: `<section class="card"><h1 class="title">개인정보처리방침</h1><p class="lead">최신 개인정보 처리방침은 아래 문서를 통해 바로 확인하실 수 있습니다.</p><iframe class="privacy-frame" src="${PRIVACY_URL}" title="개인정보처리방침 전문" loading="lazy"></iframe><p class="privacy-note">문서가 표시되지 않으면 <a href="${PRIVACY_URL}" target="_blank" rel="noopener noreferrer">여기</a>를 통해 새 창에서 열어주세요.</p></section>`,
-          terms: `<section class="card"><h1 class="title">게임 이용약관</h1><p class="lead">서비스 이용약관 전문은 아래 문서에서 확인하실 수 있습니다.</p><iframe class="privacy-frame" src="${TERMS_URL}" title="게임 이용약관 전문" loading="lazy"></iframe><p class="privacy-note">문서가 표시되지 않으면 <a href="${TERMS_URL}" target="_blank" rel="noopener noreferrer">여기</a>를 통해 새 창에서 열어주세요.</p></section>`
+          privacy: `<section class="card"><h1 class="title">개인정보처리방침</h1><p class="lead">개인정보처리방침 전문은 별도 페이지에서 확인하실 수 있습니다.</p><a class="cta" href="privacy.html">개인정보처리방침 보기</a></section>`,
+          terms: `<section class="card"><h1 class="title">게임 이용약관</h1><p class="lead">게임 이용약관 전문은 별도 페이지에서 확인하실 수 있습니다.</p><a class="cta" href="terms.html">게임 이용약관 보기</a></section>`
         },
         en: {
           menu: ["Home", "About Maribin Studio", "Games", "Contact", "Privacy Policy", "Terms of Service"],
@@ -199,8 +191,8 @@
           about: `<section class="card"><h1 class="title">About Maribin Studio</h1><p class="lead">Maribin Studio is a one-person indie team. I handle planning, art, and development to deliver deep strategy experiences on mobile.</p><div class="split-grid"><div class="info-panel"><h3>Current focus</h3><p>Preparing Dice Crusader for iOS and Google Play release with a polished live-ops plan.</p></div><div class="info-panel"><h3>Next project</h3><p>Dice Survivor (working title) is a fresh take with faster combat and survival decisions.</p></div></div></section>`,
           games: `<section class="card"><h1 class="title">Games</h1><p class="lead">Upcoming and in-development titles.</p><div class="split-grid"><div class="info-panel"><h3>Dice Crusader</h3><p>A mobile tactics RPG headed to iOS/Google Play. Build knights, roll dice, and craft synergies.</p></div><div class="info-panel"><h3>Dice Survivor (working title)</h3><p>An in-progress survival project focused on smart choices and high replayability.</p></div></div></section>`,
           contact: `<section class="card"><h1 class="title">Contact</h1><p class="lead">For game support or partnerships, reach out via email below.</p><ul style="list-style:none;padding:0;font-size:16px;"><li><strong>Email:</strong> <a href="mailto:prefgames@naver.com">prefgames@naver.com</a></li><li><strong>GitHub:</strong> <a href="https://github.com/WooNaBin" target="_blank">github.com/WooNaBin</a></li></ul></section>`,
-          privacy: `<section class="card"><h1 class="title">Privacy Policy</h1><p class="lead">You can review the latest privacy policy in the embedded document below.</p><iframe class="privacy-frame" src="${PRIVACY_URL}" title="Privacy Policy document" loading="lazy"></iframe><p class="privacy-note">If the document fails to load, <a href="${PRIVACY_URL}" target="_blank" rel="noopener noreferrer">open it in a new tab</a>.</p></section>`,
-          terms: `<section class="card"><h1 class="title">Terms of Service</h1><p class="lead">Our full Terms of Service are embedded below for quick reference.</p><iframe class="privacy-frame" src="${TERMS_URL}" title="Terms of Service document" loading="lazy"></iframe><p class="privacy-note">If the document fails to load, <a href="${TERMS_URL}" target="_blank" rel="noopener noreferrer">open it in a new tab</a>.</p></section>`
+          privacy: `<section class="card"><h1 class="title">Privacy Policy</h1><p class="lead">The full policy is available on a separate page.</p><a class="cta" href="privacy.html">View Privacy Policy</a></section>`,
+          terms: `<section class="card"><h1 class="title">Terms of Service</h1><p class="lead">The full terms are available on a separate page.</p><a class="cta" href="terms.html">View Terms of Service</a></section>`
         }
       };
 
@@ -242,7 +234,23 @@
         btn.addEventListener('click', () => {
           const page = btn.dataset.page;
           if (page === 'games') {
-            window.location.href = 'games.html';
+          window.location.href = 'games.html';
+          return;
+        }
+        if (page === 'privacy') {
+          window.location.href = 'privacy.html';
+          return;
+        }
+        if (page === 'terms') {
+          window.location.href = 'terms.html';
+          return;
+        }
+          if (page === 'privacy') {
+            window.location.href = 'privacy.html';
+            return;
+          }
+          if (page === 'terms') {
+            window.location.href = 'terms.html';
             return;
           }
           window.location.hash = page;

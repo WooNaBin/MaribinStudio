@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>개인정보처리방침 - Maribin Studio</title>
+  <style>
+    :root{
+      --bg:#f7fbff;
+      --accent:#45b5f5;
+      --accent-2:#0b6b86;
+      --muted:#6b7785;
+      --sidebar-width:260px;
+      --content-max:1100px;
+    }
+    @font-face{
+      font-family:'Galmuri9';
+      src:url('fonts/Galmuri9.woff2') format('woff2');
+      font-weight:400;
+      font-style:normal;
+      font-display:swap;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; font-family:'Galmuri9', Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      background:var(--bg); color:#0b2433; line-height:1.6;
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+    }
+    body, button, input, textarea, select{
+      font-family:'Galmuri9', Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+    .wrap{display:flex;min-height:100vh;width:100%;}
+    .sidebar{
+      width:var(--sidebar-width); background:linear-gradient(180deg,#08324a 0%, #1a6b85 60%, #5fc3f5 100%);
+      color:#fff; padding:0; display:flex; flex-direction:column; align-items:stretch; box-shadow:2px 0 10px rgba(3,18,26,0.15);
+      flex-shrink:0; min-height:100vh;
+    }
+    .brand{display:flex; align-items:center; gap:12px; padding:18px; background:rgba(0,0,0,0.45);}
+    .brand img{height:56px; width:auto; border-radius:8px; box-shadow:0 6px 18px rgba(0,0,0,0.3)}
+    .brand .title{font-weight:700; letter-spacing:0.6px; font-size:18px}
+    .nav{margin-top:18px; display:flex; flex-direction:column; gap:6px; padding:6px;}
+    .nav button{
+      font:inherit;
+      background:linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+      border:0; color:inherit; padding:20px 18px; text-align:left; font-weight:600; font-size:15px; cursor:pointer;
+      border-radius:8px; margin:6px 12px; box-shadow:inset 0 -2px 0 rgba(0,0,0,0.08); transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
+    }
+    .nav button:hover{transform:translateY(-3px); box-shadow:0 8px 20px rgba(3,18,26,0.18)}
+    .nav button.active{background:linear-gradient(90deg, rgba(255,255,255,0.25), rgba(255,255,255,0.15)); color:var(--accent-2)}
+    .lang-switch{
+      margin-top:auto;display:flex;justify-content:center;gap:12px;padding:18px 0;border-top:1px solid rgba(255,255,255,0.15);
+    }
+    .lang-btn{
+      background:rgba(0,0,0,0.15);border:1px solid transparent;font-size:28px;cursor:pointer;border-radius:50%;width:52px;height:52px;display:flex;align-items:center;justify-content:center;
+      transition:transform .18s ease, border-color .18s ease, background .18s ease;
+    }
+    .lang-btn:hover{transform:translateY(-2px);background:rgba(255,255,255,0.18)}
+    .lang-btn:focus-visible{outline:2px solid #fff;outline-offset:2px}
+    .content{flex:1; display:flex; flex-direction:column; min-width:0;}
+    header.hero{
+      min-height:160px; display:flex; align-items:center; padding:28px 32px; background:linear-gradient(90deg,#bfe9fb 0%, #a0daf8 100%); border-bottom:1px solid rgba(0,0,0,0.06); position:relative; overflow:hidden;
+    }
+    header.hero::after{
+      content:""; position:absolute; inset:0; background:url('images/bg_dc.jpeg') center/cover no-repeat; opacity:0.35; mix-blend-mode:multiply;
+    }
+    header.hero > *{position:relative;z-index:1;}
+    .hero-text h1{margin:0;font-size:30px;font-weight:700;color:#053244;}
+    .hero-text p{margin:6px 0 0;font-size:15px;color:var(--muted);}
+    main{flex:1; padding:40px 48px; min-height:320px; display:flex; justify-content:center; align-items:flex-start;}
+    #main-section{width:100%; max-width:var(--content-max);}
+    .card{background:#fff; border-radius:16px; padding:32px; box-shadow:0 16px 40px rgba(12,40,70,0.08);}
+    .card h1{margin:0 0 12px;font-size:26px;}
+    .card p.lead{margin:0 0 24px;color:var(--muted);}
+    .policy-container{
+      word-break:break-word;
+      word-wrap:break-word;
+      color:#132738;
+      font-size:15px;
+      line-height:1.6;
+    }
+    .policy-container ._chOne_1k2sc_44{margin-bottom:18px;}
+    .policy-container h3{
+      margin:18px 0 8px;
+      font-size:18px;
+      color:#08324a;
+    }
+    .policy-container p{margin:0 0 12px;}
+    .policy-container ol{margin:0 0 12px; padding-left:20px;}
+    .policy-container table{
+      width:100%;
+      border-collapse:collapse;
+      border-spacing:0;
+      margin:12px 0;
+      font-size:14px;
+    }
+    .policy-container th,
+    .policy-container td{
+      border:1px solid #d6dee8;
+      padding:8px;
+      text-align:left;
+      vertical-align:top;
+    }
+    .policy-container ._variableText_1k2sc_51{font-weight:700;}
+    footer{padding:18px;text-align:center;color:var(--muted);font-size:14px;}
+    @media(max-width:900px){
+      .wrap{flex-direction:column;}
+      .sidebar{width:100%;flex-direction:row;flex-wrap:wrap;min-height:auto;}
+      .nav{flex-direction:row;flex-wrap:wrap;justify-content:center;width:100%;}
+      .nav button{flex:1 1 45%; text-align:center;}
+      main{padding:24px;}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <aside class="sidebar">
+      <div class="brand">
+        <img src="images/logo1024x512.jpeg" alt="Maribin Studio logo">
+        <div class="title">Maribin Studio</div>
+      </div>
+      <nav class="nav" id="side-nav">
+        <button data-url="index.html">Home</button>
+        <button data-url="maribin-studio.html">마리빈스튜디오 소개</button>
+        <button data-url="games.html">게임 소개</button>
+        <button data-url="contact.html">문의 / 연락처</button>
+        <button class="active" data-url="privacy.html">개인정보처리방침</button>
+        <button class="" data-url="terms.html">게임 이용약관</button>
+      </nav>
+      <div class="lang-switch">
+        <button id="lang-ko" class="lang-btn" title="한국어">🇰🇷</button>
+        <button id="lang-en" class="lang-btn" title="English">🇺🇸</button>
+      </div>
+    </aside>
+    <div class="content">
+      <header class="hero">
+        <div class="hero-text">
+          <h1 id="hero-title">개인정보처리방침</h1>
+          <p id="hero-subtitle">아래에서 개인정보처리방침 전문을 확인하실 수 있습니다.</p>
+        </div>
+      </header>
+      <main>
+        <section class="card" id="main-section">
+          <h1 id="section-title">개인정보처리방침</h1>
+          <p class="lead" id="section-lead">아래에서 개인정보처리방침 전문을 확인하실 수 있습니다.</p>
+          <div class="policy-container">
+            <div><div class="_chOne_1k2sc_44"><h3>1. 개인정보처리방침의 의의</h3><p><span class="_variableText_1k2sc_51">MaribinStudio</span>(이하 ‘회사’)는 이용자에게 <span class="_variableText_1k2sc_51">Dice Crusaders</span>(이하 ‘서비스’) 제공을 위하여 아래와 같이 이용자의 개인정보를 수집합니다.</p><p>회사는 이용자의 개인정보를 매우 중요시하며, 개인정보보호법 관련 법령 등 정보통신서비스제공자가 준수하여야 할 관련 법령상의 개인정보보호 규정을 준수하고 있습니다. 회사는 개인정보처리방침을 통하여 이용자가 제공하는 개인정보가 어떠한 용도와 방식으로 이용되고 있으며 개인정보보호를위해 어떠한 조치가 취해지고 있는지 알려드립니다. 회사는 개인정보처리방침을 ‘<span class="_variableText_1k2sc_51">게임 내 설정 &gt; 개인정보처리방침</span>’ 등에 공개함으로써 이용자가 언제든지 쉽게 볼 수 있도록 조치하고 있습니다.</p><p style="padding-bottom: 14px;">회사는 필요에 의하여 개인정보처리방침을 개정하는 경우 시행 7일 전에 ‘<span class="_variableText_1k2sc_51">게임 내 공지사항</span>’을 통해 사전 공지하고, 7일이 경과된 후에 시행됩니다. 다만, 개인정보의 수집 및 이용 목적, 제3자 제공대상 등 중요한 사항이 개정되는 경우 30일 전에 사전 고지하고, 30일이 경과된 후에 시행됩니다. 개인정보처리방침은 ‘<span class="_variableText_1k2sc_51">게임 내 공지사항</span>’을 통해 이용자에게 공지한 후 개정된 사항을 이용자가 쉽게 알아볼 수 있도록 하고 있습니다.</p></div><div class="_chOne_1k2sc_44"><h3>2. 수집하는 개인 정보</h3>회사는 회원가입, 서비스 이용과정, 상품 결제 이용과정, 고객 상담 과정 에서 기본적인 서비스 제공을 위해 필요한 정보만을 수집하고 있습니다. (사용자는 개인정보의 수집 및 이용을 거부할 수 있으며, 개인정보의 수집 및 이용을 거부한 경우 해당되는 서비스의 일부 또는 전체의 이용이 어려울 수 있습니다.)<ol><li>회원가입 시점에 이용자가 회사에 직접 제공하는 정보는 아래와 같습니다.<br>a. <span class="_variableText_1k2sc_51">이메일, 비밀번호, CI</span></li><li>회사는 이용자가 서비스 이용하는 과정에서 자동으로 수집하는 정보는 아래와 같습니다.<br>a. 다른 사용자와 상호작용 시 만들어지는 <span class="_variableText_1k2sc_51">친구 정보, 길드 정보</span>에 대한 데이터<br>b. 서비스 이용 중 기록되는 <span class="_variableText_1k2sc_51">소비한 컨텐츠, 사용하는 기능, 사용자 행동</span>에 대한 데이터<br>c. 서비스 내 상품 구매시 기록되는 <span class="_variableText_1k2sc_51">주문 번호, 결제 상품명, 결제 금액, 결제 수단, 결제일</span>에 대한 데이터<br>d. 이용하는 기기에 따라 생성되어 수집되는 <span class="_variableText_1k2sc_51">OS, 하드웨어 버전, 소프트웨어 버전, 브라우저 타입, 기기 ID, 언어, IP 주소, 쿠키, 스토어 정보</span></li><li>고객센터 문의시 수집하는 정보는 아래와 같습니다.<br>a.<span class="_variableText_1k2sc_51">이메일 주소, 구매 상품명, 상품 구매일</span></li></ol>회사는 아래의 방법을 통해 개인정보를 수집합니다.<ol><li>회원가입 및 서비스 이용 과정에서 이용자가 개인정보 수집에 대해 동의를 하고 직접 정보를 입력하는 경우, 해당 개인정보를 수집합니다.</li><li>고객센터를 통한 상담 과정에서 웹페이지, 메일, 전화 등을 통해 이용자의 개인정보가 수집될 수 있습니다.</li><li>오프라인에서 진행되는 이벤트, 세미나 등에서 별도의 동의서를 통해 개인정보가 수집될 수 있습니다.</li><li>기기정보와 같은 생성정보는 PC웹, 모바일 웹/앱 이용 과정에서 자동으로 생성되어 수집될 수 있습니다. (이용자는 쿠키에 대한 선택권을 가지고 있으며, 웹브라우저에서 옵션을 설정함으로써 모든 쿠키를 허용하거나, 쿠키가 저장될 때마다 확인을 거치거나, 아니면 모든 쿠키의 저장을 거부할 수도 있습니다. 다만, 쿠키의 저장을 거부할 경우에는 로그인이 필요한 일부 서비스의 이용에 불편이 있을 수 있습니다.)</li></ol></div><div class="_chOne_1k2sc_44"><h3>3. 수집한 개인정보의 이용</h3><br>회사는 서비스의 회원관리, 서비스 개발·제공 및 향상, 안전한 인터넷 이용환경 구축 등 아래의 목적으로만 개인정보를 이용합니다.<ol><li>회원 가입 의사의 확인, 연령 확인 및 법정대리인 동의 진행, 이용자및 법정대리인의 본인 확인, 이용자 식별, 회원탈퇴 의사의 확인 등 회원관리를 위하여 개인정보를 이용합니다.</li><li>콘텐츠 등 기존 서비스 제공(광고 포함)에 더하여, 인구통계학적 분석, 서비스 방문 및 이용기록의 분석, 개인정보 및 관심에 기반한 이용자간 관계의 형성 등에 기반한 맞춤형 서비스 제공 등 신규 서비스 요소의 발굴 및 기존 서비스 개선 등을 위하여 개인정보를 이용합니다.</li><li>법령 및 이용약관을 위반하는 회원에 대한 이용 제한 조치, 부정 이용 행위를 포함하여 서비스의 원활한 운영에 지장을 주는 행위에 대한 방지 및 제재, 계정도용 및 부정거래 방지, 약관 개정 등의 고지사항 전달, 분쟁조정을 위한 기록 보존, 민원처리 등 이용자 보호 및 서비스 운영을 위하여 개인정보를 이용합니다.</li><li>유료 서비스 제공에 따르는 본인인증, 구매 및 요금 결제, 상품 및 서비스 전달 위하여 개인정보를 이용합니다.</li><li>별도의 동의를 받은 경우, 이벤트 정보 및 참여 기회 제공, 맞춤형 광고 제공, 광고성 정보 제공 등 마케팅 및 프로모션 목적으로 개인정보를 이용합니다.</li><li>서비스 이용기록과 접속 빈도 분석, 서비스 이용에 대한 통계, 서비스 분석 및 통계에 따른 맞춤 서비스 제공에 개인정보를 이용합니다.</li><li>보안, 프라이버시, 안전 측면에서 이용자가 안심하고 이용할 수 있는 서비스 이용환경 구축을 위해 개인정보를 이용합니다.</li><li>수집한 개인정보를 특정 개인을 알아볼 수 없도록 가명처리하여 통계작성, 과학적 연구, 공익적 기록 보존 등을 위하여 처리할 수 있습니다. 이 때 가명정보는 재식별되지 않도록 추가정보와 분리하여 별도 저장·관리하고 필요한 기술적·관리적 보호조치를 취합니다.<br><table class="ui table"><tbody class=""><tr class=""><td class="">관리적 조치</td><td class="">내부관리계획 수립•시행, 정기적 직원 교육 등</td></tr><tr class=""><td class="">기술적 조치</td><td class="">개인정보처리시스템 등의 접근권한 관리, 접근통제시스템 설치, 고유식별정보 등의 암호화, 보안프로그램 설치</td></tr><tr class=""><td class="">물리적 조치</td><td class="">전산실, 자료보관실 등의 접근통제</td></tr></tbody></table></li></ol></div><div class="_chOne_1k2sc_44"><h3>4. 개인정보의 제공(공유) 및 위탁</h3><br>회사는 이용자의 개인정보를 “개인정보의 수집 및 이용목적”에서 고지한 범위 내에서 이용하며, 이용자의 사전 동의 없이 위의 범위를 초과하여 이용하거나 타인 또는 타 기관에 제공 또는 공유하지 않습니다. 단 아래의 경우는 예외로 합니다.<br><br><ol><li>개인정보 관련 업무를 위탁하는 경우<br>회사는 편리하고 더 나은 서비스를 제공하기 위해 업무 중 일부를 외부에 위탁하고 있습니다. 회사는 위탁계약 체결 시, 위탁업무 수행목적 외 개인정보 처리금지, 제7조 개인정보보호를 위한 기술 및 관리적 대책의 수립 및 이행, 재위탁 제한, 수탁자에 대한 관리·감독, 손해배상 등 책임에 관한 사항을 계약서 등 문서에 명시하고, 수탁자가 개인정보를 안전하게 처리하는지를 감독하고 있습니다. 이용자가 수탁업체에 위탁하는 업무와 관련된 서비스를 이용하지 않는 경우, 이용자의 개인정보가 수탁업체에 제공되지 않습니다.<table class="ui table"><thead class=""><tr class=""><th class="">수탁업체</th><th class="">위탁업무 내용</th><th class="">개인정보 보유 및 이용기간</th></tr></thead><tbody class=""><tr class=""><td class="">주식회사 AFI (뒤끝)</td><td class=""><div>- 서비스 제공을 위한 시스템 개발 및 운영<br></div><div>- 신기능 개발 및 기존 서비스 개선을 위한 사용자 분석 및 통계<br></div><div>- 특정 개인을 식별할 수 없도록 개인정보 가명 처리<br></div></td><td class="">위탁 계약 종료 시까지</td></tr></tbody></table></li><li>서비스의 제공에 따른 요금 정산을 위하여 필요한 경우</li><li>이용자가 사전에 동의한 경우</li><li>회사의 이용 약관 또는 회사가 별도로 정한 정책 및 운영 규정에 어긋나는 행위를 하여 관련법에 의거하거나 수사 목적으로 법령에 정해진 절차와 방법에 따라 법적인 조치가 요구되는 경우</li><li>법률에 특별한 규정이 있는 경우 혹은 수사 목적으로 법령에 정해진 절차와 방법에 따라 법원, 수사기관, 기타 행정 기관의 요구가 있는 경우</li></ol></div><div class="_chOne_1k2sc_44"><h3>5. 개인정보의 파기</h3><ol><li>이용자의 개인정보는 개인정보의 수집목적 또는 제공받은 목적이 달성되면 파기(삭제)됩니다. 회원이 회원탈퇴를 하거나 개인정보 허위기재로 인해 회원 ID 삭제 처분을 받은 경우 수집된 개인정보는 완전히 파기되며 어떠한 용도로도 이용할 수 없도록 처리됩니다. 다만, 도용으로 인한 원치 않는 회원 탈퇴 등의 피해가 발생할 우려가 있으므로 탈퇴 신청 시 7일 이내 탈퇴되며 회사의 회원 정보 데이터베이스(DB)에서 탈퇴 시점으로부터 7일 이내에 완전히 파기됩니다. 다만, 관련 법령에 따라 보관해야 하는 정보는 예외로 합니다.</li><li>또한 명의도용 등 분쟁 발생시 본인확인을 위해 제출 받은 신분증 사본은 본인확인 후 즉시 파기합니다. 만 18세 미만 아동 및 청소년의 법정대리인 정보는 해당 아동 및 청소년이 성년에 도달하거나 해당 아동 및 청소년의 회원 탈퇴에 따른 개인 정보 파기 시 함께 파기됩니다.</li><li>이용자의 개인정보는 개인정보의 수집 및 이용목적이 달성되면 지체 없이 파기되나, 아래 각 항목에 해당하는 경우에는 명시한 기간 동안 보관할 수 있으며, 그 외 다른 목적으로는 사용하지 않습니다.<br>a. 불건전한 서비스 이용으로 서비스에 물의를 일으킨 이용자의 경우 사법기관 수사 의뢰를 하거나 다른 회원을 보호할 목적으로 1년간 해당 개인정보를 보관할 수 있습니다.<br>b. 탈퇴 요청을 한 사용자의 개인정보를 관리 및 고객 문의 대응을 목적으로 7일 동안 해당 개인정보를 보관할 수 있습니다.<br>c. 관계법령의 규정에 의하여 보관할 필요가 있는 경우 회사는 수집 및 이용 목적 달성 후에도 관계법령에서 정한 일정 기간 동안 회원의 개인정보를 보관할 수 있습니다.<br>i. 계약 또는 청약철회 등에 관한 기록 : 5년 (전자상거래 등에서의 소비자보호에 관한 법률)<br>ii. 대금결제 및 재화의 공급에 관한 기록 : 5년 (전자상거래 등에서의 소비자보호에 관한 법률)<br>iii. 소비자의 불만 또는 분쟁처리에 관한 기록 : 3년 (전자상거래 등에서의 소비자보호에 관한 법률)<br>iv. 표시, 광고에 관한 기록 : 6개월 (전자상거래 등에서의 소비자보호에 관한 법률)<br>v. 접속에 관한 기록 보존 : 3개월 (통신비밀보호법)</li></ol></div><div class="_chOne_1k2sc_44"><h3>6. 이용자 및 법정 대리인의 권리와 행사 방법</h3><ol><li>이용자 또는 법정 대리인은 언제든지 게임 내 <span class="_variableText_1k2sc_51">‘회원정보’</span>를 통해 이용자 본인의 개인정보를 확인, 조회하거나 수정할 수 있으며 게임 내 <span class="_variableText_1k2sc_51">‘회원정보’</span>를 통해 가입해지 또는 개인정보의 삭제를 요청할 수도 있습니다. 단, 서비스 제공을 위해 반드시 필요한 개인정보를 삭제하는 경우 관련 서비스를 제공받지 못할 수 있습니다.</li><li>이용자 또는 법정 대리인은 언제든지 개인정보의 제공 동의 철회(회원탈퇴)를 할 수 있습니다. 개인정보의 제공 동의철회를 위해서는 게임 앱 내 <span class="_variableText_1k2sc_51">‘고객센터’</span>를 통해 회원 탈퇴 신청이 가능합니다. 회원 탈퇴 신청이 완료된 시점으로부터 7일 이내로 개인정보 데이터가 삭제됩니다. 또한, 등록되어 있는 자신의 개인정보를 조회하거나 수정하는 등의 법률에서 정한 권리를 행사할 수 있습니다. 회원탈퇴로 인하여 개인정보가 파기되는 경우에는 해당 이용자가 회사의 서비스를 이용하면서 생성, 축적된 관련정보가 함께 파기될 수 있습니다.</li><li>이용자 또는 법정 대리인은 자신의 개인정보에 대한 정정 또는 삭제를 요구하는 경우 회사는 본인 여부를 확인한 후 지체 없이 필요한 조치를 취합니다. 또한, 이용약관에 따른 이용제한 시 개인정보 보호 책임자의 판단 하에 회원 ID삭제 등 개인정보를 파기할 수 있습니다.</li><li>이용자 또는 법정 대리인의 개인정보에 대한 열람, 수정은 본인의 요구에 따라 본인 여부 확인 후 가능합니다.</li><li>개인정보의 오류에 대한 정정을 요청하신 경우에는 정정을 완료하기 전까지 당해 개인정보를 이용 또는 제공하지 않습니다. 또한 잘못된 개인정보를 제3자에게 이미 제공한 경우에는 정정 처리결과를 제3자에게 지체 없이 통지하여 정정이 이루어지도록 합니다.</li><li>회사는 이용자 또는 법정 대리인 요청에 의해 해지 또는 삭제된 개인정보에 대해 “회사가 수집하는 개인정보의 보유 및 이용 기간”에 명시된 바에 따라 처리하고 그 외의 용도로 열람 또는 이용할 수 없도록 처리하고 있습니다.</li><li>만 14세 미만 아동의 개인정보 처리에 관한 사항<br>a. 회사는 만 14세 미만 아동에 대해 개인정보를 수집할 때 법정대리인의 동의를 얻어 해당 서비스 수행에 필요한 최소한의 개인정보를 수집합니다.<br>&nbsp;&nbsp;&nbsp;i. 필수항목 : 법정 대리인의 성명, 관계, 연락처<br>b. 또한, 회사의 서비스의 회원관리, 서비스 개발·제공 및 향상, 안전한 인터넷 이용환경 구축 등관련 홍보를 위해 아동의 개인정보를 수집할 경우에는 법정대리인으로부터 별도의 동의를 얻습니다.<br>c. 회사는 만 14세 미만 아동의 개인정보를 수집할 때에는 아동에게 법정대리인의 성명, 연락처와 같이 최소한의 정보를 요구할 수 있으며, 다음 중 하나의 방법으로 적법한 법정대리인이 동의하였는지를 확인합니다. <br>&nbsp;&nbsp;&nbsp;i. 동의 내용을 게재한 인터넷 사이트에 법정대리인이 동의 여부를 표시하도록 하고 개인정보처리자가 그 동의 표시를 확인했음을 법정대리인의 휴대전화 문자메시지로 알리는 방법<br>&nbsp;&nbsp;&nbsp;ii. 동의 내용을 게재한 인터넷 사이트에 법정대리인이 동의 여부를 표시하도록 하고 법정대리인의 신용카드·직불카드 등의 카드정보를 제공받는 방법<br>&nbsp;&nbsp;&nbsp;iii. 동의 내용을 게재한 인터넷 사이트에 법정대리인이 동의 여부를 표시하도록 하고 법정대리인의 휴대전화 본인인증 등을 통해 본인 여부를 확인하는 방법<br>&nbsp;&nbsp;&nbsp;iv. 동의 내용이 적힌 서면을 법정대리인에게 직접 발급하거나, 우편 또는 팩스를 통하여 전달하고 법정대리인이 동의 내용에 대하여 서명날인 후 제출하도록 하는 방법<br>&nbsp;&nbsp;&nbsp;v. 동의 내용이 적힌 전자우편을 발송하여 법정대리인으로부터 동의의 의사표시가 적힌 전자우편을 전송받는 방법<br>&nbsp;&nbsp;&nbsp;vi. 전화를 통하여 동의 내용을 법정대리인에게 알리고 동의를 얻거나 인터넷주소 등 동의 내용을 확인할 수 있는 방법을 안내하고 재차 전화 통화를 통하여 동의를 얻는 방법 그 밖에 위와 준하는 방법으로 법정대리인에게 동의 내용을 알리고 동의의 의사표시를 확인하는 방법</li></ol></div><div class="_chOne_1k2sc_44"><h3>7. 개인정보보호를 위한 기술 및 관리적 대책</h3><ol><li>기술적 대책<br>a. 회사는 해킹이나 컴퓨터 바이러스 등에 의한 개인정보 유출 및 훼손을 막기 위하여 보안 프로그램을 설치하고 주기적인 갱신·점검을 하며 외부로부터 접근이 통제된 구역에 시스템을 설치하고 기술적/물리적으로 감시 및 차단하고 있습니다.<br>b. 이용자의 개인정보는 비밀번호는 암호화되어 저장 및 관리되고 있어, 본인만이 알 수 있으며 중요한 데이터는 파일 및 전송 데이터를 암호화하거나 파일 잠금 기능을 사용하는 등의 별도 보안 기능을 사용하고 있습니다.<br>c. 개인정보처리 시스템에 접속한 기록을 최소 1년 이상 보관, 관리하고 있으며, 다만, 5만 명 이상의 정보주체에 관하여 개인정보를 추가하거나, 고유 식별정보 또는 민감정보를 처리하는 경우에는 2년 이상 보관, 관리하고 있습니다. 또한, 접속기록이 위변조 및 도난, 분실되지 않도록 보안 기능을 사용하고 있습니다.<br>d. 허용되지 않은 IP에 대한 접근 권한을 두어 회사 내부 네트워크가 아닌 경우 회사의 서버로 접근이 불가능하게 되어 있습니다. 또한 허용되지 않은 포트에 대한 접근 금지 등 시스템 보안에 최선을 다하고 있습니다.</li><li>관리적 대책<br>a. 개인정보를 취급하는 직원을 지정하고 담당자에 한정시켜 최소화하여 개인정보를 관리하는 대책을 시행하고 있습니다.<br>b. 개인정보를 처리하는 직원을 대상으로 새로운 보안 기술 습득 및 개인정보보호 의무 등에 관해 정기적인 사내교육 및 외부 위탁교육을 실시하고 있습니다.<br>c. 개인정보를 처리하는 데이터베이스 시스템에 대한 접근권한의 부여, 변경, 말소를 통하여 개인정보에 대한 접근통제를 위하여 필요한 조치를 하고 있으며 침입차단시스템을 이용하여 외부로부터의 무단 접근을 통제하고 있습니다.<br>d. 개인정보 관련 처리자의 업무인수인계는 보안이 유지된 상태에서 철저하게 이루어지고 있으며, 입사 및 퇴사 후 개인정보 사고에 대한 책임을 명확하게 하고 있습니다.<br>e. 개인정보가 포함된 서류, 보조 저장매체 등을 잠금장치가 있는 안전한 장소에 보관하고 있습니다.</li></ol></div><div class="_chOne_1k2sc_44"><h3>8. 개인정보보호 담당자 및 책임자 안내</h3><table class="ui table"><thead class=""><tr class=""><th class=""> </th><th class="">개인정보 보호 담당자</th><th class="">개인정보 보호 책임자</th></tr></thead><tbody class=""><tr class=""><td class="">이름</td><td class="">임원빈</td><td class="">임원빈</td></tr><tr class=""><td class="">소속</td><td class="">MaribinStudio</td><td class="">MaribinStudio</td></tr><tr class=""><td class="">전화</td><td class="">010-2916-2819</td><td class="">010-2916-2819</td></tr><tr class=""><td class="">메일</td><td class="">prefgames@naver.com</td><td class="">prefgames@naver.com</td></tr></tbody></table><p style="padding-bottom: 14px;">회사는 개인정보보호와 관련하여 의견과 불만을 제기할 수 있는 창구를 개설하고 있습니다. 개인정보와 관련하여 불만이 있으신 분은 위 개인정보 보호 담당자/책임자에게 의견을 주시거나 아래의 기관 등에 처리를 의뢰할 수 있습니다.<br>- 개인정보침해신고센터 (전화 : 118,&nbsp;<a href="http://privacy.kisa.or.kr/">http://privacy.kisa.or.kr/</a>)<br>- 대검찰청 사이버 범죄수사단(전화 : 02-3480-3570,&nbsp;<a href="http://www.spo.go.kr/">http://www.spo.go.kr/</a>)<br>- 경찰청 사이버테러 대응센터(전화 : 182,&nbsp;<a href="http://police.go.kr/www/security/cyber/cyber01.jsp">http://police.go.kr/www/security/cyber/cyber01.jsp</a>)<br>또한 개인정보에 관한 분쟁이 있는 경우에는 개인정보분쟁조정위원회 (전화 1833-6972,&nbsp;<a href="http://www.kopico.go.kr/">http://www.kopico.go.kr/</a>)에 처리를 의뢰할 수 있습니다.</p></div></div>
+          </div>
+        </section>
+      </main>
+      <footer>&copy; 2025 Maribin Studio. All rights reserved.</footer>
+    </div>
+  </div>
+  <script>
+    const navTargets = [
+      { url: 'index.html', key: 'menuHome' },
+      { url: 'maribin-studio.html', key: 'menuAbout' },
+      { url: 'games.html', key: 'menuGames' },
+      { url: 'contact.html', key: 'menuContact' },
+      { url: 'privacy.html', key: 'menuPrivacy' },
+      { url: 'terms.html', key: 'menuTerms' }
+    ];
+    const navButtons = document.querySelectorAll('#side-nav button');
+
+    const i18n = {
+      ko: {
+        menuHome: 'Home',
+        menuAbout: '마리빈스튜디오 소개',
+        menuGames: '게임 소개',
+        menuContact: '문의 / 연락처',
+        menuPrivacy: '개인정보처리방침',
+        menuTerms: '게임 이용약관',
+        heroTitle: '개인정보처리방침',
+        heroSubtitle: '아래에서 개인정보처리방침 전문을 확인하실 수 있습니다.',
+        sectionTitle: '개인정보처리방침',
+        sectionLead: '아래에서 개인정보처리방침 전문을 확인하실 수 있습니다.'
+      },
+      en: {
+        menuHome: 'Home',
+        menuAbout: 'About Maribin Studio',
+        menuGames: 'Games',
+        menuContact: 'Contact',
+        menuPrivacy: 'Privacy Policy',
+        menuTerms: 'Terms of Service',
+        heroTitle: 'Privacy Policy',
+        heroSubtitle: 'Full policy text is provided below (Korean only).',
+        sectionTitle: 'Privacy Policy',
+        sectionLead: 'Full policy text is provided below (Korean only).'
+      }
+    };
+
+    function setLanguage(lang) {
+      const t = i18n[lang];
+      if (!t) return;
+      navTargets.forEach((item, index) => {
+        const btn = navButtons[index];
+        if (btn) btn.textContent = t[item.key];
+      });
+      const heroTitle = document.getElementById('hero-title');
+      const heroSubtitle = document.getElementById('hero-subtitle');
+      const sectionTitle = document.getElementById('section-title');
+      const sectionLead = document.getElementById('section-lead');
+      if (heroTitle) heroTitle.textContent = t.heroTitle;
+      if (heroSubtitle) heroSubtitle.textContent = t.heroSubtitle;
+      if (sectionTitle) sectionTitle.textContent = t.sectionTitle;
+      if (sectionLead) sectionLead.textContent = t.sectionLead;
+    }
+
+    document.getElementById('lang-ko').addEventListener('click', () => {
+      localStorage.setItem('lang', 'ko');
+      setLanguage('ko');
+    });
+    document.getElementById('lang-en').addEventListener('click', () => {
+      localStorage.setItem('lang', 'en');
+      setLanguage('en');
+    });
+
+    navButtons.forEach((btn, index) => {
+      btn.addEventListener('click', () => {
+        const target = navTargets[index];
+        if (target) window.location.href = target.url;
+      });
+    });
+
+    const initialLang = localStorage.getItem('lang') || 'ko';
+    setLanguage(initialLang);
+  </script>
+</body>
+</html>
