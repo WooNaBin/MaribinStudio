@@ -24,24 +24,31 @@
     body{
       margin:0;
       font-family:'Galmuri9', Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-      /* 메인 일러스트를 페이지 전체 배경으로 적용 */
-      background-image:url('images/ico_main_dc_web.jpeg');
-      background-size:cover;
-      background-position:center top;
-      background-repeat:no-repeat;
-      background-attachment:fixed;
+      background:#0b1c28;
       color:#0b2433;
       line-height:1.5;
       -webkit-font-smoothing:antialiased;
       -moz-osx-font-smoothing:grayscale;
+      position:relative;
+    }
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      background-image:linear-gradient(rgba(5,12,18,0.45), rgba(5,12,18,0.45)), url('images/ico_main_dc_web.jpeg');
+      background-size:cover;
+      background-position:center top;
+      background-repeat:no-repeat;
+      z-index:-2;
     }
     body, button, input, textarea, select{
       font-family:'Galmuri9', Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
     }
-    .wrap{display:flex;min-height:100vh;width:100%;}
+    .wrap{display:flex;min-height:100vh;width:100%;align-items:flex-start;}
     .sidebar{
       width:var(--sidebar-width);
-      background:linear-gradient(180deg,#08324a 0%, #1a6b85 60%, #5fc3f5 100%);
+      background:rgba(8,50,74,0.35);
+      backdrop-filter:blur(8px);
       color:#fff;
       padding:0;
       display:flex;
@@ -50,6 +57,10 @@
       box-shadow:2px 0 10px rgba(3,18,26,0.15);
       flex-shrink:0;
       min-height:100vh;
+      height:100vh;
+      position:sticky;
+      top:0;
+      align-self:flex-start;
     }
     .brand{display:flex; align-items:center; gap:12px; padding:18px; background:rgba(0,0,0,0.45);}
     .brand img{height:56px; width:auto; border-radius:8px; box-shadow:0 6px 18px rgba(0,0,0,0.3)}
@@ -89,58 +100,119 @@
     .lang-btn:focus-visible{outline:2px solid #fff;outline-offset:2px}
     .content{flex:1; display:flex; flex-direction:column; min-width:0;}
     header.hero{
-      min-height:220px;
+      min-height:92px;
       display:flex;
       align-items:center;
-      padding:32px 36px;
-      background:linear-gradient(90deg,#d6f3ff 0%, #a7d9ff 100%);
-      border-bottom:1px solid rgba(0,0,0,0.06);
+      padding:18px 32px;
+      background:linear-gradient(90deg,#0b3047 0%, #062233 100%);
+      border-bottom:1px solid rgba(0,0,0,0.25);
       position:relative;
       overflow:hidden;
     }
-    /* 헤더 배경 이미지 제거 */
-    header.hero::after{
-      display:none;
-    }
-    header.hero > *{position:relative;z-index:1;}
-    .hero-text h1{margin:0;font-size:34px;font-weight:700;color:#053244;}
-    .hero-text p{margin:10px 0 0;font-size:16px;color:#063c53;max-width:620px;}
-    .hero-meta{margin-left:auto;text-align:right;color:#07314b;font-weight:600;}
-    .hero-meta span{display:block;font-size:14px;color:var(--muted);font-weight:500;}
+    .hero-text h1{margin:0;font-size:24px;font-weight:700;color:#f6fbff;}
     main{flex:1; padding:40px 48px; min-height:320px; display:flex; justify-content:center; align-items:flex-start;}
     #main-section{width:100%; max-width:var(--content-max);}
     .card{
-      /* 본문 카드의 배경을 약간 투명하게 만들어 가독성 향상 */
-      background:rgba(255,255,255,0.92);
-      backdrop-filter:blur(6px);
-      border-radius:16px;
+      background:rgba(7,24,35,0.35);
+      border-radius:18px;
       padding:32px;
-      box-shadow:0 16px 40px rgba(12,40,70,0.08);
+      border:1px solid rgba(255,255,255,0.18);
+      box-shadow:none;
     }
-    .card h1{margin:0 0 12px;font-size:28px;}
-    .card p.lead{margin:0 0 24px;color:var(--muted);}
-    /* 메인 비주얼 숨기기 */
-    .main-visual{display:none;}
-    .feature-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;margin-bottom:32px;}
-    .feature-card{background:#f7fbff;border-radius:14px;padding:24px;box-shadow:0 10px 24px rgba(7,49,75,0.08);}
-    .feature-card h2{margin:0 0 10px;font-size:20px;color:#07314b;}
-    .feature-card p{margin:0;color:#173042;}
-    .devlog{margin-top:32px;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;}
-    .timeline{background:#0b3047;color:#fff;border-radius:14px;padding:24px;box-shadow:0 16px 32px rgba(5,30,45,0.4);}
-    .timeline h2{margin:0 0 12px;font-size:20px;}
-    .timeline ul{list-style:none;padding:0;margin:0;}
-    .timeline li{margin-bottom:16px;padding-left:18px;position:relative;font-size:14px;line-height:1.5;}
-    .timeline li::before{content:"";position:absolute;left:0;top:6px;width:6px;height:6px;border-radius:50%;background:#45b5f5;}
-    .cta-block{background:#f0f8ff;border-radius:14px;padding:24px;box-shadow:0 8px 24px rgba(7,49,75,0.08);display:flex;flex-direction:column;gap:12px;}
-    .cta-block a{align-self:flex-start;background:var(--accent);color:#033047;font-weight:700;border-radius:999px;padding:10px 22px;text-decoration:none;transition:transform .18s ease, box-shadow .18s ease;}
-    .cta-block a:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(69,181,245,0.35);}
+    .card h1{margin:0 0 12px;font-size:28px;color:#f7fbff; text-shadow:0 2px 6px rgba(0,0,0,0.55);}
+    .card p.lead{margin:0 0 24px;color:rgba(245,250,255,0.95); text-shadow:0 2px 6px rgba(0,0,0,0.55);}
+    .dc-menu{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-bottom:20px;
+    }
+    .dc-menu button{
+      font:inherit;
+      color:#f4f9ff;
+      background:rgba(255,255,255,0.16);
+      border:1px solid rgba(255,255,255,0.2);
+      padding:8px 14px;
+      border-radius:999px;
+      font-size:14px;
+      font-weight:600;
+      text-shadow:0 1px 4px rgba(0,0,0,0.5);
+      cursor:pointer;
+      transition:background .2s ease, transform .2s ease;
+    }
+    .dc-menu button:hover{background:rgba(255,255,255,0.28);transform:translateY(-2px);}
+    .dc-menu button.active{background:rgba(69,181,245,0.35);border-color:rgba(69,181,245,0.6);}
+    .dc-panel{
+      padding:18px 0;
+      color:#f6fbff;
+      text-shadow:0 2px 6px rgba(0,0,0,0.6);
+    }
+    .dc-section h2{
+      margin:0 0 12px;
+      font-size:22px;
+      color:#ffffff;
+      text-shadow:0 2px 6px rgba(0,0,0,0.6);
+    }
+    .dc-section p{margin:0 0 14px;color:rgba(245,250,255,0.98);}
+    .dc-list{margin:0 0 16px;padding-left:18px;color:rgba(245,250,255,0.98);}
+    .dc-list li{margin-bottom:8px;}
+    .dc-actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center;}
+    .dc-chip{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding:6px 12px;
+      border-radius:999px;
+      background:rgba(69,181,245,0.2);
+      border:1px solid rgba(69,181,245,0.5);
+      color:#d7f1ff;
+      font-weight:600;
+      font-size:13px;
+    }
+    .dc-btn{
+      text-decoration:none;
+      padding:10px 16px;
+      border-radius:10px;
+      background:rgba(255,255,255,0.18);
+      border:1px solid rgba(255,255,255,0.25);
+      color:#f6fbff;
+      font-weight:600;
+    }
+    .dc-btn.is-disabled{
+      opacity:0.6;
+      pointer-events:none;
+    }
+    .dc-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+      gap:16px;
+    }
+    .dc-card{
+      padding:14px 16px;
+      border-radius:12px;
+      background:rgba(255,255,255,0.12);
+      border:1px solid rgba(255,255,255,0.18);
+    }
+    .dc-card h3{margin:0 0 6px;font-size:16px;color:#ffffff;}
+    .dc-card p{margin:0;color:rgba(245,250,255,0.98);}
+    .dc-shots{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+      gap:14px;
+    }
+    .dc-shots img{
+      width:100%;
+      height:160px;
+      object-fit:cover;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,0.2);
+    }
     footer{padding:18px;text-align:center;color:var(--muted);font-size:14px;}
     @media(max-width:768px){
       .wrap{flex-direction:column;}
-      .sidebar{width:100%;flex-direction:row;flex-wrap:wrap;min-height:auto;}
+      .sidebar{width:100%;flex-direction:row;flex-wrap:wrap;min-height:auto;height:auto;position:relative;top:auto;align-self:stretch;}
       .nav{flex-direction:row;flex-wrap:wrap;justify-content:center;width:100%;}
       .nav button{flex:1 1 45%; text-align:center;}
-      .hero-meta{margin-left:0;text-align:left;margin-top:16px;}
       header.hero{flex-direction:column;align-items:flex-start;}
       main{padding:24px;}
     }
@@ -170,51 +242,21 @@
       <header class="hero">
         <div class="hero-text">
           <h1 id="hero-title">다이스 크루세이더</h1>
-          <p id="hero-subtitle">주사위를 굴려 기사단을 이끄는 모바일 전략 RPG. iOS/Android 출시를 위한 마지막 준비를 진행 중입니다.</p>
-        </div>
-        <div class="hero-meta">
-          <strong id="hero-status">iOS/Google Play 출시 준비중</strong>
-          <span id="hero-platforms">플랫폼: iOS · Android</span>
         </div>
       </header>
       <main>
         <section class="card" id="main-section">
           <h1 id="section-title">게임 개요</h1>
           <p class="lead" id="section-lead">다이스 크루세이더는 주사위 조합으로 기사단을 강화하고, 턴마다 전략을 바꿔가며 적을 상대하는 모바일 전술 RPG입니다.</p>
-          <!-- 메인 비주얼은 숨겼으므로 필요하면 삭제해도 됩니다 -->
-          <figure class="main-visual">
-            <img src="images/ico_main_dc_web.jpeg" alt="다이스 크루세이더 메인 키비주얼">
-            <figcaption>주사위와 기사단이 맞붙는 다이스 크루세이더의 메인 비주얼</figcaption>
-          </figure>
-          <div class="feature-grid">
-            <article class="feature-card">
-              <h2 id="intro-heading">게임 소개</h2>
-              <p id="intro-text">주사위를 굴려 얻은 자원을 배치하고 기사단의 기믹을 강화해 적을 물리칩니다.</p>
-            </article>
-            <article class="feature-card">
-              <h2 id="info-heading">게임 정보</h2>
-              <p id="info-text">iOS/Android 환경에 맞춘 터치 전투와 성장 시스템을 제공하며, 각 캐릭터마다 고유 스킬 트리와 주사위 변조 능력을 제공합니다.</p>
-            </article>
-            <article class="feature-card">
-              <h2 id="future-heading">향후 업데이트</h2>
-              <p id="future-text">출시 이후 협동 모드, 보스 레이드, 새로운 주사위 속성 등 확장 콘텐츠를 준비 중입니다.</p>
-            </article>
+          <div class="dc-menu" id="dc-menu">
+            <button class="active" data-file="dc-intro.html" id="nav-intro">게임소개/기본스토리</button>
+            <button data-file="dc-download.html" id="nav-download">다운로드</button>
+            <button data-file="dc-info.html" id="nav-info">기본정보</button>
+            <button data-file="dc-combat.html" id="nav-combat">전투시스템</button>
+            <button data-file="dc-upgrade.html" id="nav-upgrade">강화시스템</button>
+            <button data-file="dc-screenshots.html" id="nav-shots">스크린샷</button>
           </div>
-          <div class="devlog">
-            <article class="timeline">
-              <h2 id="devlog-heading">개발 로그</h2>
-              <ul id="devlog-list">
-                <li id="devlog-item-1">2025.03 — iOS/Android 빌드 최적화 및 UI 개선</li>
-                <li id="devlog-item-2">2025.02 — 튜토리얼 챕터 확장, 난이도 밸런싱</li>
-                <li id="devlog-item-3">2025.01 — 기사단 성장 시스템 리팩터링</li>
-              </ul>
-            </article>
-            <article class="cta-block">
-              <h2 id="inquiry-heading">게임 문의</h2>
-              <p id="inquiry-text">출시 일정, 테스트 문의, 피드백 제안은 언제든 연락 주세요.</p>
-              <a id="inquiry-btn" href="mailto:prefgames@naver.com">prefgames@naver.com</a>
-            </article>
-          </div>
+          <div class="dc-panel" id="dc-content" aria-live="polite"></div>
         </section>
       </main>
       <footer>&copy; 2025 Maribin Studio. All rights reserved.</footer>
@@ -240,24 +282,14 @@
         menuPrivacy: '개인정보처리방침',
         menuTerms: '게임 이용약관',
         heroTitle: '다이스 크루세이더',
-        heroSubtitle: '주사위를 굴려 기사단을 이끄는 모바일 전략 RPG. iOS/Android 출시를 위한 마지막 준비를 진행 중입니다.',
-        heroStatus: 'iOS/Google Play 출시 준비중',
-        heroPlatforms: '플랫폼: iOS · Android',
         sectionTitle: '게임 개요',
         sectionLead: '다이스 크루세이더는 주사위 조합으로 기사단을 강화하고, 턴마다 전략을 바꿔가며 적을 상대하는 모바일 전술 RPG입니다.',
-        introHeading: '게임 소개',
-        introText: '주사위를 굴려 얻은 자원을 배치하고 기사단의 기믹을 강화해 적을 물리칩니다.',
-        infoHeading: '게임 정보',
-        infoText: 'iOS/Android 환경에 맞춘 터치 전투와 성장 시스템을 제공하며, 각 캐릭터마다 고유 스킬 트리와 주사위 변조 능력을 제공합니다.',
-        futureHeading: '향후 업데이트',
-        futureText: '출시 이후 협동 모드, 보스 레이드, 새로운 주사위 속성 등 확장 콘텐츠를 준비 중입니다.',
-        devlogHeading: '개발 로그',
-        devlogItem1: '2025.03 — iOS/Android 빌드 최적화 및 UI 개선',
-        devlogItem2: '2025.02 — 튜토리얼 챕터 확장, 난이도 밸런싱',
-        devlogItem3: '2025.01 — 기사단 성장 시스템 리팩터링',
-        inquiryHeading: '게임 문의',
-        inquiryText: '출시 일정, 테스트 문의, 피드백 제안은 언제든 연락 주세요.',
-        inquiryBtn: 'prefgames@naver.com'
+        navIntro: '게임소개/기본스토리',
+        navDownload: '다운로드',
+        navInfo: '기본정보',
+        navCombat: '전투시스템',
+        navUpgrade: '강화시스템',
+        navShots: '스크린샷'
       },
       en: {
         menuHome: 'Home',
@@ -267,24 +299,14 @@
         menuPrivacy: 'Privacy Policy',
         menuTerms: 'Terms of Service',
         heroTitle: 'Dice Crusader',
-        heroSubtitle: 'A dice-driven mobile tactics RPG. We are finishing the final prep for iOS and Android.',
-        heroStatus: 'Preparing for iOS/Google Play launch',
-        heroPlatforms: 'Platforms: iOS · Android',
         sectionTitle: 'Overview',
-        sectionLead: 'Upgrade dice, command your crusaders, and adapt tactics for every encounter on mobile.',
-        introHeading: 'Game Introduction',
-        introText: 'Allocate rolled resources, trigger formations, and break enemy lines with your custom dice engine.',
-        infoHeading: 'Game Information',
-        infoText: 'Touch-first combat and progression tuned for iOS/Android, with unique skill trees and dice modulation.',
-        futureHeading: 'Future Updates',
-        futureText: 'Post-launch updates include co-op play, raid bosses, and new elemental dice sets.',
-        devlogHeading: 'Dev Log',
-        devlogItem1: 'Mar 2025 — iOS/Android build optimization and UI polish',
-        devlogItem2: 'Feb 2025 — Expanded tutorial chapter and balance pass',
-        devlogItem3: 'Jan 2025 — Crusader growth system refactor',
-        inquiryHeading: 'Get In Touch',
-        inquiryText: 'Ask about launch timing, testing, or share feedback anytime.',
-        inquiryBtn: 'prefgames@naver.com'
+        sectionLead: 'Roll dice, build squads, and adapt tactics every turn to outplay enemies.',
+        navIntro: 'Intro/Story',
+        navDownload: 'Download',
+        navInfo: 'Core Info',
+        navCombat: 'Combat System',
+        navUpgrade: 'Upgrades',
+        navShots: 'Screenshots'
       }
     };
 
@@ -296,27 +318,40 @@
         if (btn) btn.textContent = t[item.key];
       });
       document.getElementById('hero-title').textContent = t.heroTitle;
-      document.getElementById('hero-subtitle').textContent = t.heroSubtitle;
-      document.getElementById('hero-status').textContent = t.heroStatus;
-      document.getElementById('hero-platforms').textContent = t.heroPlatforms;
       document.getElementById('section-title').textContent = t.sectionTitle;
       document.getElementById('section-lead').textContent = t.sectionLead;
-      document.getElementById('intro-heading').textContent = t.introHeading;
-      document.getElementById('intro-text').textContent = t.introText;
-      document.getElementById('info-heading').textContent = t.infoHeading;
-      document.getElementById('info-text').textContent = t.infoText;
-      document.getElementById('future-heading').textContent = t.futureHeading;
-      document.getElementById('future-text').textContent = t.futureText;
-      document.getElementById('devlog-heading').textContent = t.devlogHeading;
-      document.getElementById('devlog-item-1').textContent = t.devlogItem1;
-      document.getElementById('devlog-item-2').textContent = t.devlogItem2;
-      document.getElementById('devlog-item-3').textContent = t.devlogItem3;
-      document.getElementById('inquiry-heading').textContent = t.inquiryHeading;
-      document.getElementById('inquiry-text').textContent = t.inquiryText;
-      const inquiryBtn = document.getElementById('inquiry-btn');
-      inquiryBtn.textContent = t.inquiryBtn;
-      inquiryBtn.href = `mailto:${t.inquiryBtn}`;
+      document.getElementById('nav-intro').textContent = t.navIntro;
+      document.getElementById('nav-download').textContent = t.navDownload;
+      document.getElementById('nav-info').textContent = t.navInfo;
+      document.getElementById('nav-combat').textContent = t.navCombat;
+      document.getElementById('nav-upgrade').textContent = t.navUpgrade;
+      document.getElementById('nav-shots').textContent = t.navShots;
       localStorage.setItem('lang', lang);
+    }
+
+    const dcMenuButtons = document.querySelectorAll('#dc-menu button');
+    const dcContent = document.getElementById('dc-content');
+
+    function setActiveDcButton(activeBtn) {
+      dcMenuButtons.forEach(btn => btn.classList.toggle('active', btn === activeBtn));
+    }
+
+    function loadDcSection(file) {
+      if (!dcContent) return;
+      dcContent.textContent = '불러오는 중...';
+      fetch(file)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Failed to load');
+          }
+          return response.text();
+        })
+        .then(html => {
+          dcContent.innerHTML = html;
+        })
+        .catch(() => {
+          dcContent.textContent = '콘텐츠를 불러오지 못했습니다.';
+        });
     }
 
     navButtons.forEach(btn => {
@@ -327,12 +362,26 @@
       });
     });
 
+    dcMenuButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const file = btn.dataset.file;
+        if (!file) return;
+        setActiveDcButton(btn);
+        loadDcSection(file);
+      });
+    });
+
     document.getElementById('lang-ko').addEventListener('click', () => setLanguage('ko'));
     document.getElementById('lang-en').addEventListener('click', () => setLanguage('en'));
 
     document.addEventListener('DOMContentLoaded', () => {
       const savedLang = localStorage.getItem('lang') || 'ko';
       setLanguage(savedLang);
+      const initialBtn = dcMenuButtons[0];
+      if (initialBtn) {
+        setActiveDcButton(initialBtn);
+        loadDcSection(initialBtn.dataset.file);
+      }
     });
   </script>
 </body>

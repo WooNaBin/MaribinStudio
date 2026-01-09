@@ -23,17 +23,17 @@
     *{box-sizing:border-box}
     body{
       margin:0; font-family:'Galmuri9', Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-      background:var(--bg); color:#0b2433; line-height:1.6;
+      background:var(--bg); color:#0b2433; line-height:1.5;
       -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
     }
     body, button, input, textarea, select{
       font-family:'Galmuri9', Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
     }
-    .wrap{display:flex;min-height:100vh;width:100%;}
+    .wrap{display:flex;min-height:100vh;width:100%;align-items:flex-start;}
     .sidebar{
       width:var(--sidebar-width); background:linear-gradient(180deg,#08324a 0%, #1a6b85 60%, #5fc3f5 100%);
       color:#fff; padding:0; display:flex; flex-direction:column; align-items:stretch; box-shadow:2px 0 10px rgba(3,18,26,0.15);
-      flex-shrink:0; min-height:100vh;
+      flex-shrink:0; min-height:100vh; height:100vh; position:sticky; top:0; align-self:flex-start;
     }
     .brand{display:flex; align-items:center; gap:12px; padding:18px; background:rgba(0,0,0,0.45);}
     .brand img{height:56px; width:auto; border-radius:8px; box-shadow:0 6px 18px rgba(0,0,0,0.3)}
@@ -58,14 +58,17 @@
     .lang-btn:focus-visible{outline:2px solid #fff;outline-offset:2px}
     .content{flex:1; display:flex; flex-direction:column; min-width:0;}
     header.hero{
-      min-height:160px; display:flex; align-items:center; padding:28px 32px; background:linear-gradient(90deg,#bfe9fb 0%, #a0daf8 100%); border-bottom:1px solid rgba(0,0,0,0.06); position:relative; overflow:hidden;
-    }
-    header.hero::after{
-      content:""; position:absolute; inset:0; background:url('images/bg_dc.jpeg') center/cover no-repeat; opacity:0.35; mix-blend-mode:multiply;
+      min-height:92px;
+      display:flex;
+      align-items:center;
+      padding:18px 32px;
+      background:linear-gradient(90deg,#0b3047 0%, #062233 100%);
+      border-bottom:1px solid rgba(0,0,0,0.25);
+      position:relative;
+      overflow:hidden;
     }
     header.hero > *{position:relative;z-index:1;}
-    .hero-text h1{margin:0;font-size:30px;font-weight:700;color:#053244;}
-    .hero-text p{margin:6px 0 0;font-size:15px;color:var(--muted);}
+    .hero-text h1{margin:0;font-size:24px;font-weight:700;color:#f6fbff;}
     main{flex:1; padding:40px 48px; min-height:320px; display:flex; justify-content:center; align-items:flex-start;}
     #main-section{width:100%; max-width:var(--content-max);}
     .card{background:#fff; border-radius:16px; padding:32px; box-shadow:0 16px 40px rgba(12,40,70,0.08);}
@@ -104,7 +107,7 @@
     footer{padding:18px;text-align:center;color:var(--muted);font-size:14px;}
     @media(max-width:900px){
       .wrap{flex-direction:column;}
-      .sidebar{width:100%;flex-direction:row;flex-wrap:wrap;min-height:auto;}
+      .sidebar{width:100%;flex-direction:row;flex-wrap:wrap;min-height:auto;height:auto;position:relative;top:auto;align-self:stretch;}
       .nav{flex-direction:row;flex-wrap:wrap;justify-content:center;width:100%;}
       .nav button{flex:1 1 45%; text-align:center;}
       main{padding:24px;}
@@ -135,7 +138,6 @@
       <header class="hero">
         <div class="hero-text">
           <h1 id="hero-title">게임 이용약관</h1>
-          <p id="hero-subtitle">게임 이용약관 전문을 아래에 안내드립니다.</p>
         </div>
       </header>
       <main>
@@ -170,7 +172,6 @@
         menuPrivacy: '개인정보처리방침',
         menuTerms: '게임 이용약관',
         heroTitle: '게임 이용약관',
-        heroSubtitle: '게임 이용약관 전문을 아래에 안내드립니다.',
         sectionTitle: '게임 이용약관',
         sectionLead: '게임 이용약관 전문을 아래에 안내드립니다.'
       },
@@ -182,7 +183,6 @@
         menuPrivacy: 'Privacy Policy',
         menuTerms: 'Terms of Service',
         heroTitle: 'Terms of Service',
-        heroSubtitle: 'Full terms text is provided below (Korean only).',
         sectionTitle: 'Terms of Service',
         sectionLead: 'Full terms text is provided below (Korean only).'
       }
@@ -195,13 +195,9 @@
         const btn = navButtons[index];
         if (btn) btn.textContent = t[item.key];
       });
-      const heroTitle = document.getElementById('hero-title');
-      const heroSubtitle = document.getElementById('hero-subtitle');
-      const sectionTitle = document.getElementById('section-title');
+      const heroTitle = document.getElementById('hero-title');      const sectionTitle = document.getElementById('section-title');
       const sectionLead = document.getElementById('section-lead');
-      if (heroTitle) heroTitle.textContent = t.heroTitle;
-      if (heroSubtitle) heroSubtitle.textContent = t.heroSubtitle;
-      if (sectionTitle) sectionTitle.textContent = t.sectionTitle;
+      if (heroTitle) heroTitle.textContent = t.heroTitle;      if (sectionTitle) sectionTitle.textContent = t.sectionTitle;
       if (sectionLead) sectionLead.textContent = t.sectionLead;
     }
 
