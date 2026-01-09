@@ -245,7 +245,54 @@
         left:0;
       }
     }
-  </style>
+        /* Dark UI overrides */
+      body{background:#0b1620;color:#e6f1ff;}
+      a{color:#8bd6ff;}
+      .card{
+        background:rgba(12,20,30,0.65);
+        border:1px solid rgba(255,255,255,0.12);
+        box-shadow:0 20px 40px rgba(5,12,18,0.35);
+        backdrop-filter:blur(10px);
+      }
+      .card h1,
+      .section-title,
+      .info-card h2,
+      .info-card h3,
+      .game-card h2,
+      .feature-card h2,
+      .info-panel h3,
+      .timeline h2{
+        color:#f2f8ff;
+      }
+      .card p.lead,
+      .info-panel p,
+      .info-card p,
+      .game-card p,
+      .feature-card p,
+      .timeline li,
+      .support-list,
+      .policy-container,
+      .policy-container p{
+        color:rgba(230,241,255,0.9);
+      }
+      .tag-pill{background:rgba(69,181,245,0.2);color:#bfe9ff;}
+      .info-panel,
+      .info-card,
+      .game-card,
+      .feature-card,
+      .cta-block{
+        background:rgba(14,28,42,0.6);
+        border:1px solid rgba(255,255,255,0.12);
+        box-shadow:none;
+      }
+      .policy-container table th,
+      .policy-container table td{
+        border-color:rgba(255,255,255,0.18);
+        color:rgba(230,241,255,0.92);
+      }
+      .policy-container table{background:rgba(255,255,255,0.04);}
+      footer{color:rgba(209,223,238,0.7);}
+    </style>
 </head>
 <body>
   <div class="wrap">
