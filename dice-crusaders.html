@@ -230,6 +230,37 @@
       font-size:12px;
       letter-spacing:0.3px;
     }
+    .dc-lightbox{
+      position:fixed;
+      inset:0;
+      background:rgba(6,12,18,0.75);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      z-index:1000;
+    }
+    .dc-lightbox.is-open{display:flex;}
+    .dc-lightbox img{
+      max-width:min(92vw, 1200px);
+      max-height:82vh;
+      width:auto;
+      height:auto;
+      border-radius:16px;
+      box-shadow:0 24px 60px rgba(0,0,0,0.45);
+    }
+    .dc-lightbox button{
+      position:absolute;
+      top:20px;
+      right:24px;
+      background:rgba(255,255,255,0.16);
+      border:1px solid rgba(255,255,255,0.25);
+      color:#f7fbff;
+      font-size:22px;
+      border-radius:999px;
+      width:42px;
+      height:42px;
+      cursor:pointer;
+    }
     footer{padding:18px;text-align:center;color:var(--muted);font-size:14px;}
     @media(max-width:768px){
       .wrap{flex-direction:column;}
@@ -239,6 +270,7 @@
       header.hero{flex-direction:column;align-items:flex-start;}
       main{padding:24px;}
       .dc-shots{grid-template-columns:1fr;}
+      .dc-lightbox img{max-width:94vw;max-height:78vh;}
     }
     @media(max-width:768px){
       body::before{
@@ -249,10 +281,10 @@
       body{background:#0b1620;color:#e6f1ff;}
       a{color:#8bd6ff;}
       .card{
-        background:rgba(12,20,30,0.2);
+        background:transparent;
         border:1px solid rgba(255,255,255,0.12);
         box-shadow:0 20px 40px rgba(5,12,18,0.2);
-        backdrop-filter:blur(18px);
+        backdrop-filter:none;
       }
       .card h1,
       .section-title,
@@ -281,10 +313,10 @@
       .game-card,
       .feature-card,
       .cta-block{
-        background:rgba(14,28,42,0.2);
+        background:transparent;
         border:1px solid rgba(255,255,255,0.12);
         box-shadow:none;
-        backdrop-filter:blur(16px);
+        backdrop-filter:none;
       }
       .policy-container table th,
       .policy-container table td{
@@ -343,6 +375,10 @@
       </main>
       <footer>&copy; 2025 Maribin Studio. All rights reserved.</footer>
     </div>
+  </div>
+  <div class="dc-lightbox" id="dc-lightbox" aria-hidden="true">
+    <button type="button" id="dc-lightbox-close" aria-label="닫기">×</button>
+    <img id="dc-lightbox-img" alt="">
   </div>
   <script>
     const navTargets = [
@@ -430,10 +466,39 @@
         })
         .then(html => {
           dcContent.innerHTML = html;
+          hookDcLightbox();
         })
         .catch(() => {
           dcContent.textContent = '콘텐츠를 불러오지 못했습니다.';
         });
+    }
+
+    const dcLightbox = document.getElementById('dc-lightbox');
+    const dcLightboxImg = document.getElementById('dc-lightbox-img');
+    const dcLightboxClose = document.getElementById('dc-lightbox-close');
+
+    function openDcLightbox(src, alt) {
+      if (!dcLightbox || !dcLightboxImg) return;
+      dcLightboxImg.src = src;
+      dcLightboxImg.alt = alt || '';
+      dcLightbox.classList.add('is-open');
+      dcLightbox.setAttribute('aria-hidden', 'false');
+    }
+
+    function closeDcLightbox() {
+      if (!dcLightbox || !dcLightboxImg) return;
+      dcLightbox.classList.remove('is-open');
+      dcLightbox.setAttribute('aria-hidden', 'true');
+      dcLightboxImg.src = '';
+      dcLightboxImg.alt = '';
+    }
+
+    function hookDcLightbox() {
+      if (!dcContent) return;
+      const images = dcContent.querySelectorAll('.dc-shot img');
+      images.forEach((img) => {
+        img.addEventListener('click', () => openDcLightbox(img.src, img.alt));
+      });
     }
 
     navButtons.forEach(btn => {
@@ -451,6 +516,18 @@
         setActiveDcButton(btn);
         loadDcSection(file);
       });
+    });
+
+    if (dcLightboxClose) {
+      dcLightboxClose.addEventListener('click', closeDcLightbox);
+    }
+    if (dcLightbox) {
+      dcLightbox.addEventListener('click', (event) => {
+        if (event.target === dcLightbox) closeDcLightbox();
+      });
+    }
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') closeDcLightbox();
     });
 
     document.getElementById('lang-ko').addEventListener('click', () => setLanguage('ko'));
