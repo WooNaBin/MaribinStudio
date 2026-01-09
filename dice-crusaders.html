@@ -11,7 +11,7 @@
       --accent-2:#0b6b86;
       --muted:#6b7785;
       --sidebar-width:260px;
-      --ontent-max:1100px;
+      --content-max:1100px;
     }
     @font-face{
       font-family:'Galmuri9';
@@ -22,18 +22,34 @@
     }
     *{box-sizing:border-box}
     body{
-      margin:0; font-family:'Galmuri9', Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-      background:var(--bg); color:#0b2433; line-height:1.5;
-      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+      margin:0;
+      font-family:'Galmuri9', Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      /* 메인 일러스트를 페이지 전체 배경으로 적용 */
+      background-image:url('images/ico_main_dc_web.jpeg');
+      background-size:cover;
+      background-position:center top;
+      background-repeat:no-repeat;
+      background-attachment:fixed;
+      color:#0b2433;
+      line-height:1.5;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
     }
     body, button, input, textarea, select{
       font-family:'Galmuri9', Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
     }
     .wrap{display:flex;min-height:100vh;width:100%;}
     .sidebar{
-      width:var(--sidebar-width); background:linear-gradient(180deg,#08324a 0%, #1a6b85 60%, #5fc3f5 100%);
-      color:#fff; padding:0; display:flex; flex-direction:column; align-items:stretch; box-shadow:2px 0 10px rgba(3,18,26,0.15);
-      flex-shrink:0; min-height:100vh;
+      width:var(--sidebar-width);
+      background:linear-gradient(180deg,#08324a 0%, #1a6b85 60%, #5fc3f5 100%);
+      color:#fff;
+      padding:0;
+      display:flex;
+      flex-direction:column;
+      align-items:stretch;
+      box-shadow:2px 0 10px rgba(3,18,26,0.15);
+      flex-shrink:0;
+      min-height:100vh;
     }
     .brand{display:flex; align-items:center; gap:12px; padding:18px; background:rgba(0,0,0,0.45);}
     .brand img{height:56px; width:auto; border-radius:8px; box-shadow:0 6px 18px rgba(0,0,0,0.3)}
@@ -42,8 +58,17 @@
     .nav button{
       font:inherit;
       background:linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
-      border:0; color:inherit; padding:20px 18px; text-align:left; font-weight:600; font-size:15px; cursor:pointer;
-      border-radius:8px; margin:6px 12px; box-shadow:inset 0 -2px 0 rgba(0,0,0,0.08); transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
+      border:0;
+      color:inherit;
+      padding:20px 18px;
+      text-align:left;
+      font-weight:600;
+      font-size:15px;
+      cursor:pointer;
+      border-radius:8px;
+      margin:6px 12px;
+      box-shadow:inset 0 -2px 0 rgba(0,0,0,0.08);
+      transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
     }
     .nav button:hover{transform:translateY(-3px); box-shadow:0 8px 20px rgba(3,18,26,0.18)}
     .nav button.active{background:linear-gradient(90deg, rgba(255,255,255,0.25), rgba(255,255,255,0.15)); color:var(--accent-2)}
@@ -51,17 +76,31 @@
       margin-top:auto;display:flex;justify-content:center;gap:12px;padding:18px 0;border-top:1px solid rgba(255,255,255,0.15);
     }
     .lang-btn{
-      background:rgba(0,0,0,0.15);border:1px solid transparent;font-size:28px;cursor:pointer;border-radius:50%;width:52px;height:52px;display:flex;align-items:center;justify-content:center;
+      background:rgba(0,0,0,0.15);
+      border:1px solid transparent;
+      font-size:28px;
+      cursor:pointer;
+      border-radius:50%;
+      width:52px;height:52px;
+      display:flex;align-items:center;justify-content:center;
       transition:transform .18s ease, border-color .18s ease, background .18s ease;
     }
     .lang-btn:hover{transform:translateY(-2px);background:rgba(255,255,255,0.18)}
     .lang-btn:focus-visible{outline:2px solid #fff;outline-offset:2px}
     .content{flex:1; display:flex; flex-direction:column; min-width:0;}
     header.hero{
-      min-height:220px; display:flex; align-items:center; padding:32px 36px; background:linear-gradient(90deg,#d6f3ff 0%, #a7d9ff 100%); border-bottom:1px solid rgba(0,0,0,0.06); position:relative; overflow:hidden;
+      min-height:220px;
+      display:flex;
+      align-items:center;
+      padding:32px 36px;
+      background:linear-gradient(90deg,#d6f3ff 0%, #a7d9ff 100%);
+      border-bottom:1px solid rgba(0,0,0,0.06);
+      position:relative;
+      overflow:hidden;
     }
+    /* 헤더 배경 이미지 제거 */
     header.hero::after{
-      content:""; position:absolute; inset:0; background:url('images/bg_dc.jpeg') center/cover no-repeat; opacity:0.35; mix-blend-mode:multiply;
+      display:none;
     }
     header.hero > *{position:relative;z-index:1;}
     .hero-text h1{margin:0;font-size:34px;font-weight:700;color:#053244;}
@@ -70,12 +109,18 @@
     .hero-meta span{display:block;font-size:14px;color:var(--muted);font-weight:500;}
     main{flex:1; padding:40px 48px; min-height:320px; display:flex; justify-content:center; align-items:flex-start;}
     #main-section{width:100%; max-width:var(--content-max);}
-    .card{background:#fff; border-radius:16px; padding:32px; box-shadow:0 16px 40px rgba(12,40,70,0.08);}
+    .card{
+      /* 본문 카드의 배경을 약간 투명하게 만들어 가독성 향상 */
+      background:rgba(255,255,255,0.92);
+      backdrop-filter:blur(6px);
+      border-radius:16px;
+      padding:32px;
+      box-shadow:0 16px 40px rgba(12,40,70,0.08);
+    }
     .card h1{margin:0 0 12px;font-size:28px;}
     .card p.lead{margin:0 0 24px;color:var(--muted);}
-    .main-visual{margin:0 0 28px; background:#f7fbff; border-radius:18px; padding:16px; box-shadow:0 12px 28px rgba(7,49,75,0.12);}
-    .main-visual img{width:100%; display:block; border-radius:14px; object-fit:cover;}
-    .main-visual figcaption{margin-top:12px; font-size:14px; color:#24485c; text-align:center;}
+    /* 메인 비주얼 숨기기 */
+    .main-visual{display:none;}
     .feature-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;margin-bottom:32px;}
     .feature-card{background:#f7fbff;border-radius:14px;padding:24px;box-shadow:0 10px 24px rgba(7,49,75,0.08);}
     .feature-card h2{margin:0 0 10px;font-size:20px;color:#07314b;}
@@ -136,6 +181,7 @@
         <section class="card" id="main-section">
           <h1 id="section-title">게임 개요</h1>
           <p class="lead" id="section-lead">다이스 크루세이더는 주사위 조합으로 기사단을 강화하고, 턴마다 전략을 바꿔가며 적을 상대하는 모바일 전술 RPG입니다.</p>
+          <!-- 메인 비주얼은 숨겼으므로 필요하면 삭제해도 됩니다 -->
           <figure class="main-visual">
             <img src="images/ico_main_dc_web.jpeg" alt="다이스 크루세이더 메인 키비주얼">
             <figcaption>주사위와 기사단이 맞붙는 다이스 크루세이더의 메인 비주얼</figcaption>
