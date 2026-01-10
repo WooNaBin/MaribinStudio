@@ -116,6 +116,12 @@
       overflow:hidden;
     }
     .hero-text h1{margin:0;font-size:24px;font-weight:700;color:#f6fbff;}
+    .hero-title-image{
+      height:42px;
+      width:auto;
+      max-width:100%;
+      display:block;
+    }
     main{flex:1; padding:40px 48px; min-height:320px; display:flex; justify-content:center; align-items:flex-start;}
     #main-section{width:100%; max-width:var(--content-max);}
     .card{
@@ -277,6 +283,7 @@
       .nav{flex-direction:row;flex-wrap:wrap;justify-content:center;width:100%;}
       .nav button{flex:1 1 45%; text-align:center;}
       header.hero{flex-direction:column;align-items:flex-start;}
+      .hero-title-image{height:32px;}
       main{padding:24px;}
       .dc-shots{grid-template-columns:1fr;}
       .dc-lightbox img{max-width:94vw;max-height:78vh;}
@@ -364,7 +371,7 @@
     <div class="content">
       <header class="hero">
         <div class="hero-text">
-          <h1 id="hero-title">다이스 크루세이더</h1>
+          <h1><img id="hero-title" class="hero-title-image" src="images/headertext_dicecrusaders.png" alt="다이스 크루세이더"></h1>
         </div>
       </header>
       <main>
@@ -444,7 +451,14 @@
         const btn = navButtons[index];
         if (btn) btn.textContent = t[item.key];
       });
-      document.getElementById('hero-title').textContent = t.heroTitle;
+      const heroTitleEl = document.getElementById('hero-title');
+      if (heroTitleEl) {
+        if (heroTitleEl.tagName === 'IMG') {
+          heroTitleEl.alt = t.heroTitle;
+        } else {
+          heroTitleEl.textContent = t.heroTitle;
+        }
+      }
       document.getElementById('section-title').textContent = t.sectionTitle;
       document.getElementById('section-lead').textContent = t.sectionLead;
       document.getElementById('nav-intro').textContent = t.navIntro;
