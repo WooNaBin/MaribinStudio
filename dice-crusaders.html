@@ -163,6 +163,26 @@
     .dc-list{margin:0 0 16px;padding-left:18px;color:rgba(245,250,255,0.98);text-shadow:0 2px 6px rgba(0,0,0,0.6);}
     .dc-list li{margin-bottom:8px;}
     .dc-actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center;}
+    .dc-store-link{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:6px 10px;
+      border-radius:12px;
+      background:rgba(255,255,255,0.12);
+      border:1px solid rgba(255,255,255,0.22);
+      transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
+    }
+    .dc-store-link:hover{
+      transform:translateY(-2px);
+      box-shadow:0 10px 20px rgba(3,18,26,0.25);
+      background:rgba(255,255,255,0.18);
+    }
+    .dc-store-link img{
+      height:46px;
+      width:auto;
+      display:block;
+    }
     .dc-chip{
       display:inline-flex;
       align-items:center;
