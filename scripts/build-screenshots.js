@@ -36,7 +36,6 @@ if (files.length === 0) {
       return (
         '    <figure class="dc-shot">\n' +
         `      <img src="${src}" alt="${alt}">\n` +
-        `      <span>${label}</span>\n` +
         '    </figure>\n'
       );
     })
