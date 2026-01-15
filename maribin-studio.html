@@ -85,6 +85,12 @@
     .info-card{background:#f7fbff;border-radius:14px;padding:24px;box-shadow:0 8px 24px rgba(7,49,75,0.08);}
     .info-card h2{margin:0 0 12px;font-size:22px;color:#07314b;}
     .info-card p{margin:0;color:#173042;}
+    /* Render \n as line breaks for i18n textContent output */
+    #story-body,
+    #vision-body,
+    #section-lead{
+      white-space:pre-line;
+    }
     .info-card ul{margin:12px 0 0;padding-left:18px;color:#173042;}
     footer{padding:18px;text-align:center;color:var(--muted);font-size:14px;}
     @media(max-width:768px){
@@ -178,8 +184,8 @@
       </header>
       <main>
         <section class="card" id="main-section">
-          <h1 id="section-title">우리가 추구하는 가치</h1>
-          <p class="lead" id="section-lead">마리빈스튜디오는 추억의 게임들을 마리빈스튜디오의 스타일로 재해석해, 모바일에서도 깊이 있는 전략과 성장의 재미를 전합니다.</p>
+          <h1 id="section-title">마리빈스튜디오가 추구하는 가치</h1>
+          <p class="lead" id="section-lead">추억의 게임들을 마리빈스튜디오의 스타일로 재해석해, 모바일에서도 깊이 있는 전략과 성장의 재미를 전합니다.</p>
           <div class="stats">
             <div class="stat">
               <strong id="stat1-value">인디</strong>
@@ -196,12 +202,12 @@
           </div>
           <div class="info-grid">
             <article class="info-card">
-              <h2 id="story-heading">우리의 이야기</h2>
-              <p id="story-body">개발자의 최애 게임인 '창세기전3 파트2'와 '롤러코스터 타이쿤'에서 받은 영감을 바탕으로, 전술의 선택과 운영의 리듬이 공존하는 플레이를 설계합니다.</p>
+              <h2 id="story-heading">Maribin</h2>
+              <p id="story-body">안녕하세요. 1인 개발자 Maribin입니다. 머릿속에 떠오르는 막연한 게임 아이디어를 창의적이고 재미있게 구현하기 위해 노력하고 있습니다.</p>
             </article>
             <article class="info-card">
               <h2 id="vision-heading">개발 방향</h2>
-              <p id="vision-body">출시 전부터 플레이 피드백을 반영하고, 꾸준한 업데이트로 세계관과 시스템을 확장합니다.</p>
+              <p id="vision-body">개발자의 최애 게임인 '창세기전3 파트2'와 '롤러코스터 타이쿤'에서 받은 영감을 바탕으로, 전술의 선택과 운영의 리듬이 공존하는 플레이를 설계합니다.</p>
               <ul>
                 <li id="focus-list-1">모바일 환경에서도 전술적 선택이 분명히 드러나도록 UX를 다듬습니다.</li>
                 <li id="focus-list-2">전투와 성장 루프의 템포를 안정적으로 유지합니다.</li>
@@ -234,21 +240,21 @@
         menuPrivacy: '개인정보처리방침',
         menuTerms: '게임 이용약관',
         heroTitle: '마리빈스튜디오 소개',
-        sectionTitle: '우리가 추구하는 가치',
-        sectionLead: '마리빈스튜디오는 추억의 게임들을 마리빈스튜디오의 스타일로 재해석해, 모바일에서도 깊이 있는 전략과 성장의 재미를 전합니다.',
-        stat1Value: '인디',
-        stat1Label: '게임 스튜디오',
+        sectionTitle: '마리빈스튜디오는',
+        sectionLead: '추억의 게임들을 마리빈스튜디오의 스타일로 재해석해, 모바일에서도 깊이 있는 전략과 성장의 재미를 전합니다.',
+        stat1Value: 'A',
+        stat1Label: '1인 게임개발 스튜디오',
         stat2Value: '1',
         stat2Label: '출시 준비작',
         stat3Value: '2',
         stat3Label: '진행중 프로젝트',
-        storyHeading: '우리의 이야기',
-        storyBody: "개발자의 최애 게임인 '창세기전3 파트2'와 '롤러코스터 타이쿤'에서 받은 영감을 바탕으로, 전술의 선택과 운영의 리듬이 공존하는 플레이를 설계합니다.",
+        storyHeading: 'Maribin',
+        storyBody: "안녕하세요. 1인 개발자 Maribin입니다 :D\n머릿속에 떠오르는 막연한 게임 아이디어를 창의적이고 재미있게 구현하기 위해 노력하고 있습니다.\n\nTMI : 개발자의 최애 게임\n  롤러코스터타이쿤, 창세기전3파트2",
         visionHeading: '개발 방향',
-        visionBody: '출시 전부터 플레이 피드백을 반영하고, 꾸준한 업데이트로 세계관과 시스템을 확장합니다.',
-        focusList1: '모바일 환경에서도 전술적 선택이 분명히 드러나도록 UX를 다듬습니다.',
-        focusList2: '전투와 성장 루프의 템포를 안정적으로 유지합니다.',
-        focusList3: 'Dice Crusader의 출시와 장기 운영 준비를 차근히 진행합니다.'
+        visionBody: 'Dice Crusader 개발 -> Roll the survive 개발',
+        focusList1: '모바일 환경에서도 쾌적한 플레이를 위해 UI/UX및 성능최적화.',
+        focusList2: '\'주사위\'라는 컨셉에 맞도록 계속 관련 아이디어를 구상 중.',
+        focusList3: 'Dice Crusader, Roll the survive의 꾸준한 업데이트 및 피드백 반영.'
       },
       en: {
         menuHome: 'Home',
@@ -267,7 +273,7 @@
         stat3Value: '2',
         stat3Label: 'Active projects',
         storyHeading: 'Our Story',
-        storyBody: "Inspired by the creator's favorites—'창세기전3 파트2' and RollerCoaster Tycoon—we design play where tactical choices and management flow together.",
+        storyBody: "Inspired by the creator's favorites—'창세기전3 파트2' and RollerCoaster Tycoon—we design play where tactical choices and management flow together.\nWe aim to deliver that experience on mobile with clarity and depth.",
         visionHeading: 'Development Focus',
         visionBody: 'We take player feedback early and expand the world and systems through steady updates.',
         focusList1: 'Refine UX so tactical choices stay clear on mobile.',
