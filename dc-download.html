@@ -1,143 +1,32 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dice Crusaders - Download</title>
+<section class="dc-section">
+  <h2>다운로드</h2>
+  <p>다이스 크루세이더스는 앱스토어 및 구글플레이 스토어에서 만나실 수 있습니다.</p>
 
-  <!-- Retro fonts (match other pages) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <div class="dc-actions">
+    <span class="dc-chip">출시 준비중</span>
 
-  <style>
-    /* ===== 기본 리셋 ===== */
+    <a
+      class="dc-store-link"
+      href="https://example.com/ios"
+      target="_blank"
+      rel="noopener"
+    >
+      <img
+        src="images/downloadlink_ios.png"
+        alt="App Store에서 다운로드"
+      />
+    </a>
 
-    /* Korean retro pixel font */
-    @font-face {
-      font-family: "DungGeunMo";
-      src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_three@1.0/DungGeunMo.woff") format("woff");
-      font-weight: normal;
-      font-style: normal;
-      font-display: swap;
-    }
-
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: "Press Start 2P", "DungGeunMo", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
-                   "Noto Sans KR", "Segoe UI", sans-serif;
-      line-height: 1.55;
-      -webkit-font-smoothing: antialiased;
-      background-color: #0f1115;
-      color: #eaeaea;
-    }
-
-    /* ===== 다운로드 섹션 ===== */
-    .dc-section {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 80px 20px;
-      text-align: center;
-    }
-
-    .dc-section h2 {
-      font-size: 32px;
-      margin-bottom: 12px;
-      letter-spacing: -0.5px;
-    }
-
-    .dc-section p {
-      font-size: 16px;
-      color: #b5b5b5;
-      margin-bottom: 32px;
-    }
-
-    /* ===== 액션 영역 ===== */
-    .dc-actions {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    /* 출시 상태 칩 */
-    .dc-chip {
-      padding: 8px 14px;
-      font-size: 13px;
-      border-radius: 999px;
-      background: #2a2d36;
-      color: #ffd479;
-      font-weight: 600;
-    }
-
-    /* 스토어 링크 */
-    .dc-store-link {
-      display: inline-block;
-      padding: 6px; /* 클릭 영역 확보 */
-    }
-
-    .dc-store-link img {
-      height: 72px;     /* 핵심: 버튼 크기 */
-      width: auto;      /* 비율 유지 */
-      display: block;
-      transition: transform 0.15s ease;
-    }
-
-    .dc-store-link:hover img {
-      transform: scale(1.05);
-    }
-
-    /* ===== 모바일 대응 ===== */
-    @media (max-width: 768px) {
-      .dc-section {
-        padding: 60px 16px;
-      }
-
-      .dc-section h2 {
-        font-size: 26px;
-      }
-
-      .dc-store-link img {
-        height: 80px;
-      }
-    }
-  </style>
-</head>
-
-<body>
-  <section class="dc-section">
-    <h2>다운로드</h2>
-    <p>다이스 크루세이더스는 앱스토어 및 구글플레이 스토어에서 만나실 수 있습니다.</p>
-
-    <div class="dc-actions">
-      <span class="dc-chip">출시 준비중</span>
-
-      <a
-        class="dc-store-link"
-        href="https://example.com/ios"
-        target="_blank"
-        rel="noopener"
-      >
-        <img
-          src="images/downloadlink_ios.png"
-          alt="App Store에서 다운로드"
-        />
-      </a>
-
-      <a
-        class="dc-store-link"
-        href="https://example.com/android"
-        target="_blank"
-        rel="noopener"
-      >
-        <img
-          src="images/downloadlink_google.png"
-          alt="Google Play에서 다운로드"
-        />
-      </a>
-    </div>
-  </section>
-</body>
-</html>
+    <a
+      class="dc-store-link"
+      href="https://example.com/android"
+      target="_blank"
+      rel="noopener"
+    >
+      <img
+        src="images/downloadlink_google.png"
+        alt="Google Play에서 다운로드"
+      />
+    </a>
+  </div>
+</section>
