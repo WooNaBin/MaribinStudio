@@ -5,17 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dice Crusaders - Download</title>
 
+  <!-- Retro fonts (match other pages) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
   <style>
     /* ===== 기본 리셋 ===== */
-    * {
-      box-sizing: border-box;
+
+    /* Korean retro pixel font */
+    @font-face {
+      font-family: "DungGeunMo";
+      src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_three@1.0/DungGeunMo.woff") format("woff");
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
     }
 
     body {
       margin: 0;
       padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
+      font-family: "Press Start 2P", "DungGeunMo", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
                    "Noto Sans KR", "Segoe UI", sans-serif;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
       background-color: #0f1115;
       color: #eaeaea;
     }
