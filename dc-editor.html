@@ -1,0 +1,29 @@
+<section class="dc-section">
+  <h2>다이스크루세이더 상세페이지 편집</h2>
+  <p>사진과 문구를 원하는 순서로 배치할 수 있는 간단한 웹 에디터입니다. 아래 버튼으로 블록을 추가하고, 드래그로 순서를 바꾸거나 “위로/아래로” 버튼으로 정렬할 수 있습니다.</p>
+</section>
+
+<section class="dc-section dc-editor" id="dc-editor">
+  <div class="dc-editor-toolbar" data-editor-toolbar>
+    <button type="button" data-add="text">텍스트 추가</button>
+    <button type="button" data-add="image">이미지 추가</button>
+    <button type="button" data-add="divider">구분선 추가</button>
+    <button type="button" data-action="clear">전체 삭제</button>
+  </div>
+
+  <div class="dc-editor-canvas" data-editor-canvas>
+    <p class="dc-editor-empty" data-editor-empty>아직 추가된 블록이 없습니다. 위 버튼으로 내용을 추가해주세요.</p>
+  </div>
+
+  <div class="dc-editor-output" data-editor-output>
+    <h3>HTML 미리보기</h3>
+    <p>현재 구성된 상세 페이지용 HTML을 확인하고 복사할 수 있습니다.</p>
+    <textarea readonly data-editor-output-area></textarea>
+    <button type="button" data-editor-copy>HTML 복사</button>
+  </div>
+
+  <div class="dc-editor-preview">
+    <h3>실제 미리보기</h3>
+    <div class="preview-canvas" data-editor-preview></div>
+  </div>
+</section>
