@@ -276,6 +276,190 @@
       height:42px;
       cursor:pointer;
     }
+    .dc-editor{
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+    }
+    .dc-editor-toolbar{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
+    }
+    .dc-editor-toolbar button,
+    .dc-editor-toolbar label{
+      font:inherit;
+      color:#f6fbff;
+      background:rgba(255,255,255,0.14);
+      border:1px solid rgba(255,255,255,0.25);
+      padding:10px 16px;
+      border-radius:12px;
+      cursor:pointer;
+      text-shadow:0 1px 4px rgba(0,0,0,0.45);
+      transition:transform .2s ease, background .2s ease;
+    }
+    .dc-editor-toolbar button:hover,
+    .dc-editor-toolbar label:hover{
+      transform:translateY(-2px);
+      background:rgba(255,255,255,0.24);
+    }
+    .dc-editor-toolbar button:focus-visible,
+    .dc-editor-toolbar label:focus-visible{
+      outline:2px solid rgba(255,255,255,0.9);
+      outline-offset:2px;
+    }
+    .dc-editor-canvas{
+      display:flex;
+      flex-direction:column;
+      gap:16px;
+      padding:20px;
+      background:rgba(4,18,28,0.4);
+      border-radius:16px;
+      border:1px dashed rgba(255,255,255,0.25);
+      min-height:240px;
+    }
+    .dc-editor-empty{
+      margin:0;
+      color:rgba(230,241,255,0.9);
+      text-align:center;
+      padding:24px 12px;
+      border-radius:12px;
+      border:1px dashed rgba(255,255,255,0.2);
+      background:rgba(255,255,255,0.04);
+    }
+    .dc-editor-block{
+      position:relative;
+      padding:18px;
+      border-radius:14px;
+      background:rgba(13,38,56,0.6);
+      border:1px solid rgba(255,255,255,0.18);
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+    .dc-editor-block h3{
+      margin:0;
+      font-size:16px;
+      color:#e9f5ff;
+    }
+    .dc-editor-controls{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+    .dc-editor-controls button{
+      font:inherit;
+      color:#e7f3ff;
+      background:rgba(255,255,255,0.12);
+      border:1px solid rgba(255,255,255,0.2);
+      padding:6px 10px;
+      border-radius:999px;
+      cursor:pointer;
+      font-size:13px;
+    }
+    .dc-editor-text{
+      min-height:120px;
+      padding:14px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,0.2);
+      background:rgba(255,255,255,0.06);
+      color:#f8fbff;
+      font-size:15px;
+      line-height:1.7;
+    }
+    .dc-editor-text[contenteditable="true"]:focus{
+      outline:2px solid rgba(69,181,245,0.6);
+      outline-offset:2px;
+    }
+    .dc-editor-image{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      align-items:flex-start;
+    }
+    .dc-editor-image img{
+      max-width:100%;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,0.2);
+      background:rgba(255,255,255,0.08);
+    }
+    .dc-editor-image input{
+      display:none;
+    }
+    .dc-editor-image label{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+    }
+    .dc-editor-divider{
+      border:0;
+      height:2px;
+      width:100%;
+      background:linear-gradient(90deg, rgba(69,181,245,0.1), rgba(69,181,245,0.8), rgba(69,181,245,0.1));
+      border-radius:999px;
+      margin:8px 0;
+    }
+    .dc-editor-output{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+    .dc-editor-preview{
+      padding:18px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,0.18);
+      background:rgba(7,24,35,0.5);
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+    .dc-editor-preview h3{
+      margin:0;
+      font-size:16px;
+      color:#e9f5ff;
+    }
+    .dc-editor-preview .preview-canvas{
+      min-height:140px;
+      padding:14px;
+      border-radius:12px;
+      border:1px dashed rgba(255,255,255,0.2);
+      background:rgba(255,255,255,0.04);
+    }
+    .dc-editor-block.is-dragging{
+      opacity:0.6;
+      border-color:rgba(69,181,245,0.8);
+    }
+    .dc-editor-block.is-drop-target{
+      outline:2px dashed rgba(69,181,245,0.9);
+      outline-offset:4px;
+    }
+    .dc-editor-output textarea{
+      width:100%;
+      min-height:140px;
+      padding:12px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,0.2);
+      background:rgba(7,24,35,0.65);
+      color:#eaf5ff;
+      font-size:13px;
+      line-height:1.6;
+      resize:vertical;
+    }
+    .dc-editor-output button{
+      align-self:flex-start;
+      font:inherit;
+      color:#f6fbff;
+      background:rgba(69,181,245,0.25);
+      border:1px solid rgba(69,181,245,0.6);
+      padding:8px 14px;
+      border-radius:10px;
+      cursor:pointer;
+    }
+    .dc-editor-output button:hover{
+      background:rgba(69,181,245,0.4);
+    }
     footer{padding:18px;text-align:center;color:var(--muted);font-size:14px;}
     @media(max-width:768px){
       .wrap{flex-direction:column;}
@@ -385,6 +569,7 @@
             <button data-file="dc-combat.html" id="nav-combat">전투시스템</button>
             <button data-file="dc-upgrade.html" id="nav-upgrade">강화시스템</button>
             <button data-file="dc-screenshots.html" id="nav-shots">스크린샷</button>
+            <button data-file="dc-editor.html" id="nav-editor">상세페이지 편집</button>
           </div>
           <div class="dc-panel" id="dc-content" aria-live="polite"></div>
         </section>
@@ -423,7 +608,8 @@
         navInfo: '기본정보',
         navCombat: '전투시스템',
         navUpgrade: '강화시스템',
-        navShots: '스크린샷'
+        navShots: '스크린샷',
+        navEditor: '상세페이지 편집'
       },
       en: {
         menuHome: 'Home',
@@ -440,7 +626,8 @@
         navInfo: 'Core Info',
         navCombat: 'Combat System',
         navUpgrade: 'Upgrades',
-        navShots: 'Screenshots'
+        navShots: 'Screenshots',
+        navEditor: 'Detail Page Editor'
       }
     };
 
@@ -467,6 +654,7 @@
       document.getElementById('nav-combat').textContent = t.navCombat;
       document.getElementById('nav-upgrade').textContent = t.navUpgrade;
       document.getElementById('nav-shots').textContent = t.navShots;
+      document.getElementById('nav-editor').textContent = t.navEditor;
       localStorage.setItem('lang', lang);
     }
 
@@ -490,6 +678,7 @@
         .then(html => {
           dcContent.innerHTML = html;
           hookDcLightbox();
+          initDcEditor();
         })
         .catch(() => {
           dcContent.textContent = '콘텐츠를 불러오지 못했습니다.';
@@ -522,6 +711,252 @@
       images.forEach((img) => {
         img.addEventListener('click', () => openDcLightbox(img.src, img.alt));
       });
+    }
+
+    function initDcEditor() {
+      const editor = document.getElementById('dc-editor');
+      if (!editor) return;
+      const toolbar = editor.querySelector('[data-editor-toolbar]');
+      const canvas = editor.querySelector('[data-editor-canvas]');
+      const output = editor.querySelector('[data-editor-output]');
+      const outputArea = editor.querySelector('[data-editor-output-area]');
+      const copyBtn = editor.querySelector('[data-editor-copy]');
+      const emptyState = editor.querySelector('[data-editor-empty]');
+      const previewCanvas = editor.querySelector('[data-editor-preview]');
+
+      if (!toolbar || !canvas) return;
+      let dragSource = null;
+
+      const updateEmptyState = () => {
+        if (!emptyState) return;
+        emptyState.hidden = canvas.children.length > 0;
+      };
+
+      const buildOutput = () => {
+        if (!outputArea) return;
+        const blocks = Array.from(canvas.children);
+        const html = blocks.map((block) => {
+          if (block.dataset.type === 'text') {
+            const content = block.querySelector('[data-text-content]');
+            return `<section class="dc-section"><p>${content ? content.innerHTML.trim() : ''}</p></section>`;
+          }
+          if (block.dataset.type === 'image') {
+            const img = block.querySelector('img');
+            const alt = img ? (img.alt || '') : '';
+            const src = img ? img.src : '';
+            return `<section class="dc-section"><img src="${src}" alt="${alt}" style="width:100%;border-radius:16px;"></section>`;
+          }
+          if (block.dataset.type === 'divider') {
+            return `<hr class="dc-editor-divider">`;
+          }
+          return '';
+        }).join('\n');
+        const trimmed = html.trim();
+        outputArea.value = trimmed;
+        if (previewCanvas) {
+          previewCanvas.innerHTML = trimmed || '<p class="dc-editor-empty">미리볼 내용이 없습니다. 블록을 추가해 주세요.</p>';
+        }
+      };
+
+      const createControls = () => {
+        const controls = document.createElement('div');
+        controls.className = 'dc-editor-controls';
+        controls.innerHTML = `
+          <button type="button" data-move="up">위로</button>
+          <button type="button" data-move="down">아래로</button>
+          <button type="button" data-delete="true">삭제</button>
+        `;
+        return controls;
+      };
+
+      const createTextBlock = () => {
+        const block = document.createElement('div');
+        block.className = 'dc-editor-block';
+        block.dataset.type = 'text';
+        block.setAttribute('draggable', 'true');
+        block.innerHTML = `
+          <h3>텍스트 블록</h3>
+          <div class="dc-editor-text" contenteditable="true" data-text-content>
+            여기에 소개 문구를 적어주세요.
+          </div>
+        `;
+        block.appendChild(createControls());
+        return block;
+      };
+
+      const createImageBlock = () => {
+        const block = document.createElement('div');
+        block.className = 'dc-editor-block';
+        block.dataset.type = 'image';
+        block.setAttribute('draggable', 'true');
+        const id = `dc-editor-image-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
+        const placeholder = "data:image/svg+xml;utf8," + encodeURIComponent("<svg xmlns='http://www.w3.org/2000/svg' width='960' height='540'><rect width='100%' height='100%' fill='%230b1d2b'/><rect x='24' y='24' width='912' height='492' rx='28' fill='%23162f42' stroke='%233a6b86' stroke-width='4'/><text x='50%' y='50%' fill='%23cfe9ff' font-size='32' font-family='Arial' dominant-baseline='middle' text-anchor='middle'>이미지를 선택해 주세요</text></svg>");
+        block.innerHTML = `
+          <h3>이미지 블록</h3>
+          <div class="dc-editor-image">
+            <img src="${placeholder}" alt="이미지를 선택해 주세요.">
+            <input type="file" id="${id}" accept="image/*">
+            <label for="${id}">이미지 선택</label>
+          </div>
+        `;
+        block.appendChild(createControls());
+        return block;
+      };
+
+      const createDividerBlock = () => {
+        const block = document.createElement('div');
+        block.className = 'dc-editor-block';
+        block.dataset.type = 'divider';
+        block.setAttribute('draggable', 'true');
+        block.innerHTML = `
+          <h3>구분선</h3>
+          <hr class="dc-editor-divider">
+        `;
+        block.appendChild(createControls());
+        return block;
+      };
+
+      const addBlock = (type) => {
+        let block;
+        if (type === 'text') block = createTextBlock();
+        if (type === 'image') block = createImageBlock();
+        if (type === 'divider') block = createDividerBlock();
+        if (!block) return;
+        canvas.appendChild(block);
+        updateEmptyState();
+        buildOutput();
+      };
+
+      toolbar.querySelectorAll('[data-add]').forEach((btn) => {
+        btn.addEventListener('click', () => addBlock(btn.dataset.add));
+      });
+
+      const clearBtn = toolbar.querySelector('[data-action="clear"]');
+      if (clearBtn) {
+        clearBtn.addEventListener('click', () => {
+          canvas.innerHTML = '';
+          if (emptyState) {
+            canvas.appendChild(emptyState);
+          }
+          updateEmptyState();
+          buildOutput();
+        });
+      }
+
+      canvas.addEventListener('click', (event) => {
+        const target = event.target;
+        if (!(target instanceof HTMLElement)) return;
+        const block = target.closest('.dc-editor-block');
+        if (!block) return;
+        if (target.dataset.delete) {
+          block.remove();
+          updateEmptyState();
+          buildOutput();
+          return;
+        }
+        if (target.dataset.move === 'up') {
+          const prev = block.previousElementSibling;
+          if (prev) canvas.insertBefore(block, prev);
+          buildOutput();
+        }
+        if (target.dataset.move === 'down') {
+          const next = block.nextElementSibling;
+          if (next) canvas.insertBefore(next, block);
+          buildOutput();
+        }
+      });
+
+      canvas.addEventListener('input', (event) => {
+        const target = event.target;
+        if (!(target instanceof HTMLElement)) return;
+        if (target.matches('[data-text-content]')) {
+          buildOutput();
+        }
+      });
+
+      canvas.addEventListener('dragstart', (event) => {
+        const target = event.target;
+        if (!(target instanceof HTMLElement)) return;
+        const block = target.closest('.dc-editor-block');
+        if (!block) return;
+        dragSource = block;
+        block.classList.add('is-dragging');
+        event.dataTransfer?.setData('text/plain', 'drag');
+      });
+
+      canvas.addEventListener('dragover', (event) => {
+        event.preventDefault();
+        const target = event.target;
+        if (!(target instanceof HTMLElement)) return;
+        const block = target.closest('.dc-editor-block');
+        if (!block || block === dragSource) return;
+        block.classList.add('is-drop-target');
+      });
+
+      canvas.addEventListener('dragleave', (event) => {
+        const target = event.target;
+        if (!(target instanceof HTMLElement)) return;
+        const block = target.closest('.dc-editor-block');
+        if (!block) return;
+        block.classList.remove('is-drop-target');
+      });
+
+      canvas.addEventListener('drop', (event) => {
+        event.preventDefault();
+        const target = event.target;
+        if (!(target instanceof HTMLElement)) return;
+        const block = target.closest('.dc-editor-block');
+        if (!block || !dragSource || block === dragSource) return;
+        block.classList.remove('is-drop-target');
+        canvas.insertBefore(dragSource, block);
+        buildOutput();
+      });
+
+      canvas.addEventListener('dragend', () => {
+        if (dragSource) {
+          dragSource.classList.remove('is-dragging');
+        }
+        canvas.querySelectorAll('.dc-editor-block.is-drop-target').forEach((block) => {
+          block.classList.remove('is-drop-target');
+        });
+        dragSource = null;
+      });
+
+      canvas.addEventListener('change', (event) => {
+        const target = event.target;
+        if (!(target instanceof HTMLInputElement)) return;
+        if (target.type !== 'file') return;
+        const file = target.files && target.files[0];
+        if (!file) return;
+        const block = target.closest('.dc-editor-block');
+        if (!block) return;
+        const img = block.querySelector('img');
+        if (!img) return;
+        const reader = new FileReader();
+        reader.onload = () => {
+          img.src = reader.result;
+          img.alt = file.name;
+          buildOutput();
+        };
+        reader.readAsDataURL(file);
+      });
+
+      if (copyBtn && outputArea) {
+        copyBtn.addEventListener('click', async () => {
+          try {
+            await navigator.clipboard.writeText(outputArea.value);
+            copyBtn.textContent = '복사 완료!';
+            setTimeout(() => {
+              copyBtn.textContent = 'HTML 복사';
+            }, 1500);
+          } catch (error) {
+            console.error(error);
+          }
+        });
+      }
+
+      updateEmptyState();
+      buildOutput();
     }
 
     navButtons.forEach(btn => {
